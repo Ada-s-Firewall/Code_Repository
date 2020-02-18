@@ -1,4 +1,3 @@
-
 package LoginPage;
 
 import java.net.URL;
@@ -8,7 +7,7 @@ import javafx.fxml.Initializable;
 public class UIController implements Initializable {
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
     }
     
     public void loginButtonClicked(){
