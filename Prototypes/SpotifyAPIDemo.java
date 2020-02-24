@@ -1,4 +1,4 @@
-package prototypes;
+package Prototypes;
 
 /**
  * This class serves as a brief demo that showcases how to connect to the Spotify API and performs a basic search.

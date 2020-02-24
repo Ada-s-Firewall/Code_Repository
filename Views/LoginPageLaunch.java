@@ -1,4 +1,3 @@
-
 package Views;
 
 import javafx.application.Application;
@@ -7,20 +6,31 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+/**
+ * Purpose: This method launches the initial login page scene
+ * Contributors: Eric Cortes
+ * Last Updated: 02/24/2020
+ */
 public class LoginPageLaunch extends Application {
-    
+
+    /**
+     * This method loads the initial login page view and displays it
+     */
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginPageUI.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage _stage) throws Exception {
+
+        //Load and display login page scene
+        Parent loginPageRoot = FXMLLoader.load(getClass().getResource("LoginPageUI.fxml"));
+        Scene loginPageScene = new Scene(loginPageRoot);
+        _stage.setScene(loginPageScene);
+        _stage.show();
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    /**
+     * This is the main method that launches the application
+     */
+    public static void main(String[] _args) {
+        launch(_args);
     }
-    
+
 }

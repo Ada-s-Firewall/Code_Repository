@@ -1,4 +1,4 @@
-package controllers;
+package Controllers;
 
 /**
  * This controller handles requests for user/personal information that come from a view.
