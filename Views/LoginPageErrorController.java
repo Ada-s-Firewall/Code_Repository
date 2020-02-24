@@ -59,6 +59,6 @@ public class LoginPageErrorController implements Initializable {
 
     @FXML
     void forgotPasswordButtonClicked(ActionEvent event) {
-
+        System.out.println("Idot user forgot password!");
     }
 }

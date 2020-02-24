@@ -7,7 +7,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.SignUpPageErrorController">
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: DCDCDC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Views.SignUpPageError2Controller">
    <children>
       <Pane layoutX="220.0" layoutY="70.0" prefHeight="360.0" prefWidth="300.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -25,7 +26,7 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox layoutX="50.0" layoutY="134.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+            <HBox layoutX="50.0" layoutY="122.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
                <children>
                   <TextField fx:id="password" prefHeight="37.0" prefWidth="200.0" promptText="password" style="-fx-background-color: transparent;">
                      <font>
@@ -34,7 +35,7 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox layoutX="50.0" layoutY="173.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+            <HBox layoutX="50.0" layoutY="160.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
                <children>
                   <TextField fx:id="confirmPassword" prefHeight="37.0" prefWidth="200.0" promptText="confirm password" style="-fx-background-color: transparent;">
                      <font>
@@ -54,7 +55,7 @@
             </HBox>
             <Button layoutX="51.0" layoutY="253.0" mnemonicParsing="false" onAction="#signUpButtonClicked" prefHeight="38.0" prefWidth="200.0" text="Sign Up" />
             <Button layoutX="86.0" layoutY="304.0" mnemonicParsing="false" onAction="#returnToLoginPageClicked" style="-fx-background-color: #ffffff;" text="Return to Login Page" textFill="#2fa1ff" underline="true" />
-            <Label layoutX="79.0" layoutY="115.0" text="Username already taken!" textFill="#ff0505">
+            <Label layoutX="77.0" layoutY="192.0" text="Passwords do not match!" textFill="#ff0505">
                <font>
                   <Font size="13.0" />
                </font>
