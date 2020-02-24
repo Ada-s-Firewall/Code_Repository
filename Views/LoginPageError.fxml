@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Views.LoginPageErrorController">
+   <children>
+      <Pane layoutX="220.0" layoutY="60.0" prefHeight="380.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+         <children>
+            <Label layoutX="86.0" layoutY="63.0" prefHeight="39.0" prefWidth="133.0" text="User Login">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <HBox layoutX="52.0" layoutY="124.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="username" promptText="username" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="52.0" layoutY="163.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="password" promptText="password" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button layoutX="57.0" layoutY="226.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="44.0" prefWidth="78.0" text="Login" />
+            <Button layoutX="167.0" layoutY="226.0" mnemonicParsing="false" onAction="#signUpButtonClicked" prefHeight="44.0" prefWidth="78.0" text="Sign Up" />
+            <Button layoutX="96.0" layoutY="276.0" mnemonicParsing="false" onAction="#forgotPasswordButtonClicked" style="-fx-background-color: #FFFFFF;" text="Forgot Password?" textAlignment="CENTER" textFill="#0a82e4" underline="true" />
+            <Label layoutX="61.0" layoutY="201.0" text="Wrong Username or Password!" textFill="#f80202" wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
