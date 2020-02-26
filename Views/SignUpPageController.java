@@ -1,5 +1,12 @@
 package Views;
 
+/**
+ * Purpose: This class serves as the controller class for the sign up page view
+ * of the sign up page fxml file
+ * Contributors: Eric Cortes
+ * Last Updated: 02/24/2020
+ */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,11 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Purpose: This class serves as the controller class for the sign up page view
- * of the sign up page fxml file Contributors: Eric Cortes Last Updated:
- * 02/24/2020
- */
+
 public class SignUpPageController implements Initializable {
 
     //Varaibles of the information entered by user
