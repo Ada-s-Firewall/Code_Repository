@@ -1,5 +1,12 @@
 package Views;
 
+/**
+ * Purpose: The purpose of this class is to serve as the controller for the
+ *          login page error view.
+ * Contributors: Eric Cortes
+ * Last Updated: 02/24/2020
+ */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,10 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Purpose: The purpose of this class is to serve as the controller for the
- * login page error view. Contributors: Eric Cortes Last Updated: 02/24/2020
- */
+
 public class LoginPageErrorController implements Initializable {
 
     //This is the variable of the password entered by the user
@@ -35,8 +39,8 @@ public class LoginPageErrorController implements Initializable {
     void loginButtonClicked(ActionEvent _event) throws IOException {
 
         //String variable of the username and password entered by the user
-        String theUsername = username.getText();
-        String thePassword = password.getText();
+        String theUsername = this.username.getText();
+        String thePassword = this.password.getText();
 
         //If statement to see if the username and password are registered
         if ("username".equals(theUsername) && "password".equals(thePassword)) {
@@ -44,6 +48,7 @@ public class LoginPageErrorController implements Initializable {
             //Display username and password if they are registered
             System.out.println("Username: " + theUsername);
             System.out.println("Password: " + thePassword);
+
         } else {
 
             //Load and display login page error scene if username and password are not registered
