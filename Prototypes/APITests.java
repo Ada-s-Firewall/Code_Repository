@@ -2,9 +2,14 @@ package Prototypes;
 
 /**
  * The sole purpose of this class is to directly test the API classes in the package API.
- * Last Updated: 2/28/2020
+ * Last Updated: 2/29/2020
  * @author Fernando Villarreal
  */
+
+import API.SpotifyAPITranslator;
+import Models.MusicObject;
+import java.util.ArrayList;
+
 public class APITests {
 
     /**
@@ -12,7 +17,12 @@ public class APITests {
      * @param args
      */
     public static void main(String[] args){
-        // test API classes
+        System.out.println("SpotifyAPITranslator Tests:\n");
+        SpotifyAPITranslator translator = new SpotifyAPITranslator("PTg7ZDY5HJZjYjUiNDczxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=");
+        ArrayList<MusicObject> searchResults = translator.search("stone", "artist", 10);
+        for (MusicObject obj : searchResults) {
+            System.out.println("\n" + obj.toString());
+        }
     }
 
 }

@@ -2,7 +2,7 @@ package API;
 
 /**
  * This API Adapter class uses a given API Translator to make requests to a particular API.
- * Last Updated: 2/28/2020
+ * Last Updated: 2/29/2020
  * @author Fernando Villarreal
  */
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class MusicAPIAdapter implements MusicAPIInterface {
 
-    protected final static MusicAPIInterface apiTranslator = new SpotifyAPITranslator("PTg7ZiNDczxxxxxxxxxxx=");
+    protected final static MusicAPIInterface apiTranslator = new SpotifyAPITranslator("PTg7ZDY5HJZjYjUiNDczxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=");
 
     @Override
-    public ArrayList<MusicObject> search(String _keyword, String _type) {
-        return MusicAPIAdapter.apiTranslator.search(_keyword, _type);
+    public ArrayList<MusicObject> search(String _keyword, String _type, int _limit) {
+        return MusicAPIAdapter.apiTranslator.search(_keyword, _type, _limit);
     }
 
     @Override
