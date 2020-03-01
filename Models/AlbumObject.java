@@ -2,7 +2,7 @@ package Models;
 
 /**
  * This class defines an Album Object and its properties and methods.
- * Last Updated: 2/28/2020
+ * Last Updated: 2/29/2020
  * @author Fernando Villarreal
  */
 
@@ -11,20 +11,34 @@ import java.util.ArrayList;
 public class AlbumObject extends MusicObject {
 
     protected String artist;
-    protected int year;
+    protected String year;
 
     //================= CONSTRUCTORS ===============
 
-    public AlbumObject(String _name, String _id, ArrayList<String> _genres, String _artist, int _year) {
-        super(_name, _id, _genres);
+    public AlbumObject(String _name, String _id, String _type, ArrayList<String> _genres, String _artist, String _year) {
+        super(_name, _id, _type, _genres);
         this.year = _year;
         this.artist = _artist;
     }
 
-    public AlbumObject(String _name, String _id, String _genre, String _artist, int _year) {
-        super(_name, _id, _genre);
+    public AlbumObject(String _name, String _id, String _type, String _genre, String _artist, String _year) {
+        super(_name, _id, _type, _genre);
         this.year = _year;
         this.artist = _artist;
+    }
+
+    public AlbumObject(String _name, String _id, String _type, String[] _genres, String _artist, String _year) {
+        super(_name, _id, _type, _genres);
+        this.year = _year;
+        this.artist = _artist;
+    }
+
+    //================= METHODS ===============
+
+    @Override
+    public String toString() {
+        String albumInfo = super.toString() + "\nArtist: " + this.artist + "\nYear: " + this.year;
+        return albumInfo;
     }
 
     //================= GETTERS ===============
@@ -41,13 +55,7 @@ public class AlbumObject extends MusicObject {
      * Return the year on which the album was released.
      * @return this.year
      */
-    public int getYear() {
+    public String getYear() {
         return this.year;
-    }
-
-    @Override
-    public String toString() {
-        String albumInfo = super.toString() + "\nArtist: " + this.artist + "\nYear: " + this.year;
-        return albumInfo;
     }
 }

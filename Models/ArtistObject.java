@@ -2,7 +2,7 @@ package Models;
 
 /**
  * This class defines an Artist Object and its properties and methods.
- * Last Updated: 2/28/2020
+ * Last Updated: 2/29/2020
  * @author Fernando Villarreal
  */
 
@@ -14,14 +14,27 @@ public class ArtistObject extends MusicObject {
 
     //================= CONSTRUCTORS ===============
 
-    public ArtistObject(String _name, String _id, ArrayList<String> _genres, String _url) {
-        super(_name, _id, _genres);
+    public ArtistObject(String _name, String _id, String _type, ArrayList<String> _genres, String _url) {
+        super(_name, _id, _type, _genres);
         this.url = _url;
     }
 
-    public ArtistObject(String _name, String _id, String _genre, String _url) {
-        super(_name, _id, _genre);
+    public ArtistObject(String _name, String _id, String _type, String _genre, String _url) {
+        super(_name, _id, _type, _genre);
         this.url = _url;
+    }
+
+    public ArtistObject(String _name, String _id, String _type, String[] _genres, String _url) {
+        super(_name, _id, _type, _genres);
+        this.url = _url;
+    }
+
+    //================= METHODS ===============
+
+    @Override
+    public String toString() {
+        String artistInfo = super.toString() + "\nURL: " + this.url;
+        return artistInfo;
     }
 
     //================= GETTERS ===============
@@ -33,11 +46,4 @@ public class ArtistObject extends MusicObject {
     public String getURL() {
         return this.url;
     }
-
-    @Override
-    public String toString() {
-        String artistInfo = super.toString() + "\nURL: " + this.url;
-        return artistInfo;
-    }
-
 }
