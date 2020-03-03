@@ -6,7 +6,7 @@ package API;
  * NOTE 2: DO NOT leave your Developer Credentials in the MusicAPIAdapter file if you are uploading it to a public repository.
  * NOTE 3: This class requires cURL 7.68.0 to be installed on the machine to make requests to the Spotify API.
  * NOTE 4: Do not call this class directly; route all requests through the MusicAPIAdapter class.
- * Last Updated: 2/29/2020
+ * Last Updated: 3/3/2020
  * @author Fernando Villarreal
  */
 
@@ -142,13 +142,14 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     private ArrayList<MusicObject> convertSearchResults(JSONObject _searchResults, String _type) throws Exception{
         // Get the JSONArray of items of _type
         String type = _type + "s";
-        JSONObject resultsOfType = (JSONObject)_searchResults.get(type);
-        JSONArray items = (JSONArray)resultsOfType.get("items");
+        JSONObject resultsOfType = _searchResults.getJSONObject(type);
+        JSONArray items = resultsOfType.getJSONArray("items");
         int itemLength = items.length();
+        // Iterate over items to get and convert each object
         ArrayList<MusicObject> itemsList = new ArrayList<>();
         if (type.equals("artists")) {
             for (int index = 0; index < itemLength; index++) {
-                JSONObject jsonArtist = (JSONObject)items.get(index);
+                JSONObject jsonArtist = items.getJSONObject(index);
                 ArtistObject artist = this.convertJSONArtistObject(jsonArtist);
                 itemsList.add(artist);
             }
@@ -156,23 +157,28 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
         }
         if (type.equals("tracks")) {
             for (int index = 0; index < itemLength; index++) {
-                JSONObject jsonTrack = (JSONObject)items.get(index);
+                JSONObject jsonTrack = items.getJSONObject(index);
                 TrackObject track = this.convertJSONTrackObject(jsonTrack);
                 itemsList.add(track);
             }
             return itemsList;
         }
         if (type.equals("albums")) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            for (int index = 0; index < itemLength; index++) {
+                JSONObject jsonAlbum = items.getJSONObject(index);
+                AlbumObject album = this.convertJSONAlbumObject(jsonAlbum);
+                itemsList.add(album);
+            }
+            return itemsList;
         }
-        // Return the list of Music Objects
+        // Return the empty list of Music Objects
         return itemsList;
     }
 
     /**
      * Convert a JSONArray into an ArrayList of Strings.
      * @param _jsonArray
-     * @return
+     * @return finalList
      * @throws JSONException
      */
     private ArrayList<String> convertJSONArray(JSONArray _jsonArray) throws JSONException {
@@ -185,6 +191,8 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
         return finalList;
     }
 
+    //================= PRIVATE METHODS FOR: Converting Spotify JSON Music Objects into MusicObjects ===============
+
     /**
      * Given a Spotify JSON ArtistObject, convert it into an ArtistObject.
      * Helper method for the this.convertSearchResults method.
@@ -192,37 +200,61 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
      * @return artist
      */
     private ArtistObject convertJSONArtistObject(JSONObject _jsonArtist) throws JSONException {
+        // Get the name, id, type, and url
         String artistName = _jsonArtist.getString("name");
         String artistID = _jsonArtist.getString("id");
         String artistType = _jsonArtist.getString("type");
-        JSONObject jsonUrl = (JSONObject)_jsonArtist.get("external_urls");
-        String artistUrl = (String)jsonUrl.getString("spotify");
-        JSONArray jsonGenres = (JSONArray)_jsonArtist.get("genres");
+        String artistUrl = _jsonArtist.getJSONObject("external_urls").getString("spotify");
+        // Get and convert the genres
+        JSONArray jsonGenres = _jsonArtist.getJSONArray("genres");
         ArrayList<String> artistGenres = this.convertJSONArray(jsonGenres);
+        // Create and return the ArtistObject
         ArtistObject artist = new ArtistObject(artistName, artistID, artistType, artistGenres, artistUrl);
         return artist;
     }
 
     /**
      * Given a Spotify JSON TrackObject, convert it into a TrackObject.
+     * Helper method for the this.convertSearchResults method.
      * @param _jsonTrack
-     * @return
+     * @return track
      * @throws JSONException
      */
     private TrackObject convertJSONTrackObject(JSONObject _jsonTrack) throws JSONException {
+        // Get the name, id, and type
         String trackName = _jsonTrack.getString("name");
         String trackID = _jsonTrack.getString("id");
         String trackType = _jsonTrack.getString("type");
         // Spotify does not provide genres for tracks
         ArrayList<String> trackGenres = new ArrayList<>();
-        // Get the artist
+        // Get the artist, album, and year
         String trackArtist = _jsonTrack.getJSONArray("artists").getJSONObject(0).getString("name");;
-        // Get the album
         String trackAlbum = _jsonTrack.getJSONObject("album").getString("name");
-        // Get the year
         String trackYear = _jsonTrack.getJSONObject("album").getString("release_date");
         // Create and return the TrackObject
         TrackObject track = new TrackObject(trackName, trackID, trackType, trackGenres, trackArtist, trackAlbum, trackYear);
         return track;
+    }
+
+    /**
+     * Given a Spotify JSON AlbumObject, convert it into an AlbumObject.
+     * Helper method for the this.convertSearchResults method.
+     * @param _jsonAlbum
+     * @return album
+     * @throws JSONException
+     */
+    private AlbumObject convertJSONAlbumObject(JSONObject _jsonAlbum) throws JSONException {
+        // Get the name, id, and type
+        String albumName = _jsonAlbum.getString("name");
+        String albumID = _jsonAlbum.getString("id");
+        String albumType = _jsonAlbum.getString("type");
+        // Get the year and artist
+        String albumYear = _jsonAlbum.getString("release_date");
+        String albumArtist = _jsonAlbum.getJSONArray("artists").getJSONObject(0).getString("name");
+        // Spotify does not provide genres for albums
+        ArrayList<String> albumGenres = new ArrayList<>();
+        // Create and return the AlbumObject
+        AlbumObject album = new AlbumObject(albumName, albumID, albumType, albumGenres, albumArtist, albumYear);
+        return album;
     }
 }
