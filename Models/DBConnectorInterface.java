@@ -1,4 +1,4 @@
-package db;
+package models;
 /**
  * The DBConnectorInterface interface describes the methods that must be implemented for
  * any database class that is expected to work with this system.
