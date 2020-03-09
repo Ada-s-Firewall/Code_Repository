@@ -1,4 +1,4 @@
-package models;
+package Models;
 
 /**
  * This model handles the logic associated with searching for music information on the Spotify API.

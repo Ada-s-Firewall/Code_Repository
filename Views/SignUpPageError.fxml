@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.SignUpPageErrorController">
+   <children>
+      <Pane layoutX="220.0" layoutY="70.0" prefHeight="360.0" prefWidth="300.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="104.0" layoutY="25.0" text="Sign Up">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <HBox layoutX="51.0" layoutY="83.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="username" prefHeight="37.0" prefWidth="200.0" promptText="username" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="50.0" layoutY="134.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="password" prefHeight="37.0" prefWidth="200.0" promptText="password" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="50.0" layoutY="173.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="confirmPassword" prefHeight="37.0" prefWidth="200.0" promptText="confirm password" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="51.0" layoutY="213.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="email" prefHeight="37.0" prefWidth="200.0" promptText="email" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button layoutX="51.0" layoutY="253.0" mnemonicParsing="false" onAction="#signUpButtonClicked" prefHeight="38.0" prefWidth="200.0" text="Sign Up" />
+            <Button layoutX="86.0" layoutY="304.0" mnemonicParsing="false" onAction="#returnToLoginPageClicked" style="-fx-background-color: #ffffff;" text="Return to Login Page" textFill="#2fa1ff" underline="true" />
+            <Label layoutX="79.0" layoutY="115.0" text="Username already taken!" textFill="#ff0505">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

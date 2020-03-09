@@ -1,4 +1,4 @@
-package controllers;
+package Controllers;
 
 /**
  * This controller handles requests for music information that come from a view.
