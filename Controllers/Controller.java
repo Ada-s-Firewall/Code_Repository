@@ -11,7 +11,7 @@ public class Controller {
    public static void main(String[] args) {
       //Fetches user record based on their info from the database
       User model  = retrieveUserFromDatabase();
-      //Creates a view to display the user's infor on their profile
+      //Creates a view to display the user's info on their profile
       UserView view = new UserView();
       UserController controller = new UserController(model, view);
       controller.updateView();
