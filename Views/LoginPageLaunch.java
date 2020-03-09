@@ -1,16 +1,17 @@
 package Views;
 
+/**
+ * Purpose: This method launches the initial login page scene
+ * Contributors: Eric Cortes
+ * Last Updated: 02/24/2020
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Purpose: This method launches the initial login page scene
- * Contributors: Eric Cortes
- * Last Updated: 02/24/2020
- */
 public class LoginPageLaunch extends Application {
 
     /**

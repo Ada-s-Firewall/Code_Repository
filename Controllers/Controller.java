@@ -1,9 +1,11 @@
+package Controllers;
+
 /*
 *
 * This file is a controller for displaying the user's information on their
 * profile when they login.
 *
-* @author Will Higdon  Last Updated: 2/24/2020
+* @author Will Higdon  Last Updated: 3/1/2020
 */
 public class Controller {
    public static void main(String[] args) {

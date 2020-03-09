@@ -1,5 +1,12 @@
 package Views;
 
+/**
+ * Purpose: The purpose of this class is to serve as the controller for the
+ *          login page fxml file which is the code for the login page view.
+ * Contributors: Eric Cortes
+ * Last Updated: 02/24/2020
+ */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,11 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Purpose: The purpose of this class is to serve as the controller for the
- * login page fxml file which is the code for the login page view. Contributors:
- * Eric Cortes Last Updated: 02/24/2020
- */
 public class LoginPageController implements Initializable {
 
     //The password variable that corresponds to the user input
