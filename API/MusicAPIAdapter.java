@@ -2,7 +2,7 @@ package API;
 
 /**
  * This API Adapter class uses a given API Translator to make requests to a particular API.
- * Last Updated: 3/3/2020
+ * Last Updated: 3/10/2020
  * @author Fernando Villarreal
  */
 
