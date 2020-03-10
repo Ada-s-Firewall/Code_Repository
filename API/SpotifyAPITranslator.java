@@ -6,7 +6,7 @@ package API;
  * NOTE 2: DO NOT leave your Developer Credentials in the MusicAPIAdapter file if you are uploading it to a public repository.
  * NOTE 3: This class requires cURL 7.68.0 to be installed on the machine to make requests to the Spotify API.
  * NOTE 4: Do not call this class directly; route all requests through the MusicAPIAdapter class.
- * Last Updated: 3/3/2020
+ * Last Updated: 3/9/2020
  * @author Fernando Villarreal
  */
 
@@ -57,8 +57,19 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
             String curlCommand = curlStringChunk1 + " " + urlString + query + " " + curlStringChunk2 + " " + this.accessToken;
             // Perform a process with the curl command and get a JSON Object for the search results
             JSONObject obj = this.performProcess(curlCommand);
+            // Get the types of the Music Objects in the searchResults
+            String types = "";
+            if (obj.has("artists")) {
+                types += "artists, ";
+            }
+            if (obj.has("albums")) {
+                types += "albums, ";
+            }
+            if (obj.has("tracks")) {
+                types += "tracks";
+            }
             // Convert the JSON Object into an ArrayList of MusicObjects and return it
-            ArrayList<MusicObject> results = this.convertSearchResults(obj, _type);
+            ArrayList<MusicObject> results = this.convertSearchResults(obj, types);
             return results;
         } catch (Exception ex) {
             Logger.getLogger(SpotifyAPITranslator.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,17 +79,38 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
 
     @Override
     public ArtistObject loadArtistById(String _id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // Load the ArtistObject and return it
+            ArtistObject artist = (ArtistObject)this.loadMusicObjectByID(_id, "artist");
+            return artist;
+        } catch (Exception ex) {
+            Logger.getLogger(SpotifyAPITranslator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public AlbumObject loadAlbumById(String _id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // Load the ArtistObject and return it
+            AlbumObject album = (AlbumObject)this.loadMusicObjectByID(_id, "album");
+            return album;
+        } catch (Exception ex) {
+            Logger.getLogger(SpotifyAPITranslator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public TrackObject loadTrackById(String _id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // Load the ArtistObject and return it
+            TrackObject track = (TrackObject)this.loadMusicObjectByID(_id, "track");
+            return track;
+        } catch (Exception ex) {
+            Logger.getLogger(SpotifyAPITranslator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     //================= PRIVATE METHODS ===============
@@ -132,6 +164,45 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     }
 
     /**
+     * Load and return a MusicOject of _type using the given _id.
+     * Helper method for the public load_By_ID methods above.
+     * @param _id
+     * @param _type
+     * @return MusicObject of either artist, album, or track
+     */
+    private MusicObject loadMusicObjectByID(String _id, String _type) {
+        try {
+            // Request authorization
+            this.accessToken = this.requestAuthorization();
+            // Create a curl command
+            String curlStringChunk1 = "curl -X \"GET\"";
+            String urlEndpoint = "/v1/" + _type + "s/";
+            String id = _id + "\"";
+            String urlString = this.apiUrlString + urlEndpoint + id;
+            String curlStringChunk2 = "-H \"Accept: application/json\" -H \"Content-Type: application/json\" -H \"Authorization: Bearer";
+            String curlCommand = curlStringChunk1 + " " + urlString + " " + curlStringChunk2 + " " + this.accessToken;
+            // Perform a Process with the curl command and get a JSONObject
+            JSONObject jsonMusicObject = this.performProcess(curlCommand);
+            // Convert the JSON Music Object into the required type of MusicObject and return it
+            if (_type.equals("artist")) {
+                ArtistObject artist = this.convertJSONArtistObject(jsonMusicObject);
+                return artist;
+            }
+            if (_type.equals("album")) {
+                AlbumObject album = this.convertJSONAlbumObject(jsonMusicObject);
+                return album;
+            }
+            if (_type.equals("track")) {
+                TrackObject track = this.convertJSONTrackObject(jsonMusicObject);
+                return track;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SpotifyAPITranslator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
      * Given a JSONObject of the search results, return an ArrayList of the MusicObjects.
      * Helper method for the this.search method.
      * @param _searchResults
@@ -139,39 +210,41 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
      * @return
      * @throws Exception
      */
-    private ArrayList<MusicObject> convertSearchResults(JSONObject _searchResults, String _type) throws Exception{
-        // Get the JSONArray of items of _type
-        String type = _type + "s";
-        JSONObject resultsOfType = _searchResults.getJSONObject(type);
-        JSONArray items = resultsOfType.getJSONArray("items");
-        int itemLength = items.length();
-        // Iterate over items to get and convert each object
+    private ArrayList<MusicObject> convertSearchResults(JSONObject _searchResults, String _type) throws Exception {
+        // Create an empty ArrayList<MusicObject> to fill
         ArrayList<MusicObject> itemsList = new ArrayList<>();
-        if (type.equals("artists")) {
-            for (int index = 0; index < itemLength; index++) {
+        // Fill the ArrayList with MusicObjects
+        if (_type.contains("artist")) {
+            JSONObject resultsOfType = _searchResults.getJSONObject("artists");
+            JSONArray items = resultsOfType.getJSONArray("items");
+            int itemsLength = items.length();
+            for (int index = 0; index < itemsLength; index++) {
                 JSONObject jsonArtist = items.getJSONObject(index);
                 ArtistObject artist = this.convertJSONArtistObject(jsonArtist);
                 itemsList.add(artist);
             }
-            return itemsList;
         }
-        if (type.equals("tracks")) {
-            for (int index = 0; index < itemLength; index++) {
+        if (_type.contains("track")) {
+            JSONObject resultsOfType = _searchResults.getJSONObject("tracks");
+            JSONArray items = resultsOfType.getJSONArray("items");
+            int itemsLength = items.length();
+            for (int index = 0; index < itemsLength; index++) {
                 JSONObject jsonTrack = items.getJSONObject(index);
                 TrackObject track = this.convertJSONTrackObject(jsonTrack);
                 itemsList.add(track);
             }
-            return itemsList;
         }
-        if (type.equals("albums")) {
-            for (int index = 0; index < itemLength; index++) {
+        if (_type.contains("album")) {
+            JSONObject resultsOfType = _searchResults.getJSONObject("albums");
+            JSONArray items = resultsOfType.getJSONArray("items");
+            int itemsLength = items.length();
+            for (int index = 0; index < itemsLength; index++) {
                 JSONObject jsonAlbum = items.getJSONObject(index);
                 AlbumObject album = this.convertJSONAlbumObject(jsonAlbum);
                 itemsList.add(album);
             }
-            return itemsList;
         }
-        // Return the empty list of Music Objects
+        // Return the ArrayList of MusicObjects
         return itemsList;
     }
 
