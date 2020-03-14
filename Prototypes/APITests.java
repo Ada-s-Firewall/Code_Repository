@@ -2,13 +2,13 @@ package Prototypes;
 
 /**
  * The sole purpose of this class is to directly test the API classes in the package API.
- * Last Updated: 3/10/2020
+ * Last Updated: 3/13/2020
  * @author Fernando Villarreal
  */
 
-import API.SpotifyAPITranslator;
 import API.MusicAPIAdapter;
-import Models.MusicObject;
+import API.MusicAPIVariables;
+import Models.*;
 import java.util.ArrayList;
 
 public class APITests {
@@ -22,14 +22,16 @@ public class APITests {
         System.out.println("MusicAPIAdapter and SpotifyAPITranslator Tests:\n");
         MusicAPIAdapter adapter = new MusicAPIAdapter();
         // Use the adapter to perform a search
-        ArrayList<MusicObject> searchResults = adapter.search("stone", "artist, album, track", 5);
+        String types = "";
+        types += MusicAPIVariables.ARTIST;
+        types += "," + MusicAPIVariables.ALBUM;
+        types += "," + MusicAPIVariables.TRACK;
+        MusicObjectList searchResults = adapter.search("stone", types, 10);
         // Print the searchResults
-        for (MusicObject obj : searchResults) {
-            System.out.println("\n" + obj.toString());
-        }
+        searchResults.printList();
         // Set the genres for the first music object
         String[] genres = {"rock, pop, country, everything"};
-        MusicObject obj1 = searchResults.get(0);
+        MusicObject obj1 = searchResults.get(1);
         obj1.setGenres(genres);
         System.out.println("\nMusic Object with Genres Set:\n\n" + obj1.toString());
         // Use the ID of obj to test MusicAPIAdapter.loadArtistByID
