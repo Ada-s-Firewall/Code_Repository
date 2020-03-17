@@ -38,6 +38,11 @@ public class LoginController implements Initializable {
     @FXML
     private TextField email;
 
+    //The confirm email variable that corresponds to the user input
+    @FXML
+    private TextField confirmEmail;
+
+
     /**
      * This method is responsible for the action taken when the login button is
      * clicked. It either displays the username and password if it is registered
@@ -80,10 +85,10 @@ public class LoginController implements Initializable {
      * clicked.
      */
     @FXML
-    private void forgotPasswordButtonClicked() {
+    private void forgotPasswordButtonClicked(ActionEvent _event) throws IOException {
 
-        //Print idiot user forgot password
-        System.out.println("Idiot User Forgot Password!");
+        //Forgot password page fxml is displayed
+        displayPage(_event, "ForgotPassword.fxml");
     }
 
 
@@ -106,14 +111,24 @@ public class LoginController implements Initializable {
             //Load and display the sign up error page
             displayPage(_event, "SignUpUsernameError.fxml");
 
-        } else if (theConfirmPassword != thePassword) {
+        } else if (!theConfirmPassword.equals(thePassword)) {
 
             //Load and display the second sign up error page
             displayPage(_event, "SignUpPasswordError.fxml");
 
-        } else {
+        } else if (!(theEmail.contains("@") || theEmail.contains("."))){
+
+            //Load and display the sign up improper email page
+            displayPage(_event, "SignUpImproperEmailError.fxml");
+
+        } else if("yahoo@gmail.com".equals(theEmail)){
+
+            //Load and display the email already exists page
+            displayPage(_event, "SignUpEmailError.fxml");
+
+        }else {
             //Load and display the login page
-            displayPage(_event, "LoginPage.fxml");
+            displayPage(_event, "SignUpSuccessful.fxml");
 
         }
     }
@@ -131,6 +146,37 @@ public class LoginController implements Initializable {
     }
 
     /**
+     * This method is responsible for the actions taken when the send me a new
+     * password button is clicked
+     * @param event
+     */
+    @FXML
+    private void sendMeNewPasswordButtonClicked(ActionEvent _event) throws IOException {
+
+        //String variables of information entered by user
+        String theEmail = email.getText();
+        String theConfirmEmail = confirmEmail.getText();
+
+        //Display apporpriate message depending on input
+        if(!(theEmail.equals(theConfirmEmail))){
+
+            //Load and display the emails dont match page
+            displayPage(_event, "ForgotPasswordEmailError.fxml");
+
+        }else if (!("yahoo@gmail.com".equals(theEmail))){
+
+            //Load and display the email does not exist page
+            displayPage(_event, "ForgotPasswordEmailDoesNotExistError.fxml");
+
+        }else{
+
+            //Load and display new password sent
+            displayPage(_event, "ForgotPasswordSuccessful.fxml");
+
+        }
+    }
+
+    /**
      * This method displays the page that was passed in as a string
      * @param _event
      * @param fxmlFile
@@ -144,7 +190,9 @@ public class LoginController implements Initializable {
         Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
     }
+
     /**
      * This method is inherited by initializable class
      */
