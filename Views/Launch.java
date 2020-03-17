@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginPageLaunch extends Application {
+public class Launch extends Application {
 
     /**
      * This method loads the initial login page view and displays it
@@ -21,7 +21,7 @@ public class LoginPageLaunch extends Application {
     public void start(Stage _stage) throws Exception {
 
         //Load and display login page scene
-        Parent loginPageRoot = FXMLLoader.load(getClass().getResource("LoginPageUI.fxml"));
+        Parent loginPageRoot = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         Scene loginPageScene = new Scene(loginPageRoot);
         _stage.setScene(loginPageScene);
         _stage.show();
