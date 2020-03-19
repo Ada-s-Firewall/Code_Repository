@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DataStoreAdapter {
-
+    //in place of textFileConnector it was MySQLConnector, need to create TextFileConnector
     private static final DBConnectorInterface connector = new MySQLConnector();
 
     /**

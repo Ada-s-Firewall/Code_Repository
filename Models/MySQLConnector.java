@@ -96,6 +96,7 @@ public class MySQLConnector implements DBConnectorInterface{
      * @return Boolean
      */
     //@Override
+    //replace _table with _textfile
     public Boolean updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table) {
         String query =  "UPDATE " + _table + " SET ";
         //iterate over map
