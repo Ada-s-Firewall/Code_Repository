@@ -4,17 +4,18 @@ package Controllers;
 *
 * This file is a controller for displaying the user's information on their
 * profile when they login.
-*
-* @author Will Higdon  Last Updated: 3/1/2020
+
+* Last Updated: 3/19/2020
+* @author Will Higdon  
 */
+
+import Models.User;
+
 public class DisplayUserInfo {
    public static void main(String[] args) {
       //Fetches user record based on their info from the database
       User model  = retrieveUserFromDatabase();
-      //Creates a view to display the user's info on their profile
-      UserView view = new UserView();
-      UserController controller = new UserController(model, view);
-      controller.updateView();
+      UserController controller = new UserController(model);
    }
 
    // User test case, an example of the user's info.
@@ -30,80 +31,12 @@ public class DisplayUserInfo {
    }
 }
 
-// View class for the User
-class UserView {
-   public void printUserDetails(String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName){
-      System.out.println("My Info: ");
-      System.out.println("");
-      System.out.println("Username: " + _userName);
-      System.out.println("Password: " + _userPassword);
-      System.out.println("Email Address: " + _userEmail);
-      System.out.println("First Name: " + _userFirstName);
-      System.out.println("Last Name: " + _userLastName);
-   }
-}
-
-// User Model Class, holds all user info
-class User {
-   private String userName;
-   private String userPassword;
-   private String userEmail;
-   private String userFirstName;
-   private String userLastName;
-
-   //============== GETTERS ==================
-
-   public String getUserName() {
-      return this.userName;
-   }
-
-   public String getUserPassword() {
-      return this.userPassword;
-   }
-
-   public String getUserEmail() {
-      return this.userEmail;
-   }
-
-   public String getUserFirstName() {
-      return this.userFirstName;
-   }
-
-   public String getUserLastName() {
-      return this.userLastName;
-   }
-
-   //=============== SETTERS ==================
-
-   public void setUserName(String _userName) {
-      this.userName = _userName;
-   }
-
-   public void setUserPassword(String _userPassword) {
-      this.userPassword = _userPassword;
-   }
-
-   public void setUserEmail(String _userEmail) {
-      this.userEmail = _userEmail;
-   }
-
-   public void setUserFirstName(String _userFirstName) {
-      this.userFirstName = _userFirstName;
-   }
-
-   public void setUserLastName(String _userLastName) {
-      this.userLastName = _userLastName;
-   }
-}
-
 // Controller class for the User
 class UserController {
    private User model;
-   private UserView view;
 
-   public UserController(User _model, UserView _view){
+   public UserController(User _model){
       this.model = _model;
-      this.view = _view;
    }
 
    //=================  GETTERS ===============
@@ -148,10 +81,5 @@ class UserController {
 
    public void setUserLastName(String _userLastName){
       model.setUserLastName(_userLastName);
-   }
-
-   //Updates the View
-   public void updateView(){
-      view.printUserDetails(model.getUserName(), model.getUserPassword(), model.getUserEmail(), model.getUserFirstName(), model.getUserLastName());
    }
 }
