@@ -7,7 +7,7 @@ package Controllers;
 *
 * @author Will Higdon  Last Updated: 3/1/2020
 */
-public class Controller {
+public class DisplayUserInfo {
    public static void main(String[] args) {
       //Fetches user record based on their info from the database
       User model  = retrieveUserFromDatabase();
