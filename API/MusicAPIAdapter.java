@@ -2,14 +2,14 @@ package API;
 
 /**
  * This API Adapter class uses a given API Translator to make requests to a particular API.
- * Last Updated: 3/13/2020
+ * Last Updated: 3/24/2020
  * @author Fernando Villarreal
  */
 
-import Models.AlbumObject;
-import Models.ArtistObject;
 import Models.MusicObjectList;
+import Models.ArtistObject;
 import Models.TrackObject;
+import Models.AlbumObject;
 
 public class MusicAPIAdapter implements MusicAPIInterface {
 

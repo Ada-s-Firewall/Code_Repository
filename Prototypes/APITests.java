@@ -2,7 +2,7 @@ package Prototypes;
 
 /**
  * The sole purpose of this class is to directly test the API classes in the package API.
- * Last Updated: 3/13/2020
+ * Last Updated: 3/23/2020
  * @author Fernando Villarreal
  */
 
@@ -23,10 +23,11 @@ public class APITests {
         MusicAPIAdapter adapter = new MusicAPIAdapter();
         // Use the adapter to perform a search
         String types = "";
-        types += MusicAPIVariables.ARTIST;
+        types += MusicAPIVariables.ALL_MUSIC_OBJECT_TYPES;
+        //types += MusicAPIVariables.ARTIST;
         //types += "," + MusicAPIVariables.ALBUM;
         //types += "," + MusicAPIVariables.TRACK;
-        MusicObjectList searchResults = adapter.search("avenged", types, 10);
+        MusicObjectList searchResults = adapter.search("stone", types, 10);
         // Print the searchResults
         searchResults.printList();
         // Set the genres for the first music object
