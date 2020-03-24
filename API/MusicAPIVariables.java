@@ -2,7 +2,7 @@ package API;
 
 /**
  * This class contains a variety of static variables to use with any Music API class.
- * Last Updated: 3/22/2020
+ * Last Updated: 3/24/2020
  * @author Fernando Villarreal
  */
 
