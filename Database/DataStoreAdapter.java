@@ -1,10 +1,12 @@
-package models;
+package Database;
 /**
  *  The DataStore class acts as a intermediary between the system and the
  *  specific persistent data base type.
  *  @author ike
  */
 
+import Database.DataFactory;
+import Database.DBConnectorInterface;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;

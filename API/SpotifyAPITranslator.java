@@ -10,11 +10,11 @@ package API;
  * @author Fernando Villarreal
  */
 
-import Models.MusicObjectList;
-import Models.MusicObject;
-import Models.ArtistObject;
-import Models.TrackObject;
-import Models.AlbumObject;
+import Objects.MusicObjectList;
+import Objects.MusicObject;
+import Objects.ArtistObject;
+import Objects.TrackObject;
+import Objects.AlbumObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package Models;
+package Objects;
 
 /**
  * This class defines an Artist Object and its properties and methods.

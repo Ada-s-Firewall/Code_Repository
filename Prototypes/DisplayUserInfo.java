@@ -1,4 +1,4 @@
-package Controllers;
+package Prototypes;
 
 /*
 *
@@ -8,8 +8,6 @@ package Controllers;
 * Last Updated: 3/19/2020
 * @author Will Higdon  
 */
-
-import Models.User;
 
 public class DisplayUserInfo {
    public static void main(String[] args) {

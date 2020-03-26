@@ -1,4 +1,4 @@
-package Models;
+package Objects;
 
 /**
  * This class handles list of MusicObjects.
@@ -6,6 +6,7 @@ package Models;
  * @author Fernando Villarreal
  */
 
+import Objects.MusicObject;
 import java.util.ArrayList;
 
 public class MusicObjectList {

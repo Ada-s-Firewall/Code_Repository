@@ -6,6 +6,8 @@ package Prototypes;
  * @author Fernando Villarreal
  */
 
+import Objects.MusicObjectList;
+import Objects.MusicObject;
 import API.MusicAPIAdapter;
 import API.MusicAPIVariables;
 import Models.*;

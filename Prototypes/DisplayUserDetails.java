@@ -1,4 +1,4 @@
-package Views;
+package Prototypes;
 
 /*
 View class for displaying User's info on their profile when they login
@@ -6,9 +6,6 @@ View class for displaying User's info on their profile when they login
 @author Will Higdon
 Last Updated: March 24, 2020
 */
-
-import Models.User;
-import Controllers.DisplayUserInfo;
 
 public class DisplayUserDetails {
    //displays the user's info on their profile
