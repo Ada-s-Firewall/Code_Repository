@@ -1,10 +1,11 @@
-package Views;
+package Controllers;
 
 /**
  * Purpose: The purpose of this class is to serve as the controller for the
- *          login page fxml file which is the code for the login page view.
+ *          login process of the application fxml files which holds the code
+ *          for the views of the login process of the application.
  * Contributors: Eric Cortes
- * Last Updated: 02/24/2020
+ * Last Updated: 03/25/2020
  */
 
 import java.io.IOException;
@@ -21,6 +22,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
+
+    //Variable containing the address of the fxml files
+    private static final String ADDRESS = "/Views/";
+
+    //Variable set to false which coresponds to the maximize functionality
+    private static final Boolean RESIZE = false;
 
     //The password variable that corresponds to the user input
     @FXML
@@ -47,9 +54,11 @@ public class LoginController implements Initializable {
      * This method is responsible for the action taken when the login button is
      * clicked. It either displays the username and password if it is registered
      * or it displays the error scene.
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    private void loginButtonClicked(ActionEvent _event) throws IOException {
+    protected void loginButtonClicked(ActionEvent _event) throws IOException {
 
         //String variables of the data inserted by user
         String theUsername = this.username.getText();
@@ -59,7 +68,7 @@ public class LoginController implements Initializable {
         if ("username".equals(theUsername) && "password".equals(thePassword)) {
 
             //Display the user's profile page
-            displayPage(_event, "UserProfile.fxml");
+            displayPage(_event, "Profile.fxml");
         } else {
 
             //If username and password are not registered error scene is opened
@@ -70,9 +79,11 @@ public class LoginController implements Initializable {
     /**
      * This method displays the sign up view scene when the button sign up is
      * clicked
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    private void signUpButtonClicked(ActionEvent _event) throws IOException {
+    protected void signUpButtonClicked(ActionEvent _event) throws IOException {
 
         //Sign up page fxml is displayed
         displayPage(_event, "SignUpPage.fxml");
@@ -82,9 +93,11 @@ public class LoginController implements Initializable {
     /**
      * This method displays user forgot password if forgot password button is
      * clicked.
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    private void forgotPasswordButtonClicked(ActionEvent _event) throws IOException {
+    protected void forgotPasswordButtonClicked(ActionEvent _event) throws IOException {
 
         //Forgot password page fxml is displayed
         displayPage(_event, "ForgotPassword.fxml");
@@ -93,9 +106,11 @@ public class LoginController implements Initializable {
 
     /**
      * This method is responsible for when the sign up button is clicked
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    private void registerButtonClicked(ActionEvent _event) throws IOException {
+    protected void registerButtonClicked(ActionEvent _event) throws IOException {
 
         //String variables of the information entered by the user
         String theUsername = this.username.getText();
@@ -135,9 +150,11 @@ public class LoginController implements Initializable {
     /**
      * This method is responsible for the actions taken when the return to login
      * page button is clicked.
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    private void returnToLoginPageClicked(ActionEvent _event) throws IOException {
+    protected void returnToLoginPageClicked(ActionEvent _event) throws IOException {
 
         //Load and display the login page
         displayPage(_event, "LoginPage.fxml");
@@ -147,10 +164,11 @@ public class LoginController implements Initializable {
     /**
      * This method is responsible for the actions taken when the send me a new
      * password button is clicked
-     * @param event
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    private void sendMeNewPasswordButtonClicked(ActionEvent _event) throws IOException {
+    protected void sendMeNewPasswordButtonClicked(ActionEvent _event) throws IOException {
 
         //String variables of information entered by user
         String theEmail = email.getText();
@@ -178,23 +196,25 @@ public class LoginController implements Initializable {
     /**
      * This method displays the page that was passed in as a string
      * @param _event
-     * @param fxmlFile
+     * @param _fxmlFile
      * @throws IOException
      */
-    private void displayPage(ActionEvent _event, String _fxmlFile) throws IOException{
+    protected void displayPage(ActionEvent _event, String _fxmlFile) throws IOException{
 
         //Load and display the login page
-        Parent root = FXMLLoader.load(getClass().getResource(_fxmlFile));
+        Parent root = FXMLLoader.load(getClass().getResource(ADDRESS + _fxmlFile));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.resizableProperty().setValue(false);
+        stage.resizableProperty().setValue(RESIZE);
         stage.show();
 
     }
 
     /**
      * This method is inherited by initializable class
+     * @param _url
+     * @param _rb
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {

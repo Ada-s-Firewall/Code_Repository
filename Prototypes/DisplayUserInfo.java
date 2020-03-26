@@ -9,8 +9,6 @@ package Prototypes;
 * @author Will Higdon  
 */
 
-import Models.User;
-
 public class DisplayUserInfo {
    public static void main(String[] args) {
       //Fetches user record based on their info from the database

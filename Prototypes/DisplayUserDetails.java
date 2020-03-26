@@ -7,8 +7,6 @@ View class for displaying User's info on their profile when they login
 Last Updated: March 24, 2020
 */
 
-import Models.User;
-
 public class DisplayUserDetails {
    //displays the user's info on their profile
    public void printUserDetails(String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName){

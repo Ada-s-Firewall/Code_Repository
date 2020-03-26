@@ -1,4 +1,4 @@
-package Models;
+package Prototypes;
 
 /*
 Model class for displaying the user's info on their profile when they login.

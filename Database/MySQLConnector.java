@@ -1,9 +1,11 @@
-package models;
+package Database;
 /**
  * This implementation of the DBConnectorInterface interface is for MySQL databases.
  * @author iquigley
  */
 
+import Database.DataStoreAdapter;
+import Database.DBConnectorInterface;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

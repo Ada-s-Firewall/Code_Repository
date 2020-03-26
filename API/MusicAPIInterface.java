@@ -6,10 +6,10 @@ package API;
  * @author Fernando Villarreal
  */
 
-import Models.MusicObjectList;
-import Models.ArtistObject;
-import Models.TrackObject;
-import Models.AlbumObject;
+import Objects.MusicObjectList;
+import Objects.ArtistObject;
+import Objects.TrackObject;
+import Objects.AlbumObject;
 
 public interface MusicAPIInterface {
 
