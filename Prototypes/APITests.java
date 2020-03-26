@@ -24,9 +24,9 @@ public class APITests {
         // Use the adapter to perform a search
         String types = "";
         types += MusicAPIVariables.ARTIST;
-        //types += "," + MusicAPIVariables.ALBUM;
-        //types += "," + MusicAPIVariables.TRACK;
-        MusicObjectList searchResults = adapter.search("avenged", types, 10);
+        types += "," + MusicAPIVariables.ALBUM;
+        types += "," + MusicAPIVariables.TRACK;
+        MusicObjectList searchResults = adapter.search("stone", types, 10);
         // Print the searchResults
         searchResults.printList();
         // Set the genres for the first music object
