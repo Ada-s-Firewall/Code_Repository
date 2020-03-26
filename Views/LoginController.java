@@ -58,12 +58,11 @@ public class LoginController implements Initializable {
         //Test if statement to see if username and password are registered
         if ("username".equals(theUsername) && "password".equals(thePassword)) {
 
-            //Print username and password if they are registered
-            System.out.println("Username: " + theUsername);
-            System.out.println("Password: " + thePassword);
+            //Display the user's profile page
+            displayPage(_event, "UserProfile.fxml");
         } else {
-            //If username and password are not registered error scene is opened
 
+            //If username and password are not registered error scene is opened
             displayPage(_event, "LoginPageError.fxml");
         }
     }
@@ -189,6 +188,7 @@ public class LoginController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.resizableProperty().setValue(false);
         stage.show();
 
     }

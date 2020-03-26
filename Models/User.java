@@ -7,7 +7,7 @@ Last Updated: March 24, 2020
 @author Will Higdon
 */
 
-import Controllers.DisplayUserInfo;
+import Prototypes.DisplayUserInfo;
 
 // User Model Class
 public class User {

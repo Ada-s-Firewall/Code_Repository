@@ -24,6 +24,7 @@ public class Launch extends Application {
         Parent loginPageRoot = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         Scene loginPageScene = new Scene(loginPageRoot);
         _stage.setScene(loginPageScene);
+        _stage.resizableProperty().setValue(false);
         _stage.show();
     }
 
