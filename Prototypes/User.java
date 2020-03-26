@@ -1,32 +1,21 @@
-package Models;
+package Prototypes;
 
 /*
-Model class for displaying the user info.
+Model class for displaying the user's info on their profile when they login.
 
-Last Updated: March 19, 2020
+Last Updated: March 24, 2020
 @author Will Higdon
 */
 
-import Controllers.DisplayUserInfo;
+import Prototypes.DisplayUserInfo;
 
-// User Model Class, holds all user info
+// User Model Class
 public class User {
    private String userName;
    private String userPassword;
    private String userEmail;
    private String userFirstName;
    private String userLastName;
-
-   //displays the user's info on their profile
-   public void printUserDetails(String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName){
-      System.out.println("My Info: ");
-      System.out.println("");
-      System.out.println("Username: " + _userName);
-      System.out.println("Password: " + _userPassword);
-      System.out.println("Email Address: " + _userEmail);
-      System.out.println("First Name: " + _userFirstName);
-      System.out.println("Last Name: " + _userLastName);
-   }
 
    //============== GETTERS ==================
 

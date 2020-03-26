@@ -1,6 +1,5 @@
-package models;
+package Database;
 
-import models.DataStoreAdapter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

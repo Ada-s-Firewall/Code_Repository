@@ -1,4 +1,4 @@
-package Models;
+package Objects;
 
 /**
  * This class acts as a superclass for Music Objects such as Tracks, Artists, and Albums.

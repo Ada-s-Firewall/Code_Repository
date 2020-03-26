@@ -1,4 +1,4 @@
-package Models;
+package Objects;
 
 /**
  * This class defines a Track (or song) Object and its properties and methods.
@@ -6,6 +6,7 @@ package Models;
  * @author Fernando
  */
 
+import Objects.MusicObject;
 import java.util.ArrayList;
 
 public class TrackObject extends MusicObject {
