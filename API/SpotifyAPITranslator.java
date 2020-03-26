@@ -4,13 +4,17 @@ package API;
  * This API Translator class makes API requests to the Spotify API.
  * NOTE 1: You must provide your own Spotify Developer Credentials encoded in Base64 in order to use this Translator.
  * NOTE 2: DO NOT leave your Developer Credentials in the MusicAPIAdapter file if you are uploading it to a public repository.
- * NOTE 3: This class requires cURL 7.68.0 to be installed on the machine to make requests to the Spotify API.
+ * NOTE 3: This class requires cURL 7.68.0 or later to be installed on the device to make requests to the Spotify API.
  * NOTE 4: Do not call this class directly; route all requests through the MusicAPIAdapter class.
- * Last Updated: 3/15/2020
+ * Last Updated: 3/24/2020
  * @author Fernando Villarreal
  */
 
-import Models.*;
+import Objects.MusicObjectList;
+import Objects.MusicObject;
+import Objects.ArtistObject;
+import Objects.TrackObject;
+import Objects.AlbumObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,7 +42,7 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     @Override
     public MusicObjectList search(String _keyword, String _type, int _limit) {
         try {
-            // Request Authorization to the Spotify API and get an access token
+            // Request authorization
             this.accessToken = this.requestAuthorization();
             // Clean the _keyword and _type for the urlString
             String keyword = _keyword.replace(" ", "+").replace(",", "%2C").trim();
@@ -50,13 +54,13 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
             String query = "?q=" + keyword + "&type=" + type + "&limit=" + _limit + "\"";
             String curlStringChunk2 = "-H \"Accept: application/json\" -H \"Content-Type: application/json\" -H \"Authorization: Bearer";
             String curlCommand = curlStringChunk1 + " " + urlString + query + " " + curlStringChunk2 + " " + this.accessToken;
-            // Perform a process with the curl command and get a JSON Object for the search results
+            // Perform a process with the curl command and get a JSONObject for the search results
             JSONObject obj = this.performProcess(curlCommand);
-            // Detect Errors in the JSONObject if present and throw an exception
+            // If there are errors in the JSONObject, throw an exception
             if (obj.has("error")) {
                 throw new Exception("ERROR: " + obj.getJSONObject("error").getString("message"));
             }
-            // Convert the JSON Object into an ArrayList of MusicObjects and return it
+            // Convert the JSONObject into a MusicObjectList and return it
             ArrayList<MusicObject> arrayResults = this.convertSearchResults(obj, _type);
             String listName = "Search Results for \"" + _keyword + "\" in \"" + _type + "\"";
             MusicObjectList results = new MusicObjectList(listName, "search results", arrayResults);
@@ -114,12 +118,13 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
             String urlString = this.apiUrlString + urlEndpoint;
             String curlStringChunk2 = "-H \"Accept: application/json\" -H \"Content-Type: application/json\" -H \"Authorization: Bearer";
             String curlCommand = curlStringChunk1 + " " + urlString + " " + curlStringChunk2 + " " + this.accessToken;
-            // Perform a Process with the curl command and get a JSONObject
+            // Perform a process with the curl command and get a JSONObject
             JSONObject jsonTracksObject = this.performProcess(curlCommand);
-            // Get the attributes for each TrackObject
+            // Create an ArrayList of MusicObjects to put the TrackObjects in
             ArrayList<MusicObject> tracksArray = new ArrayList<>();
             JSONArray items = jsonTracksObject.getJSONArray("items");
             int itemsLength = items.length();
+            // Get the attributes for each TrackObject
             for (int index = 0; index < itemsLength; index++) {
                 JSONObject jsonTrack = items.getJSONObject(index);
                 String trackName = jsonTrack.getString(MusicAPIVariables.NAME);
@@ -127,6 +132,7 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
                 String trackType = jsonTrack.getString(MusicAPIVariables.TYPE);
                 String trackArtist = this.convertJSONArrayofArtists(jsonTrack.getJSONArray("artists"));
                 ArrayList<String> trackGenres = new ArrayList<>();
+                // Create a TrackObject and add it to the ArrayList
                 TrackObject track = new TrackObject(trackName, trackID, trackType, trackGenres, trackArtist, _album.getName(), _album.getYear());
                 tracksArray.add(track);
             }
@@ -140,21 +146,21 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     //================= PRIVATE METHODS ===============
 
     /**
-     * Request authorization to access the Spotify API.
+     * Request authorization to access the Spotify API. If authorization is granted, an access token is received.
      * @return accessToken : Access token to be used to make other requests to the Spotify API.
      * @throws Exception
      */
     private String requestAuthorization() throws Exception {
-        // Create cURL Command to Request Authorization
+        // Create curl command to request authorization
         String baseURL = "https://accounts.spotify.com";
         String endpoint = "/api/token";
         String urlString = baseURL + endpoint;
         String curlStringChunk1 = "curl -X \"POST\" -H \"Authorization: Basic";
         String curlStringChunk2 = "\" -d grant_type=client_credentials";
         String curlCommand = curlStringChunk1 + " " + this.developerCredentials + curlStringChunk2 + " " + urlString;
-        // Perform a Process with the curlCommand
+        // Perform a process with the curl command
         JSONObject obj = this.performProcess(curlCommand);
-        // Get the Acccess Token or throw an error if not found
+        // Get the acccess token or throw an error if not found
         if (obj.has("error")) {
             throw new Exception("ERROR: The provided credentials are invalid and/or in the incorrect format.");
         }
@@ -163,13 +169,13 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     }
 
     /**
-     * Performs a Process with the given cURL Command.
-     * @param _curlCommand: The command to be performed.
-     * @return obj: A JSONObject representation of the InputStream of the Process.
+     * Performs a process with the given curl command.
+     * @param _curlCommand : The command to be performed.
+     * @return obj : A JSONObject representation of the InputStream of the Process.
      * @throws Exception
      */
     private JSONObject performProcess(String _curlCommand) throws Exception {
-        // Perform a process with the given cURL command
+        // Perform a process with the given curl command
         ProcessBuilder processBuilder = new ProcessBuilder(_curlCommand.split(" "));
         processBuilder.directory();
         Process process;
@@ -192,10 +198,10 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
 
     /**
      * Load and return a MusicOject of a specific type using the given ID.
-     * Helper method for the public load_By_ID methods above.
+     * Helper method for the public "load by ID" methods above.
      * @param _id : The ID to be used to load the MusicObject.
      * @param _type : The type of MusicObject to load.
-     * @return MusicObject of either artist, album, or track.
+     * @return MusicObject
      */
     private MusicObject loadMusicObjectByID(String _id, String _type) {
         try {
@@ -208,13 +214,13 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
             String urlString = this.apiUrlString + urlEndpoint + id;
             String curlStringChunk2 = "-H \"Accept: application/json\" -H \"Content-Type: application/json\" -H \"Authorization: Bearer";
             String curlCommand = curlStringChunk1 + " " + urlString + " " + curlStringChunk2 + " " + this.accessToken;
-            // Perform a Process with the curl command and get a JSONObject
+            // Perform a process with the curl command and get a JSONObject
             JSONObject jsonMusicObject = this.performProcess(curlCommand);
-            // Throw an error if the JSON Music Object was not loaded
+            // If the JSON Music Object could not be loaded, throw an error
             if (jsonMusicObject.has("error")) {
                 throw new Exception("ERROR: The provided ID is either invalid or does not belong to a Music Object of type: " + _type + ".");
             }
-            // Convert the JSON Music Object into the required type of MusicObject and return it
+            // Convert the JSON Music Object into the specified type of MusicObject and return it
             if (_type.equals(MusicAPIVariables.ARTIST)) {
                 ArtistObject artist = this.convertJSONArtistObject(jsonMusicObject);
                 return artist;
@@ -234,15 +240,15 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     }
 
     /**
-     * Given a JSONObject of the search results, return an ArrayList of the MusicObjects.
-     * Helper method for the this.search method.
+     * Convert the JSONObject of the search results into an ArrayList of MusicObjects.
+     * Helper method for the search method.
      * @param _searchResults : The JSONObject representation of the search results.
      * @param _type : The type(s) of MusicObjects initially queried in the search.
-     * @return itemList : ArrayList of MusicObjects
+     * @return ArrayList<MusicObject>
      * @throws Exception
      */
     private ArrayList<MusicObject> convertSearchResults(JSONObject _searchResults, String _type) throws Exception {
-        // Create an empty ArrayList<MusicObject> to fill
+        // Create an empty ArrayList of MusicObjects to fill
         ArrayList<MusicObject> itemsList = new ArrayList<>();
         // Fill the ArrayList with MusicObjects
         if (_type.contains(MusicAPIVariables.ARTIST)) {
@@ -304,6 +310,7 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     private String convertJSONArrayofArtists(JSONArray _jsonArray) throws JSONException{
         int arrayLength = _jsonArray.length();
         String artists = "";
+        // Get the name of each JSON Artist Object
         for (int index = 0; index < arrayLength; index++) {
             JSONObject jsonArtist = _jsonArray.getJSONObject(index);
             String artistName = jsonArtist.getString(MusicAPIVariables.NAME);
@@ -318,13 +325,13 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     //================= PRIVATE METHODS FOR: Converting Spotify JSON Music Objects into MusicObjects ===============
 
     /**
-     * Given a Spotify JSON ArtistObject, convert it into an ArtistObject.
-     * Helper method for the this.convertSearchResults method.
+     * Convert a JSON Spotify Artist Object into an ArtistObject.
+     * Helper method for the convertSearchResults method.
      * @param _jsonArtist
-     * @return artist
+     * @return ArtistObject
      */
     private ArtistObject convertJSONArtistObject(JSONObject _jsonArtist) throws JSONException {
-        // Get the name, id, type, and url
+        // Get the name, ID, type, and url
         String artistName = _jsonArtist.getString(MusicAPIVariables.NAME);
         String artistID = _jsonArtist.getString(MusicAPIVariables.ID);
         String artistType = _jsonArtist.getString(MusicAPIVariables.TYPE);
@@ -338,20 +345,20 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     }
 
     /**
-     * Given a Spotify JSON TrackObject, convert it into a TrackObject.
-     * Helper method for the this.convertSearchResults method.
+     * Convert a JSON Spotify Track Object into a TrackObject.
+     * Helper method for the convertSearchResults method.
      * @param _jsonTrack
-     * @return track
+     * @return TrackObject
      * @throws JSONException
      */
     private TrackObject convertJSONTrackObject(JSONObject _jsonTrack) throws JSONException {
-        // Get the name, id, and type
+        // Get the name, ID, and type
         String trackName = _jsonTrack.getString(MusicAPIVariables.NAME);
         String trackID = _jsonTrack.getString(MusicAPIVariables.ID);
         String trackType = _jsonTrack.getString(MusicAPIVariables.TYPE);
         // Spotify does not provide genres for tracks
         ArrayList<String> trackGenres = new ArrayList<>();
-        // Get the artist, album, and year
+        // Get the artist(s), album, and year
         String trackArtist = this.convertJSONArrayofArtists(_jsonTrack.getJSONArray("artists"));
         String trackAlbum = _jsonTrack.getJSONObject(MusicAPIVariables.ALBUM).getString(MusicAPIVariables.NAME);
         String trackYear = _jsonTrack.getJSONObject(MusicAPIVariables.ALBUM).getString("release_date");
@@ -361,14 +368,14 @@ public class SpotifyAPITranslator implements MusicAPIInterface {
     }
 
     /**
-     * Given a Spotify JSON AlbumObject, convert it into an AlbumObject.
-     * Helper method for the this.convertSearchResults method.
+     * Convert a JSON Spotify Album Object into an AlbumObject.
+     * Helper method for the convertSearchResults method.
      * @param _jsonAlbum
-     * @return album
+     * @return AlbumObject
      * @throws JSONException
      */
     private AlbumObject convertJSONAlbumObject(JSONObject _jsonAlbum) throws JSONException {
-        // Get the name, id, and type
+        // Get the name, ID, and type
         String albumName = _jsonAlbum.getString(MusicAPIVariables.NAME);
         String albumID = _jsonAlbum.getString(MusicAPIVariables.ID);
         String albumType = _jsonAlbum.getString(MusicAPIVariables.TYPE);
