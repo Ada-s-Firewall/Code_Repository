@@ -2,7 +2,7 @@ package Models;
 
 /**
  * This class acts as a wrapper for the MusicAPIAdapter class.
- * Last Updated: 3/26/2020
+ * Last Updated: 3/28/2020
  * @author Fernando Villarreal
  */
 
@@ -21,6 +21,8 @@ public class MusicRequest implements MusicAPIInterface {
     //=================== CLASS VARIABLES ===================
 
     protected final MusicAPIAdapter adapter = new MusicAPIAdapter();
+    private final String DEFAULT_SEARCH_TYPE = MusicAPIVariables.ALL_MUSIC_OBJECT_TYPES;
+    private final int DEFAULT_SEARCH_LIMIT = 10;
 
     //=================== PUBLIC METHODS ===================
 
@@ -28,6 +30,37 @@ public class MusicRequest implements MusicAPIInterface {
     public MusicObjectList search(String _keyword, String _type, int _limit) {
         try {
             MusicObjectList searchResults = this.searchHelper(_keyword, _type, _limit);
+            return searchResults;
+        } catch (Exception ex) {
+            Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * Searches the Music API for MusicObjects using the provided keyword and type.
+     * @param _keyword : The keyword to use to search the API.
+     * @param _type : The type of music object to search for: artist, track, and/or album.
+     * @return MusicObjectList
+     */
+    public MusicObjectList search(String _keyword, String _type) {
+        try {
+            MusicObjectList searchResults = this.searchHelper(_keyword, _type, this.DEFAULT_SEARCH_LIMIT);
+            return searchResults;
+        } catch (Exception ex) {
+            Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * Searches the Music API for MusicObjects using the provided keyword.
+     * @param _keyword : The keyword to use to search the API.
+     * @return MusicObjectList
+     */
+    public MusicObjectList search(String _keyword) {
+        try {
+            MusicObjectList searchResults = this.searchHelper(_keyword, this.DEFAULT_SEARCH_TYPE, this.DEFAULT_SEARCH_LIMIT);
             return searchResults;
         } catch (Exception ex) {
             Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,6 +109,8 @@ public class MusicRequest implements MusicAPIInterface {
                 + "\n"
                 + "The methods available for use are:\n"
                 + "search(String _keyword, String _type, int _limit) returns a MusicObjectList.\n"
+                + "search(String _keyword, String _type) returns a MusicObjectList.\n"
+                + "search(String _keyword) returns a MusicObjectList.\n"
                 + "loadArtistById(String _id) returns an ArtistObject.\n"
                 + "loadAlbumById(String _id) returns an AlbumObject.\n"
                 + "loadTrackById(String _id) returns a TrackObject.\n"
