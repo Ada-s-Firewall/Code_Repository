@@ -20,11 +20,11 @@ public class APITests {
      */
     public static void main(String[] args){
         // Perform API Test 01
-        System.out.println("API TEST 01:\n");
-        APITests.test01();
+        //System.out.println("API TEST 01:\n");
+        //APITests.test01();
         // Perform API Test 02
-        System.out.println("\n\nAPI TEST 02:\n");
-        APITests.test02();
+        //System.out.println("\n\nAPI TEST 02:\n");
+        //APITests.test02();
         // Perform API Test 03
         System.out.println("\n\nAPI TEST 03:\n");
         APITests.test03();
@@ -73,5 +73,9 @@ public class APITests {
      */
     public static void test03() {
         // Write you own tests here
+        MusicRequest request = new MusicRequest();
+        MusicObjectList searchResults = request.search("Golden", "tracks", 10);
+        TrackObject get = (TrackObject)searchResults.get(1);
+        System.out.print(get.getName() + " by: " + get.getArtist() + "in: " + get.getAlbum() + "released: " + get.getYear() + "type: " + get.getType());
     }
 }
