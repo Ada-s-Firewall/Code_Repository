@@ -2,11 +2,10 @@ package Objects;
 
 /**
  * This class handles list of MusicObjects.
- * Last Updated: 3/13/2020
+ * Last Updated: 3/28/2020
  * @author Fernando Villarreal
  */
 
-import Objects.MusicObject;
 import java.util.ArrayList;
 
 public class MusicObjectList {
@@ -61,6 +60,63 @@ public class MusicObjectList {
      */
     public MusicObject get(int _index) {
         return this.list.get(_index-1);
+    }
+
+    /**
+     * Get a new MusicObjectList containing all the ArtistObjects from this MusicObjectList.
+     * The type of a MusicObject must be "artist" for it to appear in the list.
+     * @return MusicObjectList
+     */
+    public MusicObjectList getAllArtistObjects() {
+        ArrayList<MusicObject> artistList = new ArrayList<>();
+        // Iterate over the list and get all ArtistObjects
+        for (MusicObject obj : this.list) {
+            if (obj.getType().equals("artist")) {
+                ArtistObject artist = (ArtistObject)obj;
+                artistList.add(artist);
+            }
+        }
+        String listName = "ArtistObjects in \"" + this.name + "\"";
+        String listType = "List of ArtistObjects";
+        return new MusicObjectList(listName, listType, artistList);
+    }
+
+    /**
+     * Get a new MusicObjectList containing all the AlbumObjects from this MusicObjectList.
+     * The type of a MusicObject must be "album" for it to appear in the list.
+     * @return MusicObjectList
+     */
+    public MusicObjectList getAllAlbumObjects() {
+        ArrayList<MusicObject> albumList = new ArrayList<>();
+        // Iterate over the list and get all AlbumObjects
+        for (MusicObject obj : this.list) {
+            if (obj.getType().equals("album")) {
+                AlbumObject album = (AlbumObject)obj;
+                albumList.add(album);
+            }
+        }
+        String listName = "AlbumObjects in \"" + this.name + "\"";
+        String listType = "List of AlbumObjects";
+        return new MusicObjectList(listName, listType, albumList);
+    }
+
+    /**
+     * Get a new MusicObjectList containing all the TrackObjects from this MusicObjectList.
+     * The type of a MusicObject must be "track" for it to appear in the list.
+     * @return MusicObjectList
+     */
+    public MusicObjectList getAllTrackObjects() {
+        ArrayList<MusicObject> trackList = new ArrayList<>();
+        // Iterate over the list and get all TrackObjects
+        for (MusicObject obj : this.list) {
+            if (obj.getType().equals("track")) {
+                TrackObject track = (TrackObject)obj;
+                trackList.add(track);
+            }
+        }
+        String listName = "TrackObjects in \"" + this.name + "\"";
+        String listType = "List of TrackObjects";
+        return new MusicObjectList(listName, listType, trackList);
     }
 
     /**
