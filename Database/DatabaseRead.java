@@ -1,16 +1,34 @@
 package Database;
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This Database class returns records.
+ * This class uses scanners and reads from a textfile.
  */
 
 /**
- *
+ * Last Updated: 03.30.2020
  * @author Quinn Tjin-A-Soe
  */
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class DatabaseRead {
-    public static void readRecord(){
-        
+
+    public static ArrayList readRecord(File _file, String _string) throws IOException {
+        ArrayList<String> record = new ArrayList<>();
+        Scanner scanner = new Scanner(_file);
+
+        while (scanner.hasNextLine()) {
+            if (scanner.nextLine().equals(_string)) {
+                break;
+            }
+        }
+        String stringRecord = scanner.nextLine();
+        Scanner scannerRecord = new Scanner(stringRecord);
+        scannerRecord.useDelimiter("\t");
+
+        return record;
     }
 }
