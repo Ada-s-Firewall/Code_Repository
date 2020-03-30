@@ -10,5 +10,7 @@ package Database;
  * @author Quinn Tjin-A-Soe
  */
 public class DatabaseRead {
-    
+    public static void readRecord(){
+        
+    }
 }
