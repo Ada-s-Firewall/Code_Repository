@@ -2,18 +2,17 @@ package Objects;
 
 /**
  * This class defines a Track (or song) Object and its properties and methods.
- * Last Updated: 2/29/2020
- * @author Fernando
+ * Last Updated: 3/31/2020
+ * @author Fernando Villarreal
  */
 
-import Objects.MusicObject;
 import java.util.ArrayList;
 
 public class TrackObject extends MusicObject {
 
-    protected String artist;
-    protected String album;
-    protected String year;
+    protected final String artist;
+    protected final String album;
+    protected final String year;
 
     //================= CONSTRUCTORS ===============
 

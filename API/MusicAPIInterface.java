@@ -2,7 +2,7 @@ package API;
 
 /**
  * This class defines an interface that any Music API class will implement.
- * Last Updated: 3/28/2020
+ * Last Updated: 3/31/2020
  * @author Fernando Villarreal
  */
 
@@ -12,6 +12,19 @@ import Objects.TrackObject;
 import Objects.AlbumObject;
 
 public interface MusicAPIInterface {
+
+    //================= CLASS VARIABLES =================
+
+    public static final String ARTIST = "artist";
+    public static final String ALBUM = "album";
+    public static final String TRACK = "track";
+    public static final String ALL_MUSIC_OBJECT_TYPES = ARTIST + "," + ALBUM + "," + TRACK;
+    public static final String NAME = "name";
+    public static final String ID = "id";
+    public static final String TYPE = "type";
+    public static final String GENRES = "genres";
+
+    //================= METHODS =================
 
     /**
      * Search the Music API for MusicObjects using the provided keyword, type, and limit.
@@ -32,7 +45,7 @@ public interface MusicAPIInterface {
     /**
      * Load and return the AlbumObject associated with the given ID.
      * @param _id : The ID to use to load the AlbumObject.
-     * @return AlbumObject
+     * @return AlbumObject without TrackObjects
      */
     public AlbumObject loadAlbumById(String _id);
 
@@ -44,8 +57,9 @@ public interface MusicAPIInterface {
     public TrackObject loadTrackById(String _id);
 
     /**
-     * Load the tracks of the given AlbumObject.
+     * Reload the given AlbumObject with its tracks.
      * @param _album : The AlbumObject.
+     * @return AlbumObject with TrackObjects
      */
-    public void loadAlbumTracks(AlbumObject _album);
+    public AlbumObject loadAlbumWithTracks(AlbumObject _album);
 }

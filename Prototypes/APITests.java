@@ -2,12 +2,12 @@ package Prototypes;
 
 /**
  * The sole purpose of this class is to directly test the API classes in the package API.
- * Last Updated: 3/26/2020
+ * Last Updated: 3/31/2020
  * @author Fernando Villarreal
  */
 
 import API.MusicAPIAdapter;
-import API.MusicAPIVariables;
+import API.MusicAPIInterface;
 import Models.MusicRequest;
 import Objects.*;
 import java.util.ArrayList;
@@ -28,6 +28,9 @@ public class APITests {
         // Perform API Test 03
         System.out.println("\n\nAPI TEST 03:\n");
         APITests.test03();
+        // Perform API Test 04
+        //System.out.println("\n\nAPI TEST 04:\n");
+        //APITests.test04();
     }
 
     /**
@@ -39,7 +42,7 @@ public class APITests {
         MusicAPIAdapter adapter = new MusicAPIAdapter();
         // Use the adapter to perform a search
         String types = "";
-        types += MusicAPIVariables.ALL_MUSIC_OBJECT_TYPES;
+        types += MusicAPIInterface.ALL_MUSIC_OBJECT_TYPES;
         //types += MusicAPIVariables.ARTIST;
         //types += "," + MusicAPIVariables.ALBUM;
         //types += "," + MusicAPIVariables.TRACK;
@@ -72,6 +75,23 @@ public class APITests {
      * Perform API Test 03
      */
     public static void test03() {
-        // Write you own tests here
+        // Write your own tests here
+    }
+
+    /**
+     * Perform API Test 04
+     */
+    public static void test04() {
+        // Create a new MusicRequest object
+        MusicRequest request = new MusicRequest();
+        // Perform a search and get the first album and its tracks
+        MusicObjectList searchResults = request.search("metallica");
+        searchResults.printList();
+        MusicObjectList albumList = searchResults.getAllAlbumObjects();
+        AlbumObject album = (AlbumObject)albumList.get(1);
+        System.out.println("\nTracks Loaded?: " + album.tracksLoaded() + "\n");
+        album = request.loadAlbumWithTracks(album);
+        System.out.println("\nTracks Loaded?: " + album.tracksLoaded() + "\n");
+        album.getTracks().printList();
     }
 }
