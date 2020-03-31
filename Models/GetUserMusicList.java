@@ -1,7 +1,7 @@
 package Models;
 
 /*
-* gets the user's full music list model, will update later once finished
+* Model for the user's full music list.
 *
 * @author: Will Higdon
 * Last Updated: March 30, 2020
@@ -11,6 +11,6 @@ package Models;
 Import Statements Here
 */
 
-public class GetUserMusicList {
+public class UserMusicList {
     //code here
 }
