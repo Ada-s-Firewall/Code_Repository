@@ -20,7 +20,6 @@ public class DatabaseCreate {
     /**
      * This method creates a record that is stored in the database. It takes an
      * ArrayList of Strings and writes it onto a text file.
-     *
      * @param _file
      * @param _record
      * @throws java.io.IOException

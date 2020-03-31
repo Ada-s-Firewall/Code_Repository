@@ -2,7 +2,7 @@ package API;
 
 /**
  * This API Adapter class uses a given API Translator to make requests to a particular API.
- * Last Updated: 3/24/2020
+ * Last Updated: 3/31/2020
  * @author Fernando Villarreal
  */
 
@@ -36,8 +36,8 @@ public class MusicAPIAdapter implements MusicAPIInterface {
     }
 
     @Override
-    public void loadAlbumTracks(AlbumObject _album) {
-        this.apiTranslator.loadAlbumTracks(_album);
+    public AlbumObject loadAlbumWithTracks(AlbumObject _album) {
+        return this.apiTranslator.loadAlbumWithTracks(_album);
     }
 
 }

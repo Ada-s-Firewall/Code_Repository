@@ -3,7 +3,7 @@ package Objects;
 /**
  * This class acts as a superclass for Music Objects such as Tracks, Artists, and Albums.
  * It defines the basic properties that these objects should have such as name, ID, type, etc.
- * Last Updated: 2/29/2020
+ * Last Updated: 3/31/2020
  * @author Fernando Villarreal
  */
 
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class MusicObject {
 
-    protected String name;
-    protected String id;
-    protected String type;
+    protected final String name;
+    protected final String id;
+    protected final String type;
     protected ArrayList<String> genres;
 
     //================= CONSTRUCTORS ===============
