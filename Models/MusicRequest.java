@@ -2,13 +2,12 @@ package Models;
 
 /**
  * This class acts as a wrapper for the MusicAPIAdapter class.
- * Last Updated: 3/28/2020
+ * Last Updated: 3/31/2020
  * @author Fernando Villarreal
  */
 
-import API.MusicAPIInterface;
 import API.MusicAPIAdapter;
-import API.MusicAPIVariables;
+import API.MusicAPIInterface;
 import Objects.AlbumObject;
 import Objects.ArtistObject;
 import Objects.MusicObjectList;
@@ -21,7 +20,7 @@ public class MusicRequest implements MusicAPIInterface {
     //=================== CLASS VARIABLES ===================
 
     protected final MusicAPIAdapter adapter = new MusicAPIAdapter();
-    private final String DEFAULT_SEARCH_TYPE = MusicAPIVariables.ALL_MUSIC_OBJECT_TYPES;
+    private final String DEFAULT_SEARCH_TYPE = MusicAPIInterface.ALL_MUSIC_OBJECT_TYPES;
     private final int DEFAULT_SEARCH_LIMIT = 10;
 
     //=================== PUBLIC METHODS ===================
@@ -87,9 +86,9 @@ public class MusicRequest implements MusicAPIInterface {
     }
 
     @Override
-    public void loadAlbumTracks(AlbumObject _album) {
+    public AlbumObject loadAlbumWithTracks(AlbumObject _album) {
         System.out.println("Loading the TrackObjects for the Album: " + _album.getName() + ".");
-        this.adapter.loadAlbumTracks(_album);
+        return this.adapter.loadAlbumWithTracks(_album);
     }
 
     /**
@@ -120,9 +119,9 @@ public class MusicRequest implements MusicAPIInterface {
                 + "The search method parameters:\n"
                 + "_keyword: The keyword can be any string.\n"
                 + "_type: The type or types of MusicObjects you are searching for. These objects can be artists, albums, \n"
-                + "\tand/or tracks. Please use the variables from API.MusicAPIVariables.java for this paremeter. You \n"
+                + "\tand/or tracks. Please use the variables from API.MusicAPIInterface.java for this paremeter. You \n"
                 + "\tcan simply append them together into one string and pass that as the parameter as well.\n"
-                + "\tFor example: String type = MusicAPIVariables.ALBUM + \", \" + MusicAPIVariables.TRACK\n"
+                + "\tFor example: String type = MusicAPIInterface.ALBUM + \", \" + MusicAPIInterface.TRACK\n"
                 + "_limit: The limit for how many MusicObjects of each type you want in the search results. For \n"
                 + "\texample: if the limit is 5, you will receive up to 5 ArtistObjects, up to 5 AlbumObjects, and \n"
                 + "\tup to 5 TrackObjects in the search results (up to 15 MusicObjects total).\n"
@@ -152,14 +151,14 @@ public class MusicRequest implements MusicAPIInterface {
         }
         // Check that the _type is valid and create a new type
         String type = "";
-        if (_type.contains(MusicAPIVariables.ARTIST)) {
-            type += MusicAPIVariables.ARTIST + ",";
+        if (_type.contains(MusicAPIInterface.ARTIST)) {
+            type += MusicAPIInterface.ARTIST + ",";
         }
-        if (_type.contains(MusicAPIVariables.ALBUM)) {
-            type += MusicAPIVariables.ALBUM + ",";
+        if (_type.contains(MusicAPIInterface.ALBUM)) {
+            type += MusicAPIInterface.ALBUM + ",";
         }
-        if (_type.contains(MusicAPIVariables.TRACK)) {
-            type += MusicAPIVariables.TRACK;
+        if (_type.contains(MusicAPIInterface.TRACK)) {
+            type += MusicAPIInterface.TRACK;
         }
         // Check if type is empty
         if (type.isEmpty()) {

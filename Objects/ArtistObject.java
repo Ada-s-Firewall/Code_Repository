@@ -2,7 +2,7 @@ package Objects;
 
 /**
  * This class defines an Artist Object and its properties and methods.
- * Last Updated: 2/29/2020
+ * Last Updated: 3/31/2020
  * @author Fernando Villarreal
  */
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ArtistObject extends MusicObject {
 
-    protected String url;
+    protected final String url;
 
     //================= CONSTRUCTORS ===============
 
