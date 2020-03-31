@@ -26,41 +26,41 @@ public class CheckUserInfo {
         return this.getUserName();
     }
 
-    public String getUserPassword(){
+    public String getUserPassword() {
       return this.getUserPassword();
     }
 
-   public String getUserEmail(){
+   public String getUserEmail() {
       return this.getUserEmail();
    }
 
-   public String getUserFirstName(){
+   public String getUserFirstName() {
       return this.getUserFirstName();
    }
 
-   public String getUserLastName(){
+   public String getUserLastName() {
       return this.getUserFirstName();
    }
 
    //=================  SETTERS =================
 
-   public void setUserName(String _userName){
+   public void setUserName(String _userName) {
       this.userName = userName;
    }
 
-   public void setUserPassword(String _userPassword){
+   public void setUserPassword(String _userPassword) {
       this.userPassword = userPassword;
    }
 
-   public void setUserEmail(String _userEmail){
+   public void setUserEmail(String _userEmail) {
       this.userEmail = userEmail;
    }
 
-   public void setUserFirstName(String _userFirstName){
+   public void setUserFirstName(String _userFirstName) {
       this.userFirstName = userFirstName;
    }
 
-   public void setUserLastName(String _userLastName){
+   public void setUserLastName(String _userLastName) {
       this.userLastName = userLastName;
    }
 }
