@@ -7,7 +7,7 @@ package Objects;
 
 /**
  *
- * @author Halie Pearson
+ * @author Quinn Tjin-A-Soe
  */
 public class UserObject {
     
