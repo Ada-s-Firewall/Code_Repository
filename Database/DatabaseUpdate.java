@@ -5,11 +5,10 @@ package Database;
  * and open the template in the editor.
  */
 
-
 /**
  *
  * @author Quinn Tjin-A-Soe
  */
 public class DatabaseUpdate {
-    
+
 }
