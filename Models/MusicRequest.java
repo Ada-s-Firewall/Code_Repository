@@ -2,7 +2,7 @@ package Models;
 
 /**
  * This class acts as a wrapper for the MusicAPIAdapter class.
- * Last Updated: 3/31/2020
+ * Last Updated: 4/3/2020
  * @author Fernando Villarreal
  */
 
@@ -21,7 +21,9 @@ public class MusicRequest implements MusicAPIInterface {
 
     protected final MusicAPIAdapter adapter = new MusicAPIAdapter();
     private final String DEFAULT_SEARCH_TYPE = MusicAPIInterface.ALL_MUSIC_OBJECT_TYPES;
-    private final int DEFAULT_SEARCH_LIMIT = 10;
+    private final int DEFAULT_QUERY_LIMIT = 20;
+    private final int MIN_QUERY_LIMIT = 1;
+    private final int MAX_QUERY_LIMIT = 50;
 
     //=================== PUBLIC METHODS ===================
 
@@ -44,7 +46,7 @@ public class MusicRequest implements MusicAPIInterface {
      */
     public MusicObjectList search(String _keyword, String _type) {
         try {
-            MusicObjectList searchResults = this.searchHelper(_keyword, _type, this.DEFAULT_SEARCH_LIMIT);
+            MusicObjectList searchResults = this.searchHelper(_keyword, _type, this.DEFAULT_QUERY_LIMIT);
             return searchResults;
         } catch (Exception ex) {
             Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,7 +61,7 @@ public class MusicRequest implements MusicAPIInterface {
      */
     public MusicObjectList search(String _keyword) {
         try {
-            MusicObjectList searchResults = this.searchHelper(_keyword, this.DEFAULT_SEARCH_TYPE, this.DEFAULT_SEARCH_LIMIT);
+            MusicObjectList searchResults = this.searchHelper(_keyword, this.DEFAULT_SEARCH_TYPE, this.DEFAULT_QUERY_LIMIT);
             return searchResults;
         } catch (Exception ex) {
             Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,8 +93,40 @@ public class MusicRequest implements MusicAPIInterface {
         return this.adapter.loadAlbumWithTracks(_album);
     }
 
+    @Override
+    public MusicObjectList loadAlbumsOfArtist(ArtistObject _artist, int _limit) {
+        System.out.println("Loading the Albums of " + _artist.getName() + ".");
+        String artistID = _artist.getId();
+        return this.adapter.loadAlbumsOfArtist(artistID, _limit);
+    }
+
+    @Override
+    public MusicObjectList loadAlbumsOfArtist(String _artistID, int _limit) {
+        System.out.println("Loading the Albums of artist with ID: " + _artistID + ".");
+        return this.adapter.loadAlbumsOfArtist(_artistID, _limit);
+    }
+
+    /**
+     * Load and return a MusicObjectList with the AlbumObjects of the given ArtistObject.
+     * @param _artist : The ArtistObject
+     * @return MusicObjectList
+     */
+    public MusicObjectList loadAlbumsOfArtist(ArtistObject _artist) {
+        return this.loadAlbumsOfArtist(_artist, this.DEFAULT_QUERY_LIMIT);
+    }
+
+    /**
+     * Load and return a MusicObjectList with the AlbumObjects of an artist using their ID.
+     * @param _artistID : The ID of the artist.
+     * @return MusicObjectList
+     */
+    public MusicObjectList loadAlbumsOfArtist(String _artistID) {
+        return this.loadAlbumsOfArtist(_artistID, this.DEFAULT_QUERY_LIMIT);
+    }
+
     /**
      * Call this method for information on how to use this class/object.
+     * This method will be deleted before the full version of this software is released.
      */
     public void help() {
         System.out.println(
@@ -169,8 +203,8 @@ public class MusicRequest implements MusicAPIInterface {
             type = type.substring(0, type.length() - 1);
         }
         // Check that the limit is valid
-        if (_limit <= 0) {
-            throw new Exception("ERROR: The limit must be greater than zero.");
+        if (_limit < this.MIN_QUERY_LIMIT || _limit > this.MAX_QUERY_LIMIT) {
+            throw new Exception("ERROR: The limit must be an integer between 1 and 50.");
         }
         // Perform the search using the adapter
         System.out.println("Searching for \"" + _keyword + "\" in \"" + type + "\".");
