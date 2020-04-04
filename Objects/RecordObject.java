@@ -10,16 +10,20 @@ public class RecordObject {
 
     protected String uuid;
     protected String name;
-    protected String id;
+    protected int id;
     protected boolean active = true;
 // ================================ CONSTRUCTORS ====================================
 
-    public RecordObject(String uuid, String name, String id) {
+    public RecordObject() {
+        this.setUuid(RecordObject.generateUuid());
+    }
+
+    public RecordObject(String uuid, String name, int id) {
         this.uuid = uuid;
         this.name = name;
         this.id = id;
     }
-    
+
 // ================================ METHODS ====================================
     public void makeActive() {
         this.active = true;
@@ -42,7 +46,7 @@ public class RecordObject {
         return name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
     // ================================ SETTERS ================================
@@ -55,7 +59,7 @@ public class RecordObject {
         this.name = name;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
