@@ -11,4 +11,7 @@ package Database;
  */
 public class DatabaseUpdate {
 
+    public void updateRecord() {
+
+    }
 }
