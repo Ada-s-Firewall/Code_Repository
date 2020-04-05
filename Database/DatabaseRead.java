@@ -9,6 +9,7 @@ package Database;
  *
  * @author Quinn Tjin-A-Soe
  */
+import Objects.RecordObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
