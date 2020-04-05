@@ -1,16 +1,13 @@
 package Objects;
 
-/**
- *
- * @author Quinn Tjin-A-Soe Last updated: 04.02.2020
- */
+
 public class UserObject extends RecordObject {
 
 
     /*
      * Object for the user and their information.
      *
-     * @author: Will Higdon
+     * @author: Will Higdon, Quinn Tjin-A-Soe
      * Last Updated: April 2, 2020
      */
     /*
