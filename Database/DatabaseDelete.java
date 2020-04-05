@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class DatabaseDelete {
 
-    public static void deleteRecord(File _file, UserObject _userObject) throws IOException {
+    public static void deleteUserRecord(File _file, UserObject _userObject) throws IOException {
         Scanner scanner = new Scanner(_file);
         String userName = _userObject.getName();
         while (scanner.hasNextLine()) {
