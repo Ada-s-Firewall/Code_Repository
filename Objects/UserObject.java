@@ -1,15 +1,13 @@
 package Objects;
 
-
-public class UserObject extends RecordObject {
-
-
-    /*
+/*
      * Object for the user and their information.
      *
      * @author: Will Higdon, Quinn Tjin-A-Soe
-     * Last Updated: April 2, 2020
+     * Last Updated: April 6, 2020
      */
+
+public class UserObject extends RecordObject {
     /*
      String variables for all of the user's information.
      */
@@ -20,6 +18,7 @@ public class UserObject extends RecordObject {
     private String userLastName;
 
     //=================  CONSTRUCTORS ==================
+    
     public UserObject(String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName) {
         this.userName = userName;
         this.userPassword = userPassword;
@@ -29,6 +28,7 @@ public class UserObject extends RecordObject {
     }
 
     //=================  GETTERS ==================
+    
     public String getUserName() {
         return this.getUserName();
     }
@@ -50,6 +50,7 @@ public class UserObject extends RecordObject {
     }
 
     //=================  SETTERS =================
+    
     public void setUserName(String _userName) {
         this.userName = userName;
     }
