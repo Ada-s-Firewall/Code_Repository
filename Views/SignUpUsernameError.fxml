@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.SignUpPageErrorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <Pane layoutX="220.0" layoutY="70.0" prefHeight="360.0" prefWidth="300.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -52,7 +52,7 @@
                   </TextField>
                </children>
             </HBox>
-            <Button layoutX="51.0" layoutY="253.0" mnemonicParsing="false" onAction="#signUpButtonClicked" prefHeight="38.0" prefWidth="200.0" text="Sign Up" />
+            <Button layoutX="51.0" layoutY="253.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="38.0" prefWidth="200.0" text="Register" />
             <Button layoutX="86.0" layoutY="304.0" mnemonicParsing="false" onAction="#returnToLoginPageClicked" style="-fx-background-color: #ffffff;" text="Return to Login Page" textFill="#2fa1ff" underline="true" />
             <Label layoutX="79.0" layoutY="115.0" text="Username already taken!" textFill="#ff0505">
                <font>
