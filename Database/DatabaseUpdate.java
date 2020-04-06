@@ -32,7 +32,7 @@ public class DatabaseUpdate {
         while (scanner.hasNextLine()) {
             if (scanner.hasNext(userName)) {
                 _userObject.setUserPassword(_newPassword);
-
+                
             }
         }
     }
