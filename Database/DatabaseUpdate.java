@@ -1,15 +1,18 @@
 package Database;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+import Objects.RecordObject;
+import java.io.File;
 
 /**
+ * This class holds the methods for updating a file.
+ *
+ * Last Updated: 05.04.2020.
  *
  * @author Quinn Tjin-A-Soe
  */
 public class DatabaseUpdate {
-    
+
+    public void updateRecord(File _file, RecordObject _recordObject) {
+        
+    }
 }
