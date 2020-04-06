@@ -1,5 +1,6 @@
 package Database;
 
+import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseRead.readRecord;
 import Objects.UserObject;
 import java.io.BufferedWriter;
@@ -52,7 +53,7 @@ public class DatabaseCreate {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public static void createUserRecord(File _file, UserObject _userObject) throws FileNotFoundException, IOException {
+    public static void createUserRecord(UserObject _userObject) throws FileNotFoundException, IOException {
         String stringRecord = "";
         ArrayList<String> record = new ArrayList<>();
         int recordLength = record.size();
@@ -69,7 +70,7 @@ public class DatabaseCreate {
             }
         }
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(_file, true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(userLoginFile, true));
         writer.write(stringRecord);
         writer.close();
     }
