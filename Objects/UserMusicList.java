@@ -27,7 +27,6 @@ public class UserMusicList {
     ArrayList<String> usersFavoriteArtists = new ArrayList<String>();
     ArrayList<String> usersFavoriteTracks = new ArrayList<String>();
 
-
     //=================  CONSTRUCTORS =================
 
     public UserMusicList(int _usersAlbumsCompleted, int _usersAlbumsPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
