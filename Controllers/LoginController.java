@@ -68,7 +68,7 @@ public class LoginController implements Initializable {
         if ("username".equals(theUsername) && "password".equals(thePassword)) {
 
             //Display the user's profile page
-            displayPage(_event, "Profile.fxml");
+            displayPage(_event, "Search.fxml");
         } else {
 
             //If username and password are not registered error scene is opened
