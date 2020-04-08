@@ -29,6 +29,7 @@ public class DatabaseRead {
         ArrayList<String> record = new ArrayList<>();
         Scanner scanner = new Scanner(_file);
 
+        //This scanner goes through the textfile to find the specified record.
         while (scanner.hasNextLine()) {
             if (scanner.nextLine().equals(_string)) {
                 break;
@@ -38,6 +39,7 @@ public class DatabaseRead {
         Scanner scannerRecord = new Scanner(stringRecord);
         scannerRecord.useDelimiter("\t");
 
+        //This while loop adds strings to the ArrayList.
         while (scannerRecord.hasNext()) {
             record.add(scannerRecord.next());
         }
