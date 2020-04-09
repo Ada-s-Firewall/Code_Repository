@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ArtistResultController">
+   <children>
+      <Pane layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="273.0" layoutY="14.0" text="Results:">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="131.0" layoutY="331.0" mnemonicParsing="false" onAction="#listenToButonClicked" prefHeight="25.0" prefWidth="186.0" text="Add to Listened to Playlist" />
+            <Button layoutX="355.0" layoutY="331.0" mnemonicParsing="false" onAction="#planToListenButtonClicked" text="Add to Want to Listen to Playlist" />
+            <TableView fx:id="tableView" layoutX="14.0" layoutY="67.0" prefHeight="231.0" prefWidth="640.0">
+              <columns>
+                <TableColumn fx:id="trackColumn" prefWidth="160.0" text="Track" />
+                <TableColumn fx:id="artistColumn" prefWidth="160.0" text="Artist" />
+                  <TableColumn fx:id="albumColumn" prefWidth="160.0" text="Album" />
+                  <TableColumn fx:id="releasedColumn" prefWidth="160.0" text="Released" />
+              </columns>
+            </TableView>
+            <Button layoutX="264.0" layoutY="362.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
+            <Label layoutX="227.0" layoutY="307.0" text="Items were sucessfully added to the playlist." textFill="RED" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
