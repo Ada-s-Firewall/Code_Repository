@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * This interface holds all the methods for the database classes.
  *
- * Last Updated: 04.08.2020
+ * Last Updated: 04.09.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  *
@@ -18,6 +18,8 @@ public interface DatabaseInterface {
     public static final File userInfoFile = new File("Datastore/UserInfo.txt");
     public static final File userLoginFile = new File("Datastore/UserLogin.txt");
     public static final File userRatingFile = new File("Datastore/UserRating.txt");
+    public static final boolean active = true;
+    public static final boolean inactive = false;
 
 //============================ METHODS ========================================
     /**
@@ -57,7 +59,7 @@ public interface DatabaseInterface {
      * @return
      */
     public abstract ArrayList readRecord(File _file, String _string);
-    
+
     /**
      * Read and return a UserObject using the given username.
      * @param _username

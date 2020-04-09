@@ -1,3 +1,4 @@
-0b9bb09c-7a85-4841-89c6-3704b5696578	jdoe012	password01	jdoe1@email.com	John	Doe
-768a4e6e-4579-4f54-88c9-593551329868	JackMan93	jackword	jkessler@email.com	Jack	Kessler
-456b4a22-0761-4970-b77a-2ed651100305	FVilla	village5	fvil@email.com	Francis	Villagran
+8dd20d19-1dcc-4ef8-8be2-f5da4cd9b35c	JackMan93	jackword	jkessler@email.com	Jack	Kessler	true
+a3b730cc-fefb-443f-bd2d-015a2c457a3b	FVilla	village5	fvil@email.com	Francis	Villagran	true
+fb7fd39d-2a58-4a64-950b-03cd9645bee4	jdoe012	password01	jdoe1@email.com	John	Doe	true
+3d17b322-016f-4875-be80-1e4d2be7e6e2	jmiller	password02	jamil@email.com	Jane	Miller	true

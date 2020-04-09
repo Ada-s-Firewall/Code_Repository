@@ -4,7 +4,7 @@ package Objects;
  * Object for the user and their information.
  *
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
- * Last Updated: April 8, 2020
+ * Last Updated: April 9, 2020
  */
 
 public class UserObject extends RecordObject {
@@ -19,7 +19,17 @@ public class UserObject extends RecordObject {
 
     //=================  CONSTRUCTORS ==================
 
-    public UserObject(String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName) {
+    public UserObject(String _name, int _id, String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName) {
+        super(_name, _id);
+        this.userName = _userName;
+        this.userPassword = _userPassword;
+        this.userEmail = _userEmail;
+        this.userFirstName = _userFirstName;
+        this.userLastName = _userLastName;
+    }
+
+    public UserObject(String _uuid, String _name, int _id, String _userName, String _userPassword, String _userEmail, String _userFirstName, String _userLastName) {
+        super(_uuid, _name, _id);
         this.userName = _userName;
         this.userPassword = _userPassword;
         this.userEmail = _userEmail;
