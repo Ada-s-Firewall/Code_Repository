@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * This class holds the methods for creating a record in the database.
- * Last updated: 04.08.2020
+ * Last updated: 04.09.2020
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 public class DatabaseCreate {
@@ -37,7 +37,7 @@ public class DatabaseCreate {
             }
         }
 
-        stringRecord += "\n";
+        stringRecord += "\t" + DatabaseInterface.active + "\n";
         BufferedWriter writer = new BufferedWriter(new FileWriter(_file, true));
         writer.write(stringRecord);
         writer.close();
@@ -70,7 +70,7 @@ public class DatabaseCreate {
             }
         }
 
-        stringRecord += "\n";
+        stringRecord += "\t" + DatabaseInterface.active + "\n";
         BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userLoginFile, true));
         writer.write(stringRecord);
         writer.close();

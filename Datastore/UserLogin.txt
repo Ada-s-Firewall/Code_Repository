@@ -1,3 +1,4 @@
-jdoe012	password01
-JackMan93	jackword
-FVilla	village5
+JackMan93	jackword	true
+FVilla	village5	true
+jdoe012	password01	true
+jmiller	password02	true
