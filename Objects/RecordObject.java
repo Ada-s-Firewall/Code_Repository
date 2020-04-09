@@ -3,8 +3,8 @@ package Objects;
 import java.util.UUID;
 
 /**
- *
- * @author Quinn Tjin-A-Soe Last updated 04.02.2020
+ * Last updated 04.02.2020
+ * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 public class RecordObject {
 

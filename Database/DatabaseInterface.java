@@ -1,24 +1,23 @@
 package Database;
 
-import Objects.RecordObject;
-import Objects.UserObject;
+import Objects.*;
 import java.io.File;
 import java.util.ArrayList;
 
 /**
  * This interface holds all the methods for the database classes.
  *
- * Last Updated: 04.05.2020
+ * Last Updated: 04.08.2020
  *
- * @author Quinn Tjin-A-Soe
+ * @author Quinn Tjin-A-Soe, Fernando Villarreal
  *
  */
 public interface DatabaseInterface {
 //=========================== CLASS VARIABLES ==================================
 
-    public static final File userInfoFile = new File("src/Datastore/UserInfo.txt");
-    public static final File userLoginFile = new File("src/Datastore/Userlogin.txt");
-    public static final File userRatingFile = new File("src/Datastore/UserRating.txt");
+    public static final File userInfoFile = new File("Datastore/UserInfo.txt");
+    public static final File userLoginFile = new File("Datastore/UserLogin.txt");
+    public static final File userRatingFile = new File("Datastore/UserRating.txt");
 
 //============================ METHODS ========================================
     /**
@@ -27,15 +26,20 @@ public interface DatabaseInterface {
      * @param _file
      * @param _record
      */
-    public abstract void creatRecord(File _file, ArrayList _record);
+    public abstract void creatRecord(File _file, ArrayList<String> _record);
+
 
     /**
-     * This method creates a new record of a user.
-     *
-     * @param _file
-     * @param _userObject
+     * Creates a new user record.
+     * @param _user
      */
-    public abstract void createUserRecord(File _file, UserObject _userObject);
+    public void createUserRecord(NewUser _user);
+
+    /**
+     * Create a new user's rating record.
+     * @param _rating
+     */
+    public void createUserRating(NewRating _rating);
 
     /**
      * This method "deletes" a record of a user.
@@ -53,6 +57,13 @@ public interface DatabaseInterface {
      * @return
      */
     public abstract ArrayList readRecord(File _file, String _string);
+    
+    /**
+     * Read and return a UserObject using the given username.
+     * @param _username
+     * @return UserObject
+     */
+    public UserObject readUserRecord(String _username);
 
     /**
      * This method makes a record active.
