@@ -3,11 +3,9 @@ package Objects;
 /**
  * This is an object for the user's rating of a particular album or song.
  *
- * @authors: Quinn Tjin-A-Soe, Will Higdon
- * Last Updated: April 6, 2020
+ * @authors: Quinn Tjin-A-Soe, Will Higdon | Modified: Fernando Villarreal
+ * Last Updated: April 9, 2020
  */
-
-import java.util.UUID;
 
 public class RatingObject extends RecordObject {
     /*
@@ -15,17 +13,19 @@ public class RatingObject extends RecordObject {
     */
     private double usersRating;
     private String spotifyID;
-    protected String uuid;
 
     //=================  CONSTRUCTORS ===================
 
-    public RatingObject() {
-        this.setUuid(RatingObject.generateUuid());
+    public RatingObject(String _name, int _id, double _usersRating, String _spotifyID) {
+        super(_name, _id);
+        this.usersRating = _usersRating;
+        this.spotifyID = _spotifyID;
     }
-    public RatingObject(double _usersRating, String _spotifyID, String _uuid) {
-        this.usersRating = usersRating;
-        this.spotifyID = spotifyID;
-        this.uuid = uuid;
+
+    public RatingObject(String _uuid, String _name, int _id, double _usersRating, String _spotifyID) {
+        super(_uuid, _name, _id);
+        this.usersRating = _usersRating;
+        this.spotifyID = _spotifyID;
     }
 
     //=================  GETTERS ========================
@@ -43,12 +43,12 @@ public class RatingObject extends RecordObject {
     //=================  SETTERS ========================
 
     public void setUsersRating(double _usersRating) {
-        this.usersRating = usersRating;
+        this.usersRating = _usersRating;
     }
     public void setSpotifyID(String _spotifyID) {
-        this.spotifyID = spotifyID;
+        this.spotifyID = _spotifyID;
     }
     public void setUUID(String _uuid) {
-        this.uuid = uuid;
+        this.uuid = _uuid;
     }
 }

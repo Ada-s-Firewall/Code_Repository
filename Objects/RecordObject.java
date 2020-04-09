@@ -3,8 +3,8 @@ package Objects;
 import java.util.UUID;
 
 /**
- *
- * @author Quinn Tjin-A-Soe Last updated 04.02.2020
+ * Last updated 04.09.2020
+ * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  */
 public class RecordObject {
 
@@ -12,16 +12,19 @@ public class RecordObject {
     protected String name;
     protected int id;
     protected boolean active = true;
+
 // ================================ CONSTRUCTORS ====================================
 
-    public RecordObject() {
-        this.setUuid(RecordObject.generateUuid());
+    public RecordObject(String _name, int _id) {
+        this.uuid = RecordObject.generateUuid();
+        this.name = _name;
+        this.id = _id;
     }
 
-    public RecordObject(String uuid, String name, int id) {
-        this.uuid = uuid;
-        this.name = name;
-        this.id = id;
+    public RecordObject(String _uuid, String _name, int _id) {
+        this.uuid = _uuid;
+        this.name = _name;
+        this.id = _id;
     }
 
 // ================================ METHODS ====================================
