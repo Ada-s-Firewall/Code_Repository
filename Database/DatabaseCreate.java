@@ -1,8 +1,6 @@
 package Database;
 
-import static Database.DatabaseInterface.userLoginFile;
-import static Database.DatabaseRead.readRecord;
-import Objects.UserObject;
+import Objects.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +11,8 @@ import java.util.Scanner;
 
 /**
  * This class holds the methods for creating a record in the database.
- *
- * @author Quinn Tjin-A-Soe Last updated: 04.05.2020
+ * Last updated: 04.08.2020
+ * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 public class DatabaseCreate {
 
@@ -26,8 +24,8 @@ public class DatabaseCreate {
      * @param _record
      * @throws java.io.IOException
      */
-    public static void creatRecord(File _file, ArrayList _record) throws IOException {
-        String stringRecord = "\n";
+    public static void createRecord(File _file, ArrayList<String> _record) throws IOException {
+        String stringRecord = "";
         int recordLength = _record.size();
 
         for (int index = 0; index < recordLength; index++) {
@@ -38,6 +36,8 @@ public class DatabaseCreate {
                 stringRecord += "\t";
             }
         }
+
+        stringRecord += "\n";
         BufferedWriter writer = new BufferedWriter(new FileWriter(_file, true));
         writer.write(stringRecord);
         writer.close();
@@ -56,10 +56,10 @@ public class DatabaseCreate {
     public static void createUserRecord(UserObject _userObject) throws FileNotFoundException, IOException {
         String stringRecord = "";
         ArrayList<String> record = new ArrayList<>();
-        int recordLength = record.size();
         record.add(_userObject.getUuid());
         record.add(_userObject.getName());
         record.add(_userObject.getUserPassword());
+        int recordLength = record.size();
 
         for (int index = 0; index < recordLength; index++) {
             //add every thing from the arraylist to the string
@@ -70,9 +70,29 @@ public class DatabaseCreate {
             }
         }
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(userLoginFile, true));
+        stringRecord += "\n";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userLoginFile, true));
         writer.write(stringRecord);
         writer.close();
     }
 
+    /**
+     * Creates records for a new user in UserLogin.txt and UserInfo.txt
+     * @param _user
+     * @throws Exception
+     */
+    public static void createUserRecord(NewUser _user) throws Exception {
+        // Create a record in UserInfo.txt
+        DatabaseCreate.createRecord(DatabaseInterface.userInfoFile, _user.toArrayList());
+        // Create a record in UserLogin.txt
+        ArrayList<String> userLogin = new ArrayList<>();
+        userLogin.add(_user.getUsername());
+        userLogin.add(_user.getPassword());
+        DatabaseCreate.createRecord(DatabaseInterface.userLoginFile, userLogin);
+    }
+
+    public static void createUserRating(NewRating _rating) throws Exception{
+        // Create a record in UserRating.txt
+        DatabaseCreate.createRecord(DatabaseInterface.userRatingFile, _rating.toArrayList());
+    }
 }
