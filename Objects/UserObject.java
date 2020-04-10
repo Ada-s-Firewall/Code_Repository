@@ -2,9 +2,7 @@ package Objects;
 
 /*
  * Object for the user and their information.
- *
- * @author: Will Higdon, Quinn Tjin-A-Soe
- * Last Updated: April 6, 2020
+ * 
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  * Last Updated: April 9, 2020
  */
@@ -13,7 +11,6 @@ public class UserObject extends RecordObject {
     /*
      * String variables for all of the user's information.
      */
-
     private String userName;
     private String userPassword;
     private String userEmail;
