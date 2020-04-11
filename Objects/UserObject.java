@@ -2,7 +2,7 @@ package Objects;
 
 /*
  * Object for the user and their information.
- *
+ * 
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  * Last Updated: April 9, 2020
  */
