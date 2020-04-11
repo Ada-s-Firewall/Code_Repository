@@ -4,7 +4,7 @@ package Objects;
  * This is an object for the user's rating of a particular album or song.
  *
  * @authors: Quinn Tjin-A-Soe, Will Higdon | Modified: Fernando Villarreal
- * Last Updated: April 9, 2020
+ * Last Updated: April 11, 2020
  */
 
 public class RatingObject extends RecordObject {
@@ -26,6 +26,14 @@ public class RatingObject extends RecordObject {
         super(_uuid, _name, _id);
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
+    }
+
+    //================= METHODS =================
+
+    @Override
+    public String toString() {
+        String ratingInfo = super.toString() + "\nRating: " + this.usersRating + "\nSpotify ID: " + this.spotifyID;
+        return ratingInfo;
     }
 
     //=================  GETTERS ========================

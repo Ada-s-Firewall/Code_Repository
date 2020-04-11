@@ -2,7 +2,7 @@ package Objects;
 
 /*
  * Object for the user and their information.
- * 
+ *
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  * Last Updated: April 9, 2020
  */
@@ -35,6 +35,15 @@ public class UserObject extends RecordObject {
         this.userEmail = _userEmail;
         this.userFirstName = _userFirstName;
         this.userLastName = _userLastName;
+    }
+
+    //================= METHODS =================
+
+    @Override
+    public String toString() {
+        String userInfo = super.toString() + "\nUsername: " + this.userName + "\nPassword: " + this.userPassword
+                + "\nEmail: " + this.userEmail + "\nFirst Name: " + this.userFirstName + "\nLast Name: " + this.userLastName;
+        return userInfo;
     }
 
     //=================  GETTERS ==================

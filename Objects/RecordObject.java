@@ -3,7 +3,7 @@ package Objects;
 import java.util.UUID;
 
 /**
- * Last updated 04.09.2020
+ * Last updated 04.11.2020
  * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  */
 public class RecordObject {
@@ -28,6 +28,7 @@ public class RecordObject {
     }
 
 // ================================ METHODS ====================================
+
     public void makeActive() {
         this.active = true;
     }
@@ -38,6 +39,12 @@ public class RecordObject {
 
     protected static String generateUuid() {
         return UUID.randomUUID().toString();
+    }
+
+    @Override
+    public String toString() {
+        String objectText = "Name: " + this.name + "\nID: " + this.id + "\nUUID: " + this.uuid + "\nActive: " + this.active;
+        return objectText;
     }
 
 // ================================ GETTERS ====================================
@@ -52,6 +59,7 @@ public class RecordObject {
     public int getId() {
         return id;
     }
+
     // ================================ SETTERS ================================
 
     public void setUuid(String uuid) {
