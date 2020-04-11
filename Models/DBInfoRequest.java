@@ -2,15 +2,15 @@ package Models;
 
 /**
  * This class acts an adapter for performing CRUD operations with the Database.
- * Last Updated: 4/8/2020
+ * Last Updated: 4/11/2020
  * @author Fernando Villarreal
  */
 
-import Database.DatabaseCreate;
-import Database.DatabaseInterface;
+import Database.*;
 import Objects.NewRating;
 import Objects.NewUser;
 import Objects.RecordObject;
+import Objects.RecordObjectList;
 import Objects.UserObject;
 import java.io.File;
 import java.io.IOException;
@@ -59,13 +59,33 @@ public class DBInfoRequest implements DatabaseInterface{
     }
 
     @Override
-    public ArrayList readRecord(File _file, String _string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<String> readRecord(File _file, String _string) {
+        try {
+            return DatabaseRead.readRecord(_file, _string);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public UserObject readUserRecord(String _username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            return DatabaseRead.readUserRecord(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public RecordObjectList readUsersRatings(String _username) {
+        try {
+            return DatabaseRead.readUsersRatings(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

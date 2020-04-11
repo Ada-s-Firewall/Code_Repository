@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * This interface holds all the methods for the database classes.
  *
- * Last Updated: 04.09.2020
+ * Last Updated: 04.11.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  *
@@ -58,7 +58,7 @@ public interface DatabaseInterface {
      * @param _string
      * @return
      */
-    public abstract ArrayList readRecord(File _file, String _string);
+    public abstract ArrayList<String> readRecord(File _file, String _string);
 
     /**
      * Read and return a UserObject using the given username.
@@ -66,6 +66,13 @@ public interface DatabaseInterface {
      * @return UserObject
      */
     public UserObject readUserRecord(String _username);
+
+    /**
+     * Read and return a RecordObjectList containing the specified user's ratings.
+     * @param _username
+     * @return RecordObjectList
+     */
+    public RecordObjectList readUsersRatings(String _username);
 
     /**
      * This method makes a record active.
