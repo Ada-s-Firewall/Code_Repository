@@ -1,8 +1,8 @@
 package Objects;
 
 /**
- * This class...
- * Last Updated: 4/8/2020
+ * This class handles the basic properties for any New Database Object.
+ * Last Updated: 4/12/2020
  * @author Fernando Villarreal
  */
 

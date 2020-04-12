@@ -2,7 +2,7 @@ package Prototypes;
 
 /**
  * This class is specifically for conducting tests on the Database classes.
- * Last Updated: 4/11/2020
+ * Last Updated: 4/12/2020
  * @author Fernando Villarreal
  */
 
@@ -24,7 +24,7 @@ public class DatabaseTests {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception{
-        //System.out.println("Database Test 01:\n\n");
+        System.out.println("Database Test 01:\n\n");
         //DBTest01();
         System.out.println("Database Test 02:\n\n");
         DBTest02();
@@ -38,9 +38,9 @@ public class DatabaseTests {
         NewUser user02 = new NewUser("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
         NewUser user03 = new NewUser("jdoe012", "password01", "jdoe1@email.com", "John", "Doe");
         NewUser user04 = new NewUser("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
-        NewRating rating01 = new NewRating("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l");
-        NewRating rating02 = new NewRating("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB");
-        NewRating rating03 = new NewRating("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP");
+        NewRating rating01 = new NewRating("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
+        NewRating rating02 = new NewRating("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
+        NewRating rating03 = new NewRating("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
         // Record the new users and ratings
         dbRequest.createUserRecord(user01);
         dbRequest.createUserRecord(user02);

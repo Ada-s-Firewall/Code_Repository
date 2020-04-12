@@ -5,7 +5,7 @@ package Database;
  */
 
 /**
- * Last Updated: 04.11.2020
+ * Last Updated: 04.12.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
@@ -29,6 +29,7 @@ public class DatabaseRead {
     private static final int indexRating = 2;
     private static final int indexEmail = 3;
     private static final int indexSpotifyID = 3;
+    private static final int indexMusicObjectType = 4;
     private static final int indexFirstName = 4;
     private static final int indexLastName = 5;
 
@@ -52,27 +53,36 @@ public class DatabaseRead {
      * @throws IOException
      */
     public static ArrayList<String> readRecord(File _file, String _string) throws IOException {
-        ArrayList<String> record = new ArrayList<>();
-        Scanner scanner = new Scanner(_file);
-
-        String stringRecord = "";
-        //This scanner goes through the textfile to find the specified record.
-        while (scanner.hasNextLine()) {
-            stringRecord = scanner.nextLine();
-            if (stringRecord.contains(_string) && stringRecord.contains(DatabaseRead.active)) {
-                // Return the record
-                Scanner scannerRecord = new Scanner(stringRecord);
-                scannerRecord.useDelimiter("\t");
-                //This while loop adds strings to the ArrayList.
-                while (scannerRecord.hasNext()) {
-                    record.add(scannerRecord.next());
-                }
-                return record;
-            }
+        // Call DatabaseRead.readRecords with the given parameters
+        ArrayList<ArrayList<String>> recordsList = DatabaseRead.readRecords(_file, _string);
+        // If the record was not found (recordsList is empty), return an empty ArrayList<String>
+        if (recordsList.isEmpty()) {
+            return new ArrayList<>();
         }
-        // If the record was not found, return an empty ArrayList<String>
-        ArrayList<String> nullRecord = new ArrayList<>();
-        return nullRecord;
+        // Get the first item in recordsList and return it
+        int firstItemIndex = 0;
+        return recordsList.get(firstItemIndex);
+//        ArrayList<String> record = new ArrayList<>();
+//        Scanner scanner = new Scanner(_file);
+//
+//        String stringRecord = "";
+//        //This scanner goes through the textfile to find the specified record.
+//        while (scanner.hasNextLine()) {
+//            stringRecord = scanner.nextLine();
+//            if (stringRecord.contains(_string) && stringRecord.contains(DatabaseRead.active)) {
+//                // Return the record
+//                Scanner scannerRecord = new Scanner(stringRecord);
+//                scannerRecord.useDelimiter("\t");
+//                //This while loop adds strings to the ArrayList.
+//                while (scannerRecord.hasNext()) {
+//                    record.add(scannerRecord.next());
+//                }
+//                return record;
+//            }
+//        }
+//        // If the record was not found, return an empty ArrayList<String>
+//        ArrayList<String> nullRecord = new ArrayList<>();
+//        return nullRecord;
     }
 
     /**
@@ -85,7 +95,7 @@ public class DatabaseRead {
     public static ArrayList<ArrayList<String>> readRecords(File _file, String _string) throws IOException {
         // Create an ArrayList of ArrayList<String> to store the records
         ArrayList<ArrayList<String>> recordsList = new ArrayList<>();
-        // Scan the specified file for records that contain _string
+        // Scan the specified file for records that contain _string and are active
         Scanner scanner = new Scanner(_file);
         while (scanner.hasNextLine()) {
             String stringRecord = scanner.nextLine();
@@ -149,7 +159,8 @@ public class DatabaseRead {
             String username = record.get(DatabaseRead.indexUsername);
             Double rating = new Double(record.get(DatabaseRead.indexRating));
             String spotifyID = record.get(DatabaseRead.indexSpotifyID);
-            RatingObject ratingObj = new RatingObject(id, username, DatabaseRead.genericID, rating, spotifyID);
+            String musicObjectType = record.get(DatabaseRead.indexMusicObjectType);
+            RatingObject ratingObj = new RatingObject(id, username, DatabaseRead.genericID, rating, spotifyID, musicObjectType);
             ratingsList.add(ratingObj);
         }
         // Return the list of ratings
