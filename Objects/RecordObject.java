@@ -49,28 +49,28 @@ public class RecordObject {
 
 // ================================ GETTERS ====================================
     public String getUuid() {
-        return uuid;
+        return this.uuid;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     // ================================ SETTERS ================================
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUuid(String _uuid) {
+        this.uuid = _uuid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String _name) {
+        this.name = _name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int _id) {
+        this.id = _id;
     }
 }
