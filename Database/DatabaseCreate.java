@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * This class holds the methods for creating a record in the database. Last
- * updated: 04.09.2020
- *
+ * This class holds the methods for creating a record in the database.
+ * Last updated: 04.09.2020
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 public class DatabaseCreate {
@@ -79,7 +78,6 @@ public class DatabaseCreate {
 
     /**
      * Creates records for a new user in UserLogin.txt and UserInfo.txt
-     *
      * @param _user
      * @throws Exception
      */
@@ -93,7 +91,7 @@ public class DatabaseCreate {
         DatabaseCreate.createRecord(DatabaseInterface.userLoginFile, userLogin);
     }
 
-    public static void createUserRating(NewRating _rating) throws Exception {
+    public static void createUserRating(NewRating _rating) throws Exception{
         // Create a record in UserRating.txt
         DatabaseCreate.createRecord(DatabaseInterface.userRatingFile, _rating.toArrayList());
     }
