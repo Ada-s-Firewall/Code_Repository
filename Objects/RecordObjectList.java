@@ -95,6 +95,10 @@ public class RecordObjectList {
         return this.length;
     }
 
+    public ArrayList<RecordObject> getList() {
+        return this.list;
+    }
+
     //================ SETTERS ================
 
     public void setName(String _name) {

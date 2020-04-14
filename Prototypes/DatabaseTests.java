@@ -2,7 +2,7 @@ package Prototypes;
 
 /**
  * This class is specifically for conducting tests on the Database classes.
- * Last Updated: 4/13/2020
+ * Last Updated: 4/14/2020
  * @author Fernando Villarreal
  */
 
@@ -21,7 +21,7 @@ public class DatabaseTests {
      */
     public static void main(String[] args) throws Exception{
         System.out.println("Database Test 01:\n\n");
-        //DBTest01();
+        DBTest01();
         System.out.println("Database Test 02:\n\n");
         DBTest02();
         System.out.println("Database Test 03:\n\n");
@@ -39,6 +39,8 @@ public class DatabaseTests {
         RatingObject rating01 = new RatingObject("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
         RatingObject rating02 = new RatingObject("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
         RatingObject rating03 = new RatingObject("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
+        RatingObject rating04 = new RatingObject("JackMan93", 8.8, "36QJpDe2go2KgaRleHCDTp", "artist");
+        RatingObject rating05 = new RatingObject("jdoe012", 8.3, "2wOqMjp9TyABvtHdOSOTUS", "artist");
         // Record the new users and ratings
         dbRequest.createUserRecord(user01);
         dbRequest.createUserRecord(user02);
@@ -47,6 +49,8 @@ public class DatabaseTests {
         dbRequest.createUserRating(rating01);
         dbRequest.createUserRating(rating02);
         dbRequest.createUserRating(rating03);
+        dbRequest.createUserRating(rating04);
+        dbRequest.createUserRating(rating05);
     }
 
     public static void DBTest02() throws Exception {

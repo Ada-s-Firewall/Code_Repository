@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * This is an object for the user's rating of a particular album or song.
  *
  * @authors: Quinn Tjin-A-Soe, Will Higdon | Modified: Fernando Villarreal
- * Last Updated: April 13, 2020
+ * Last Updated: April 14, 2020
  */
 
 public class RatingObject extends RecordObject {
@@ -50,8 +50,10 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
-    public RatingObject(String _uuid) {
-        super(_uuid);
+    public RatingObject(String _nullValue) {
+        super(_nullValue);
+        this.username = _nullValue;
+        this.spotifyID = _nullValue;
     }
 
     //================= METHODS =================
