@@ -3,7 +3,7 @@ package Database;
 /**
  * This class holds all of the methods for updating a file.
  *
- * Last Updated: 04.12.2020.
+ * Last Updated: 04.13.2020.
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
@@ -13,7 +13,6 @@ import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseInterface.userRatingFile;
-import Objects.NewRating;
 import Objects.RecordObject;
 import Objects.UserObject;
 import Objects.RatingObject;
@@ -152,7 +151,7 @@ public class DatabaseUpdate {
      * @param _newUsersRating
      * @throws FileNotFoundException
      */
-    public void updateUserRating(RatingObject _ratingObject, NewRating _rating) throws FileNotFoundException {
+    public void updateUserRating(RatingObject _ratingObject, RatingObject _rating) throws FileNotFoundException {
         Scanner scanner = new Scanner(userInfoFile);
     }
 

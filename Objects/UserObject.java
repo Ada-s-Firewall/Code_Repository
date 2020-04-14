@@ -1,10 +1,12 @@
 package Objects;
 
+import java.util.ArrayList;
+
 /*
  * Object for the user and their information.
  *
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
- * Last Updated: April 9, 2020
+ * Last Updated: April 13, 2020
  */
 
 public class UserObject extends RecordObject {
@@ -37,7 +39,40 @@ public class UserObject extends RecordObject {
         this.userLastName = _userLastName;
     }
 
+    public UserObject(String _userName, String _password, String _email, String _firstName, String _lastName) {
+        super();
+        this.userName = _userName;
+        this.userPassword = _password;
+        this.userEmail = _email;
+        this.userFirstName = _firstName;
+        this.userLastName = _lastName;
+    }
+
+    public UserObject(String _uuid, String _userName, String _password, String _email, String _firstName, String _lastName) {
+        super(_uuid);
+        this.userName = _userName;
+        this.userPassword = _password;
+        this.userEmail = _email;
+        this.userFirstName = _firstName;
+        this.userLastName = _lastName;
+    }
+
+    public UserObject(String _uuid) {
+        super(_uuid);
+    }
+
     //================= METHODS =================
+
+    @Override
+    public ArrayList<String> toArrayList() {
+        ArrayList<String> list = super.toArrayList();
+        list.add(this.userName);
+        list.add(this.userPassword);
+        list.add(this.userEmail);
+        list.add(this.userFirstName);
+        list.add(this.userLastName);
+        return list;
+    }
 
     @Override
     public String toString() {

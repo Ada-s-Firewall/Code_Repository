@@ -1,19 +1,22 @@
 package Objects;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * Last updated 04.11.2020
+ * Last updated 04.13.2020
  * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  */
 public class RecordObject {
+
+    //================================ CLASS VARIABLES ================================
 
     protected String uuid;
     protected String name;
     protected int id;
     protected boolean active = true;
 
-// ================================ CONSTRUCTORS ====================================
+    // ================================ CONSTRUCTORS ====================================
 
     public RecordObject(String _name, int _id) {
         this.uuid = RecordObject.generateUuid();
@@ -27,7 +30,15 @@ public class RecordObject {
         this.id = _id;
     }
 
-// ================================ METHODS ====================================
+    public RecordObject() {
+        this.uuid = RecordObject.generateUuid();
+    }
+
+    public RecordObject(String _uuid) {
+        this.uuid = _uuid;
+    }
+
+    // ================================ METHODS ====================================
 
     public void makeActive() {
         this.active = true;
@@ -37,17 +48,28 @@ public class RecordObject {
         this.active = false;
     }
 
+     /**
+     * Returns this object's information in an ArrayList of Strings.
+     * @return list
+     */
+    public ArrayList<String> toArrayList() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(this.uuid);
+        return list;
+    }
+
     protected static String generateUuid() {
         return UUID.randomUUID().toString();
     }
 
     @Override
     public String toString() {
-        String objectText = "Name: " + this.name + "\nID: " + this.id + "\nUUID: " + this.uuid + "\nActive: " + this.active;
+        String objectText = "UUID: " + this.uuid + "\nActive: " + this.active;
         return objectText;
     }
 
-// ================================ GETTERS ====================================
+    // ================================ GETTERS ====================================
+
     public String getUuid() {
         return this.uuid;
     }

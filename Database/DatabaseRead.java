@@ -23,7 +23,7 @@ public class DatabaseRead {
     //=============== CLASS VARIABLES ===============
 
     // Indexes for items in records
-    private static final int indexID = 0;
+    private static final int indexUUID = 0;
     private static final int indexUsername = 1;
     private static final int indexPassword = 2;
     private static final int indexRating = 2;
@@ -33,10 +33,8 @@ public class DatabaseRead {
     private static final int indexFirstName = 4;
     private static final int indexLastName = 5;
 
-    // Generic values for RecordObjects
-    private static final int genericID = 0;
-    private static final String genericUUID = "00000-000-00000";
-    private static final String genericName = "NoSuchRecord";
+    // Null value for RecordObjects
+    private static final String noSuchRecord = "NoSuchRecord";
 
     // Active and Inactive record values
     private static final String active = "true";
@@ -62,27 +60,6 @@ public class DatabaseRead {
         // Get the first item in recordsList and return it
         int firstItemIndex = 0;
         return recordsList.get(firstItemIndex);
-//        ArrayList<String> record = new ArrayList<>();
-//        Scanner scanner = new Scanner(_file);
-//
-//        String stringRecord = "";
-//        //This scanner goes through the textfile to find the specified record.
-//        while (scanner.hasNextLine()) {
-//            stringRecord = scanner.nextLine();
-//            if (stringRecord.contains(_string) && stringRecord.contains(DatabaseRead.active)) {
-//                // Return the record
-//                Scanner scannerRecord = new Scanner(stringRecord);
-//                scannerRecord.useDelimiter("\t");
-//                //This while loop adds strings to the ArrayList.
-//                while (scannerRecord.hasNext()) {
-//                    record.add(scannerRecord.next());
-//                }
-//                return record;
-//            }
-//        }
-//        // If the record was not found, return an empty ArrayList<String>
-//        ArrayList<String> nullRecord = new ArrayList<>();
-//        return nullRecord;
     }
 
     /**
@@ -125,16 +102,16 @@ public class DatabaseRead {
         ArrayList<String> recordList = DatabaseRead.readRecord(DatabaseInterface.userInfoFile, _username);
         // If the record was not found, return an empty UserObject
         if (recordList.isEmpty()) {
-            return new UserObject(DatabaseRead.genericUUID, DatabaseRead.genericName, DatabaseRead.genericID, null, null, null, null, null);
+            return new UserObject(DatabaseRead.noSuchRecord);
         }
         // Create and return a UserObject using the information in recordList
-        String id = recordList.get(DatabaseRead.indexID);
+        String uuid = recordList.get(DatabaseRead.indexUUID);
         String username = recordList.get(DatabaseRead.indexUsername);
         String password = recordList.get(DatabaseRead.indexPassword);
         String email = recordList.get(DatabaseRead.indexEmail);
         String firstName = recordList.get(DatabaseRead.indexFirstName);
         String lastName = recordList.get(DatabaseRead.indexLastName);
-        return new UserObject(id, username, DatabaseRead.genericID, username, password, email, firstName, lastName);
+        return new UserObject(uuid, username, password, email, firstName, lastName);
     }
 
     /**
@@ -155,12 +132,13 @@ public class DatabaseRead {
         }
         // Iterate over recordsList
         for (ArrayList<String> record : recordsList) {
-            String id = record.get(DatabaseRead.indexID);
+            // Create a RatingObject and add it to ratingsList
+            String uuid = record.get(DatabaseRead.indexUUID);
             String username = record.get(DatabaseRead.indexUsername);
             Double rating = new Double(record.get(DatabaseRead.indexRating));
             String spotifyID = record.get(DatabaseRead.indexSpotifyID);
             String musicObjectType = record.get(DatabaseRead.indexMusicObjectType);
-            RatingObject ratingObj = new RatingObject(id, username, DatabaseRead.genericID, rating, spotifyID, musicObjectType);
+            RatingObject ratingObj = new RatingObject(uuid, username, rating, spotifyID, musicObjectType);
             ratingsList.add(ratingObj);
         }
         // Return the list of ratings

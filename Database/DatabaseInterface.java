@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * This interface holds all the methods for the database classes.
  *
- * Last Updated: 04.11.2020
+ * Last Updated: 04.13.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  *
@@ -35,13 +35,13 @@ public interface DatabaseInterface {
      * Creates a new user record.
      * @param _user
      */
-    public void createUserRecord(NewUser _user);
+    public void createUserRecord(UserObject _user);
 
     /**
      * Create a new user's rating record.
      * @param _rating
      */
-    public void createUserRating(NewRating _rating);
+    public void createUserRating(RatingObject _rating);
 
     /**
      * This method "deletes" a record of a user.
