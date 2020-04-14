@@ -1,3 +1,3 @@
-a4f7d25d-d1b2-4f4b-8f5b-298a27629149	FVilla	9.0	37394IP6uhnjIpsawpMu4l	artist	true
-1b926026-33b9-40b4-ba38-596cdc375edf	JackMan93	8.5	2ye2Wgw4gimLv2eAKyk1NB	artist	true
-4685bb99-1cde-40aa-b4d0-1840e5ca5e45	FVilla	9.5	278ZYwGhdK6QTzE3MFePnP	artist	true
+0e9fc3ae-6257-4998-ac8e-29100b9f810e	FVilla	9.0	37394IP6uhnjIpsawpMu4l	artist	true
+1b17594d-49e0-4fe2-86a3-4ba481a404d3	JackMan93	8.5	2ye2Wgw4gimLv2eAKyk1NB	artist	true
+fa02b677-17e2-4469-93ad-e565234b52c7	FVilla	9.5	278ZYwGhdK6QTzE3MFePnP	artist	true

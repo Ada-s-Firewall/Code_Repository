@@ -1,16 +1,19 @@
 package Objects;
 
+import java.util.ArrayList;
+
 /**
  * This is an object for the user's rating of a particular album or song.
  *
  * @authors: Quinn Tjin-A-Soe, Will Higdon | Modified: Fernando Villarreal
- * Last Updated: April 12, 2020
+ * Last Updated: April 13, 2020
  */
 
 public class RatingObject extends RecordObject {
     /*
     * Variables for the user's rating.
     */
+    private String username;
     private double usersRating;
     private String spotifyID;
     private String musicObjectType;
@@ -31,7 +34,37 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
+    public RatingObject(String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
+        super();
+        this.username = _username;
+        this.usersRating = _usersRating;
+        this.spotifyID = _spotifyID;
+        this.musicObjectType = _musicObjectType;
+    }
+
+    public RatingObject(String _uuid, String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
+        super(_uuid);
+        this.username = _username;
+        this.usersRating = _usersRating;
+        this.spotifyID = _spotifyID;
+        this.musicObjectType = _musicObjectType;
+    }
+
+    public RatingObject(String _uuid) {
+        super(_uuid);
+    }
+
     //================= METHODS =================
+
+    @Override
+    public ArrayList<String> toArrayList() {
+        ArrayList<String> list = super.toArrayList();
+        list.add(this.username);
+        list.add("" + this.usersRating);
+        list.add(this.spotifyID);
+        list.add(this.musicObjectType);
+        return list;
+    }
 
     @Override
     public String toString() {
@@ -41,6 +74,10 @@ public class RatingObject extends RecordObject {
     }
 
     //=================  GETTERS ========================
+
+    public String getUsername() {
+        return this.username;
+    }
 
     public double getUsersRating() {
         return this.usersRating;
@@ -55,6 +92,10 @@ public class RatingObject extends RecordObject {
     }
 
     //=================  SETTERS ========================
+
+    public void setUsername(String _username) {
+        this.username = _username;
+    }
 
     public void setUsersRating(double _usersRating) {
         this.usersRating = _usersRating;

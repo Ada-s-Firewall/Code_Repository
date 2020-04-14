@@ -2,13 +2,12 @@ package Models;
 
 /**
  * This class acts an adapter for performing CRUD operations with the Database.
- * Last Updated: 4/11/2020
+ * Last Updated: 4/13/2020
  * @author Fernando Villarreal
  */
 
 import Database.*;
-import Objects.NewRating;
-import Objects.NewUser;
+import Objects.RatingObject;
 import Objects.RecordObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
@@ -36,7 +35,7 @@ public class DBInfoRequest implements DatabaseInterface{
     }
 
     @Override
-    public void createUserRecord(NewUser _user) {
+    public void createUserRecord(UserObject _user) {
         try {
             DatabaseCreate.createUserRecord(_user);
         } catch (Exception ex) {
@@ -45,7 +44,7 @@ public class DBInfoRequest implements DatabaseInterface{
     }
 
     @Override
-    public void createUserRating(NewRating _rating) {
+    public void createUserRating(RatingObject _rating) {
         try {
             DatabaseCreate.createUserRating(_rating);
         } catch (Exception ex) {

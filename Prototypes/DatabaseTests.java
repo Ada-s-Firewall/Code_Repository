@@ -2,18 +2,14 @@ package Prototypes;
 
 /**
  * This class is specifically for conducting tests on the Database classes.
- * Last Updated: 4/12/2020
+ * Last Updated: 4/13/2020
  * @author Fernando Villarreal
  */
 
-import Database.*;
 import Models.DBInfoRequest;
-import Objects.NewRating;
+import Objects.RatingObject;
 import Objects.UserObject;
-import Objects.NewUser;
 import Objects.RecordObjectList;
-import java.io.File;
-import java.net.URI;
 import java.util.ArrayList;
 
 public class DatabaseTests {
@@ -28,19 +24,21 @@ public class DatabaseTests {
         //DBTest01();
         System.out.println("Database Test 02:\n\n");
         DBTest02();
+        System.out.println("Database Test 03:\n\n");
+        DBTest03();
     }
 
     public static void DBTest01() throws Exception {
         // Create a new DBInfoRequest
         DBInfoRequest dbRequest = new DBInfoRequest();
         // Create new users and ratings
-        NewUser user01 = new NewUser("JackMan93", "jackword", "jkessler@email.com", "Jack", "Kessler");
-        NewUser user02 = new NewUser("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
-        NewUser user03 = new NewUser("jdoe012", "password01", "jdoe1@email.com", "John", "Doe");
-        NewUser user04 = new NewUser("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
-        NewRating rating01 = new NewRating("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
-        NewRating rating02 = new NewRating("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
-        NewRating rating03 = new NewRating("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
+        UserObject user01 = new UserObject("JackMan93", "jackword", "jkessler@email.com", "Jack", "Kessler");
+        UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
+        UserObject user03 = new UserObject("jdoe012", "password01", "jdoe1@email.com", "John", "Doe");
+        UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
+        RatingObject rating01 = new RatingObject("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
+        RatingObject rating02 = new RatingObject("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
+        RatingObject rating03 = new RatingObject("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
         // Record the new users and ratings
         dbRequest.createUserRecord(user01);
         dbRequest.createUserRecord(user02);
@@ -60,6 +58,10 @@ public class DatabaseTests {
         System.out.println("User01:\n\n" + user01.toString());
         // Read and get FVilla's ratings
         RecordObjectList ratings = dbRequest.readUsersRatings(username);
-        System.out.println("User01's Ratings:\n\n" + ratings.toString());
+        System.out.println("\nUser01's Ratings:\n\n" + ratings.toString());
+    }
+
+    public static void DBTest03() throws Exception {
+        // Write your tests here
     }
 }
