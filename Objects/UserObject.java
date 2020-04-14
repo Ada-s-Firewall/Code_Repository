@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Object for the user and their information.
  *
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
- * Last Updated: April 13, 2020
+ * Last Updated: April 14, 2020
  */
 
 public class UserObject extends RecordObject {
@@ -57,8 +57,9 @@ public class UserObject extends RecordObject {
         this.userLastName = _lastName;
     }
 
-    public UserObject(String _uuid) {
-        super(_uuid);
+    public UserObject(String _nullValue) {
+        super(_nullValue);
+        this.userName = _nullValue;
     }
 
     //================= METHODS =================

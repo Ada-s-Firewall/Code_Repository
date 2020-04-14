@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * This class holds the methods for creating a record in the database.
- * Last updated: 04.09.2020
+ * Last updated: 04.14.2020
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 public class DatabaseCreate {
@@ -50,13 +50,25 @@ public class DatabaseCreate {
      * @throws Exception
      */
     public static void createUserRecord(UserObject _user) throws Exception {
-        // Create a record in UserInfo.txt
-        DatabaseCreate.createRecord(DatabaseInterface.userInfoFile, _user.toArrayList());
-        // Create a record in UserLogin.txt
-        ArrayList<String> userLogin = new ArrayList<>();
-        userLogin.add(_user.getUserName());
-        userLogin.add(_user.getUserPassword());
-        DatabaseCreate.createRecord(DatabaseInterface.userLoginFile, userLogin);
+        try {
+            // Check for an existing user record before creating
+            UserObject existingUser = DatabaseRead.readUserRecord(_user.getUserName());
+            String existingUsername = existingUser.getUserName();
+            // Throw a DatabaseException if the User already exists
+            if (existingUsername.equals(_user.getUserName())) {
+                throw new DatabaseException("User with username '" + existingUsername + "' already exists.");
+            }
+            // Create a record in UserInfo.txt
+            DatabaseCreate.createRecord(DatabaseInterface.userInfoFile, _user.toArrayList());
+            // Create a record in UserLogin.txt
+            ArrayList<String> userLogin = new ArrayList<>();
+            userLogin.add(_user.getUserName());
+            userLogin.add(_user.getUserPassword());
+            DatabaseCreate.createRecord(DatabaseInterface.userLoginFile, userLogin);
+        // Catch DatabaseExceptions
+        } catch (DatabaseException exception) {
+            System.out.println(exception.getMessage() + "\nNew User not created.");
+        }
     }
 
     /**
@@ -65,7 +77,24 @@ public class DatabaseCreate {
      * @throws Exception
      */
     public static void createUserRating(RatingObject _rating) throws Exception {
-        // Create a record in UserRating.txt
-        DatabaseCreate.createRecord(DatabaseInterface.userRatingFile, _rating.toArrayList());
+        try {
+            // Check for existing rating records before creating
+            RecordObjectList existingRatings = DatabaseRead.readUsersRatings(_rating.getUsername());
+            for (RecordObject existingRecord : existingRatings.getList()) {
+                RatingObject existingRating = (RatingObject)existingRecord;
+                String existingUsername = existingRating.getUsername();
+                String existingSpotifyID = existingRating.getSpotifyId();
+                // Throw a DatabaseException if the Rating already exists
+                if (existingUsername.equals(_rating.getUsername()) && existingSpotifyID.equals(_rating.getSpotifyId())) {
+                    throw new DatabaseException("Rating with username '" + existingUsername + "' and Spotify ID '"
+                    + existingSpotifyID + "' already exists.");
+                }
+            }
+            // Create a record in UserRating.txt
+            DatabaseCreate.createRecord(DatabaseInterface.userRatingFile, _rating.toArrayList());
+        // Catch DatabaseExceptions
+        } catch (DatabaseException exception) {
+            System.out.println(exception.getMessage() + "\nNew Rating not created.");
+        }
     }
 }
