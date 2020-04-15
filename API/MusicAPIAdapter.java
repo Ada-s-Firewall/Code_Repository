@@ -13,7 +13,7 @@ import Objects.AlbumObject;
 
 public class MusicAPIAdapter implements MusicAPIInterface {
 
-    protected final MusicAPIInterface apiTranslator = new SpotifyAPITranslator("x");
+    protected final MusicAPIInterface apiTranslator = new SpotifyAPITranslator("");
 
     @Override
     public MusicObjectList search(String _keyword, String _type, int _limit) {
