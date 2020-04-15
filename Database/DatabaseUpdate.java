@@ -3,10 +3,17 @@ package Database;
 /**
  * This class holds all of the methods for updating a file.
  *
- * Last Updated: 04.13.2020.
+ * Last Updated: 04.14.2020.
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
+<<<<<<< HEAD
+=======
+
+import static Database.DatabaseCreate.createUserRecord;
+import static Database.DatabaseCreate.createUserRating;
+import static Database.DatabaseInterface.userLoginFile;
+>>>>>>> 77d035b199aecd7785fbba34d502fcdc270d2b02
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
 import Objects.UserObject;
@@ -143,8 +150,32 @@ public class DatabaseUpdate {
      * @param _newUsersRating
      * @throws FileNotFoundException
      */
-    public void updateUserRating(RatingObject _ratingObject, RatingObject _rating) throws FileNotFoundException {
-        Scanner scanner = new Scanner(userInfoFile);
+    public void updateUsersRating(RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
+        Scanner scanner = new Scanner(userRatingFile);
+        String userName = _ratingObject.getName();
+        double usersRating = _ratingObject.getUsersRating();
+        String stringRecord = "";
+        scanner.useDelimiter("\t");
+
+        //This will update the user's rating
+        _ratingObject.setUsersRating(_newUsersRating);
+
+        while (scanner.hasNext()) {
+            //If this record exists in the file, then the rating will be updated.
+            if (scanner.hasNext(userName)) {
+                stringRecord += _ratingObject.getUuid() + "\t";
+                stringRecord += _ratingObject.getName() + "\t";
+                stringRecord += _ratingObject.getUsersRating() + "\t";
+                stringRecord += DatabaseInterface.active + "\n";
+            }
+            if (scanner.hasNext("\n")) {
+                stringRecord += "\n";
+            } //This else statement adds the rest of the records that do not match.
+            else {
+                stringRecord += scanner.next() + "\t";
+            }
+        }
+        
     }
 
     /**
@@ -154,11 +185,19 @@ public class DatabaseUpdate {
      * @param _file
      * @param _userMusicList
      * @param _newUsersAlbumsCompleted
-     * @param _newUsersAlnumsPlanToListen
+     * @param _newUsersAlbumsPlanToListen
      * @throws FileNotFoundException
      */
     public void updateUsersMusicList(UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws FileNotFoundException {
         Scanner scanner = new Scanner(userInfoFile);
+        String userName = _userMusicList.getUserName();
+        int usersAlbumsCompleted = _userMusicList.getUsersAlbumsCompleted();
+        int usersAlbumsPlanToListen = _userMusicList.getUsersAlbumsPlanToListen();
+
+        //Updates the users number of albums completed in their music list
+        _userMusicList.setUsersAlbumsCompleted(_newUsersAlbumsCompleted);
+        //Updates the user's number of albums that they plan to listen in their music list
+        _userMusicList.setUsersAlbumsPlanToListen(_newUsersAlbumsPlanToListen);
     }
 
     /**
@@ -173,5 +212,19 @@ public class DatabaseUpdate {
      */
     public void updateUsersMusicList(UserMusicList _userMusicList, ArrayList<String> _newUsersFavoriteAlbums, ArrayList<String> _newUsersFavoriteArtists, ArrayList<String> _newUsersFavoriteTracks) throws FileNotFoundException {
         Scanner scanner = new Scanner(userInfoFile);
+        String userName = _userMusicList.getUserName();
+        ArrayList<String> usersFavoriteAlbums = _userMusicList.getUsersFavoriteAlbums();
+        ArrayList<String> usersFavoriteArtists = _userMusicList.getUsersFavoriteArtists();
+        ArrayList<String> usersFavoriteTracks = _userMusicList.getUsersFavoriteTracks();
+        String stringRecord = "";
+        scanner.useDelimiter("\t");
+
+        //Adds a selected album to the user's list of favorite albums
+        _userMusicList.setUsersFavoriteAlbums(_newUsersFavoriteAlbums);
+        //Adds a selected artist to the user's list of favorite artists
+        _userMusicList.setUsersFavoriteArtists(_newUsersFavoriteArtists);
+        //Adds a selected track to the user's list of favorite tracks
+        _userMusicList.setUsersFavoriteTracks(_newUsersFavoriteTracks);
+
     }
 }

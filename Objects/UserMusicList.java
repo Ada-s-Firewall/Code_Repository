@@ -4,7 +4,7 @@ package Objects;
 * Object for the user's full music list.
 *
 * @author: Will Higdon
-* Last Updated: April 2, 2020
+* Last Updated: April 14, 2020
 */
 
 import Objects.AlbumObject;
@@ -21,6 +21,7 @@ public class UserMusicList {
     /*
     * Variables for the user's music list.
     */
+    private String userName;
     private int usersAlbumsCompleted;
     private int usersAlbumsPlanToListen;
     ArrayList<String> usersFavoriteAlbums = new ArrayList<String>();
@@ -29,7 +30,8 @@ public class UserMusicList {
 
     //=================  CONSTRUCTORS =================
 
-    public UserMusicList(int _usersAlbumsCompleted, int _usersAlbumsPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
+    public UserMusicList(String _userName, int _usersAlbumsCompleted, int _usersAlbumsPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
+        this.userName = userName;
         this.usersAlbumsCompleted = usersAlbumsCompleted;
         this.usersAlbumsPlanToListen = usersAlbumsPlanToListen;
         this.usersFavoriteAlbums = usersFavoriteAlbums;
@@ -39,6 +41,9 @@ public class UserMusicList {
 
     //=================  GETTERS ==================
 
+    public String getUserName() {
+        return this.userName;
+    }
     public int getUsersAlbumsCompleted() {
         return this.usersAlbumsCompleted;
     }
@@ -57,6 +62,9 @@ public class UserMusicList {
 
     //=================  SETTERS =================
 
+    public void setUserName(String _userName) {
+        this.userName = userName;
+    }
     public void setUsersAlbumsCompleted(int _usersAlbumsCompleted) {
         this.usersAlbumsCompleted = usersAlbumsCompleted;
     }
@@ -73,3 +81,4 @@ public class UserMusicList {
         this.usersFavoriteTracks = usersFavoriteTracks;
     }
 }
+
