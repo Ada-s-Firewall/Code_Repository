@@ -32,23 +32,20 @@ public class DatabaseDelete {
         String stringRecord = "";
         scanner.useDelimiter("\t");
 
-        // Check for an existing user record before creating
-        UserObject existingUser = DatabaseRead.readUserRecord(_user.getUserName());
-        String existingUsername = existingUser.getUserName();
-        // Throw a DatabaseException if the User already exists
-        if (existingUsername.equals(_user.getUserName())) {
-            stringRecord += (_user.getUserName() + "\t");
-            stringRecord += (_user.getUserPassword() + "\t");
-            stringRecord += (_user.getUserEmail() + "\t");
-            stringRecord += (_user.getName() + "\t");
-            stringRecord += (_user.getUserLastName() + "\t");
-            stringRecord += DatabaseInterface.inactive + "\n";
-        } else{
-            stringRecord += (scanner.nextLine() + "\n");
+        while (scanner.hasNextLine()) {
+            if (scanner.hasNext(userName) == true) {
+                stringRecord += _user.getUserName() + "\t";
+                stringRecord += _user.getUserPassword() + "\t";
+                stringRecord += _user.getUserEmail() + "\t";
+                stringRecord += _user.getName() + "\t";
+                stringRecord += _user.getUserLastName() + "\t";
+                stringRecord += DatabaseInterface.inactive + "\n";
+            } else{
+                stringRecord += scanner.nextLine() + "\n";
+            }
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(_file, false))) {
-            writer.write(stringRecord);
-            writer.close();
-        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(_file, false));
+        writer.write(stringRecord);
+        writer.close();
     }
 }

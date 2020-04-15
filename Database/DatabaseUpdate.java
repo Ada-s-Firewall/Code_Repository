@@ -7,15 +7,12 @@ package Database;
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
-<<<<<<< HEAD
-=======
-
 import static Database.DatabaseCreate.createUserRecord;
 import static Database.DatabaseCreate.createUserRating;
 import static Database.DatabaseInterface.userLoginFile;
->>>>>>> 77d035b199aecd7785fbba34d502fcdc270d2b02
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
+import static Database.DatabaseInterface.userRatingFile;
 import Objects.UserObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
@@ -175,7 +172,7 @@ public class DatabaseUpdate {
                 stringRecord += scanner.next() + "\t";
             }
         }
-        
+
     }
 
     /**
