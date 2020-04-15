@@ -7,26 +7,24 @@ package Database;
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
+<<<<<<< HEAD
+=======
 
 import static Database.DatabaseCreate.createUserRecord;
 import static Database.DatabaseCreate.createUserRating;
 import static Database.DatabaseInterface.userLoginFile;
+>>>>>>> 77d035b199aecd7785fbba34d502fcdc270d2b02
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
-import static Database.DatabaseInterface.userRatingFile;
-import Objects.RecordObject;
 import Objects.UserObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseUpdate {
 
@@ -97,7 +95,7 @@ public class DatabaseUpdate {
                 stringRecord += "\n";
             } //This else statement adds the rest of the records that do not match.
             else {
-                stringRecord += scanner.next() + "\t";
+                stringRecord += scanner.nextLine() + "\n";
             }
         }
         //This second parameter is made to be false in order to overwrite the file.
