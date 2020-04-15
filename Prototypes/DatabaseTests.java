@@ -6,6 +6,8 @@ package Prototypes;
  * @author Fernando Villarreal
  */
 
+import static Database.DatabaseInterface.userInfoFile;
+import static Database.DatabaseInterface.userLoginFile;
 import Models.DBInfoRequest;
 import Objects.RatingObject;
 import Objects.UserObject;
@@ -36,6 +38,7 @@ public class DatabaseTests {
         UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
         UserObject user03 = new UserObject("jdoe012", "password01", "jdoe1@email.com", "John", "Doe");
         UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
+        UserObject user05 = new UserObject("JoJo111", "joj111", "jojoloj@email.com", "Jo", "Elmo");
         RatingObject rating01 = new RatingObject("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
         RatingObject rating02 = new RatingObject("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
         RatingObject rating03 = new RatingObject("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
@@ -46,6 +49,7 @@ public class DatabaseTests {
         dbRequest.createUserRecord(user02);
         dbRequest.createUserRecord(user03);
         dbRequest.createUserRecord(user04);
+        dbRequest.createUserRecord(user05);
         dbRequest.createUserRating(rating01);
         dbRequest.createUserRating(rating02);
         dbRequest.createUserRating(rating03);
@@ -67,5 +71,10 @@ public class DatabaseTests {
 
     public static void DBTest03() throws Exception {
         // Write your tests here
+//        DBInfoRequest dbRequest = new DBInfoRequest();
+//        UserObject user01 = new UserObject("JackMan93", "jackword", "jkessler@email.com", "Jack", "Kessler");
+//        UserObject user05 = new UserObject("JoJo111", "joj111", "jojoloj@email.com", "Jo", "Elmo");
+//        dbRequest.createUserRecord(user05);
+//        dbRequest.deleteUserRecord(userInfoFile,user01);
     }
 }

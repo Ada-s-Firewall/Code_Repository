@@ -6,11 +6,12 @@ package Database;
  * Last Updated: April 13, 2020
  * @author Will Higdon, Quinn Tjin-A-Soe
  */
-import static Database.DatabaseInterface.userLoginFile;
 import Objects.UserObject;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DatabaseDelete {
@@ -20,33 +21,34 @@ public class DatabaseDelete {
      * scans the entire file for the specified record. If it exists, then it
      * will set it to "inactive" and overwrite the previous file.
      *
-     * @param _userObject
+     * @param _file
+     * @param _user
      * @throws IOException
      */
-    public static void deleteUserRecord(UserObject _userObject) throws IOException {
-        Scanner scanner = new Scanner(userLoginFile);
-        String userName = _userObject.getName();
+    public static void deleteUserRecord(File _file, UserObject _user) throws IOException, Exception {
+        Scanner scanner = new Scanner(_file);
+        String userName = _user.getUserName();
+        ArrayList<String> arrayRecord = new ArrayList<>();
         String stringRecord = "";
         scanner.useDelimiter("\t");
 
-        while (scanner.hasNext()) {
-            //If this record exists in the file, then it will be made inactive.
-            if (scanner.hasNext(userName)) {
-                stringRecord += _userObject.getUuid() + "\t";
-                stringRecord += _userObject.getName() + "\t";
-                stringRecord += _userObject.getUserPassword() + "\t";
-                stringRecord += "\t" + DatabaseInterface.inactive + "\n";
-            }
-            if (scanner.hasNext("\n")) {
-                stringRecord += "\n";
-            } //This else statement adds the rest of the records that do not match.
-            else {
-                stringRecord += scanner.next() + "\t";
-            }
+        // Check for an existing user record before creating
+        UserObject existingUser = DatabaseRead.readUserRecord(_user.getUserName());
+        String existingUsername = existingUser.getUserName();
+        // Throw a DatabaseException if the User already exists
+        if (existingUsername.equals(_user.getUserName())) {
+            stringRecord += (_user.getUserName() + "\t");
+            stringRecord += (_user.getUserPassword() + "\t");
+            stringRecord += (_user.getUserEmail() + "\t");
+            stringRecord += (_user.getName() + "\t");
+            stringRecord += (_user.getUserLastName() + "\t");
+            stringRecord += DatabaseInterface.inactive + "\n";
+        } else{
+            stringRecord += (scanner.nextLine() + "\n");
         }
-        //This second parameter is made to be false in order to overwrite the file.
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userLoginFile, false));
-        writer.write(stringRecord);
-        writer.close();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(_file, false))) {
+            writer.write(stringRecord);
+            writer.close();
+        }
     }
 }

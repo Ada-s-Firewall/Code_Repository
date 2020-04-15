@@ -3,9 +3,9 @@ package Models;
 /**
  * This class acts an adapter for performing CRUD operations with the Database.
  * Last Updated: 4/13/2020
+ *
  * @author Fernando Villarreal
  */
-
 import Database.*;
 import Objects.RatingObject;
 import Objects.RecordObject;
@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DBInfoRequest implements DatabaseInterface{
+public class DBInfoRequest implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
+    public DBInfoRequest() {
+    }
 
-    public DBInfoRequest() {};
+    ;
 
     //============== METHODS ==============
 
@@ -54,7 +56,11 @@ public class DBInfoRequest implements DatabaseInterface{
 
     @Override
     public void deleteUserRecord(File _file, UserObject _userObject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            DatabaseDelete.deleteUserRecord(_file, _userObject);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
