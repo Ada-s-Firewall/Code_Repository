@@ -20,10 +20,9 @@ import java.util.logging.Logger;
 public class DBInfoRequest implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
+    
     public DBInfoRequest() {
     }
-
-    ;
 
     //============== METHODS ==============
 
