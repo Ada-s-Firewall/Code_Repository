@@ -13,6 +13,7 @@ import static Database.DatabaseCreate.createUserRating;
 import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
+import static Database.DatabaseInterface.userRatingFile;
 import Objects.UserObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
@@ -173,7 +174,7 @@ public class DatabaseUpdate {
                 stringRecord += scanner.next() + "\t";
             }
         }
-        
+
     }
 
     /**
