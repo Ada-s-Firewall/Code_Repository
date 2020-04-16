@@ -7,19 +7,17 @@ package Database;
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
-<<<<<<< HEAD
-=======
 
 import static Database.DatabaseCreate.createUserRecord;
 import static Database.DatabaseCreate.createUserRating;
 import static Database.DatabaseInterface.userLoginFile;
->>>>>>> 77d035b199aecd7785fbba34d502fcdc270d2b02
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
 import Objects.UserObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -150,8 +148,8 @@ public class DatabaseUpdate {
      * @param _newUsersRating
      * @throws FileNotFoundException
      */
-    public void updateUsersRating(RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
-        Scanner scanner = new Scanner(userRatingFile);
+    public void updateUsersRating(File _userRatingFile,RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
+        Scanner scanner = new Scanner(_userRatingFile);
         String userName = _ratingObject.getName();
         double usersRating = _ratingObject.getUsersRating();
         String stringRecord = "";
