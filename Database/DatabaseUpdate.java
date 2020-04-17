@@ -3,7 +3,7 @@ package Database;
 /**
  * This class holds all of the methods for updating a file.
  *
- * Last Updated: 04.14.2020.
+ * Last Updated: 04.17.2020.
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
@@ -144,12 +144,13 @@ public class DatabaseUpdate {
     /**
      * This method updates a user's rating
      *
-     * @param _file
+     * @param _userRatingFile
      * @param _ratingObject
      * @param _newUsersRating
      * @throws FileNotFoundException
+     * @throws IOExeption
      */
-    public void updateUsersRating(File _userRatingFile,RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
+    public void updateUsersRating(File _userRatingFile, RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
         Scanner scanner = new Scanner(_userRatingFile);
         String userName = _ratingObject.getName();
         double usersRating = _ratingObject.getUsersRating();
@@ -174,20 +175,23 @@ public class DatabaseUpdate {
                 stringRecord += scanner.next() + "\t";
             }
         }
-
+        //This second parameter is now true to overwrite the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userRatingFile, true));
+        writer.write(stringRecord);
+        writer.close();
     }
 
     /**
      * This method updates the user's list of albums they've completed or plan
      * to listen
      *
-     * @param _file
+     * @param _userPlanToListenFile
      * @param _userMusicList
      * @param _newUsersAlbumsCompleted
      * @param _newUsersAlbumsPlanToListen
      * @throws FileNotFoundException
      */
-    public void updateUsersMusicList(UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws FileNotFoundException {
+    public void updateUsersMusicList(File _userPlanToListenFile, UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws FileNotFoundException {
         Scanner scanner = new Scanner(userInfoFile);
         String userName = _userMusicList.getUserName();
         int usersAlbumsCompleted = _userMusicList.getUsersAlbumsCompleted();
@@ -200,7 +204,7 @@ public class DatabaseUpdate {
     }
 
     /**
-     * This method updates a user's list of favorite albums, arists, and tracks
+     * This method updates a user's list of favorite albums, artists, and tracks
      *
      * @param _file
      * @param _userMusicList
