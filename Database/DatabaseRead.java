@@ -5,12 +5,13 @@ package Database;
  */
 
 /**
- * Last Updated: 04.12.2020
+ * Last Updated: 04.17.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 import Objects.RatingObject;
 import Objects.RecordObject;
+import Objects.PlanToListenObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
 import java.io.File;
@@ -143,5 +144,36 @@ public class DatabaseRead {
         }
         // Return the list of ratings
         return ratingsList;
+    }
+
+    /**
+     * Reads and returns a list of a user's records in their PlanToListen list.
+     * @param _username
+     * @return
+     * @throws Exception
+     */
+    public static RecordObjectList readUsersPlanToListen(String _username) throws Exception {
+        // Get the ArrayList of ArrayList<String> for the records
+        ArrayList<ArrayList<String>> recordsList = DatabaseRead.readRecords(DatabaseInterface.userPlanToListen, _username);
+        // Create a new RecordObjectList to store the PlanToListenObjects
+        String listName = _username + "'s Plan-To-Listen-To List";
+        RecordObjectList planToListenList = new RecordObjectList(listName, "Planning to Listen To Records");
+        // If recordsList is empty, return an empty RecordObjectList
+        if (recordsList.isEmpty()) {
+            return new RecordObjectList("Empty List", "empty");
+        }
+        // Iterate over recordsList
+        for (ArrayList<String> record : recordsList) {
+            // Create a RatingObject and add it to ratingsList
+            String uuid = record.get(DatabaseRead.indexUUID);
+            String username = record.get(DatabaseRead.indexUsername);
+            // Indexes values below are offset by one in UserPlanToListen lists compared to UsersRatings list
+            String spotifyID = record.get(DatabaseRead.indexSpotifyID - 1);
+            String musicObjectType = record.get(DatabaseRead.indexMusicObjectType - 1);
+            PlanToListenObject planToListenObj = new PlanToListenObject(uuid, username, spotifyID, musicObjectType);
+            planToListenList.add(planToListenObj);
+        }
+        // Return the list of plan-to-listen records
+        return planToListenList;
     }
 }

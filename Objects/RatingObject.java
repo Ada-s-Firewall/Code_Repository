@@ -34,6 +34,8 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
+    // The constructors below do not use the id and name variables.
+
     public RatingObject(String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
         super();
         this.username = _username;
@@ -49,6 +51,24 @@ public class RatingObject extends RecordObject {
         this.spotifyID = _spotifyID;
         this.musicObjectType = _musicObjectType;
     }
+
+    // The constructors below do not require a usersRating value to be constructed.
+
+    public RatingObject(String _username, String _spotifyID, String _musicObjectType) {
+        super();
+        this.username = _username;
+        this.spotifyID = _spotifyID;
+        this.musicObjectType = _musicObjectType;
+    }
+
+    public RatingObject(String _uuid, String _username, String _spotifyID, String _musicObjectType) {
+        super(_uuid);
+        this.username = _username;
+        this.spotifyID = _spotifyID;
+        this.musicObjectType = _musicObjectType;
+    }
+
+    // This constrcutors is for Null RatingObjects
 
     public RatingObject(String _nullValue) {
         super(_nullValue);
