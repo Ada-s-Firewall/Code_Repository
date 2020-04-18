@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * This class holds the methods for creating a record in the database.
- * Last updated: 04.14.2020
+ * Last updated: 04.17.2020
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 public class DatabaseCreate {
@@ -95,6 +95,33 @@ public class DatabaseCreate {
         // Catch DatabaseExceptions
         } catch (DatabaseException exception) {
             System.out.println(exception.getMessage() + "\nNew Rating not created.");
+        }
+    }
+
+    /**
+     * Creates and records a new plan-to-listen record.
+     * @param _planToListen
+     * @throws Exception
+     */
+    public static void createUserPlanToListen(PlanToListenObject _planToListen) throws Exception {
+        try {
+            // Check for existing plan-to-listen records before creating
+            RecordObjectList existingPlanToListens = DatabaseRead.readUsersPlanToListen(_planToListen.getUsername());
+            for (RecordObject existingRecord : existingPlanToListens.getList()) {
+                PlanToListenObject existingPlanToListen = (PlanToListenObject)existingRecord;
+                String existingUsername = existingPlanToListen.getUsername();
+                String existingSpotifyID = existingPlanToListen.getSpotifyId();
+                // Throw a DatabaseException if a record already exists
+                if (existingUsername.equals(_planToListen.getUsername()) && existingSpotifyID.equals(_planToListen.getSpotifyId())) {
+                    throw new DatabaseException("Record with username '" + existingUsername + "' and Spotify ID '"
+                    + existingSpotifyID + "' already exists.");
+                }
+            }
+            // Create a record in UserPlanToListen.txt
+            DatabaseCreate.createRecord(DatabaseInterface.userPlanToListen, _planToListen.toArrayList());
+        // Catch DatabaseExceptions
+        } catch (DatabaseException exception) {
+            System.out.println(exception.getMessage() + "\nNew Record not created.");
         }
     }
 }

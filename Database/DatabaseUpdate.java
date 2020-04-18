@@ -150,7 +150,7 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      * @throws IOExeption
      */
-    public void updateUsersRating(File _userRatingFile, RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
+    public void updateUsersRating(File _userRatingFile, RatingObject _ratingObject, double _newUsersRating) throws Exception {
         Scanner scanner = new Scanner(_userRatingFile);
         String userName = _ratingObject.getName();
         double usersRating = _ratingObject.getUsersRating();
