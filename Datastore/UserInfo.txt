@@ -4,8 +4,9 @@
 3ca5e21b-626f-4cd4-8ab1-570a01939dc7	jmiller	password02	jamil@email.com	Jane	Miller	true
 86697db8-31b3-43d2-a035-e28f552359da	JoJo111	joj111	jojoloj@email.com	Jo	Elmo	true
 679f134e-f9c7-4f60-8c23-2a53248b6219	JoJo111	joj111	jojoloj@email.com	Jo	Elmo	true
-e78889a1-a340-4011-9fd8-dceffbba1bd6	HonestAbe	liberator	abe09@email.com	Johnathan	Doe	true
+e78889a1-a340-4011-9fd8-dceffbba1bd6	HonestAbe	liberator	abe09@email.com	Johnathan	Doe	false
 d85f8cf0-cdf0-4762-a8b9-bd8ff1601f1a	HonestJane	honesty	superjane@email.com	Johnathan	Doe	true
-62aa9aee-9518-4107-b8a6-56dcd1907b18	Godzilla129	incarnate	godzilla@email.com	Johnathan	Doe	true
+62aa9aee-9518-4107-b8a6-56dcd1907b18	Godzilla129	incarnate	godzilla@email.com	Johnathan	Doe	false
 fdcf24c7-da75-4e94-8477-e3a452fe46c8	JackDude12	TheDude	thedude@email.com	Johnathan	Doe	true
-
+57960424-91f6-4bbe-a413-4a5bc7814582	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
+a32b5f8d-c817-4653-9497-8e246bbc8d58	JeffM	jefftime	jm@email.com	Jeff	Malarky	false

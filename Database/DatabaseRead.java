@@ -164,7 +164,7 @@ public class DatabaseRead {
         }
         // Iterate over recordsList
         for (ArrayList<String> record : recordsList) {
-            // Create a RatingObject and add it to ratingsList
+            // Create a PlanToListenObject and add it to ratingsList
             String uuid = record.get(DatabaseRead.indexUUID);
             String username = record.get(DatabaseRead.indexUsername);
             // Indexes values below are offset by one in UserPlanToListen lists compared to UsersRatings list

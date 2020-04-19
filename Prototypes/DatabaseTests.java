@@ -2,26 +2,17 @@ package Prototypes;
 
 /**
 
- * This class is specifically for conducting tests on the Database classes. Last
- * Updated: 4/14/2020
- *
- * @author Fernando Villarreal
- */
-import static Database.DatabaseInterface.userInfoFile;
-import static Database.DatabaseInterface.userLoginFile;
-=======
  * This class is specifically for conducting tests on the Database classes.
- * Last Updated: 4/17/2020
+ * Last Updated: 4/19/2020
  * @author Fernando Villarreal
  */
-
 
 import Models.DBInfoRequest;
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.UserObject;
 import Objects.RecordObjectList;
-import java.util.ArrayList;
+import Database.*;
 
 public class DatabaseTests {
 
@@ -39,7 +30,9 @@ public class DatabaseTests {
         System.out.println("Database Test 03:\n\n");
         //DBTest03();
         System.out.println("Database Test 04:\n\n");
-        DBTest04();
+        //DBTest04();
+        System.out.println("Database Test 05:\n\n");
+        DBTest05();
     }
 
     public static void DBTest01() throws Exception {
@@ -99,5 +92,18 @@ public class DatabaseTests {
         dbRequest.createUserPlanToListen(planToListen01);
         dbRequest.createUserPlanToListen(planToListen02);
         dbRequest.createUserPlanToListen(planToListen03);
+    }
+
+    public static void DBTest05() throws Exception {
+        // Create a new database adapter
+        DBInfoRequest dbRequest = new DBInfoRequest();
+        // Create and record new user: 'JeffM'
+        UserObject user01 = new UserObject("JeffM", "jefftime", "jm@email.com", "Jeff", "Malarky");
+        dbRequest.createUserRecord(user01);
+        // Delete the user record just created
+        dbRequest.deleteUserRecord(user01);
+        // Delete users with usernames 'Godzilla129' and 'HonestAbe' from the database
+        dbRequest.deleteUserRecord("Godzilla129");
+        dbRequest.deleteUserRecord("HonestAbe");
     }
 }
