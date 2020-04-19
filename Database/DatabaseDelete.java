@@ -40,7 +40,7 @@ public class DatabaseDelete {
                 stringRecord += _user.getName() + "\t";
                 stringRecord += _user.getUserLastName() + "\t";
                 stringRecord += DatabaseInterface.inactive + "\n";
-            } else{
+            } else {
                 stringRecord += scanner.nextLine() + "\n";
             }
         }
