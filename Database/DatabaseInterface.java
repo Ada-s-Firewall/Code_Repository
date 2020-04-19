@@ -18,6 +18,7 @@ public interface DatabaseInterface {
     public static final File userInfoFile = new File("Datastore/UserInfo.txt");
     public static final File userLoginFile = new File("Datastore/UserLogin.txt");
     public static final File userRatingFile = new File("Datastore/UserRating.txt");
+    public static final File userPlanToListen = new File("Datastore/UserPlanToListen.txt");
     public static final boolean active = true;
     public static final boolean inactive = false;
 
@@ -42,6 +43,12 @@ public interface DatabaseInterface {
      * @param _rating
      */
     public void createUserRating(RatingObject _rating);
+
+    /**
+     * Creates a new plan-to-listen record.
+     * @param _planToListen
+     */
+    public void createUserPlanToListen(PlanToListenObject _planToListen);
 
     /**
      * This method "deletes" a record of a user.
@@ -73,6 +80,13 @@ public interface DatabaseInterface {
      * @return RecordObjectList
      */
     public RecordObjectList readUsersRatings(String _username);
+
+    /**
+     * Read and return a RecordObjectList containing the specified user's plan-to-listen records
+     * @param _username
+     * @return RecordObjectList
+     */
+    public RecordObjectList readUsersPlanToListen(String _username);
 
     /**
      * This method makes a record active.

@@ -2,11 +2,12 @@ package Models;
 
 /**
  * This class acts an adapter for performing CRUD operations with the Database.
- * Last Updated: 4/13/2020
+ * Last Updated: 4/17/2020
  *
  * @author Fernando Villarreal
  */
 import Database.*;
+import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.RecordObject;
 import Objects.RecordObjectList;
@@ -20,10 +21,9 @@ import java.util.logging.Logger;
 public class DBInfoRequest implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
+
     public DBInfoRequest() {
     }
-
-    ;
 
     //============== METHODS ==============
 
@@ -49,6 +49,15 @@ public class DBInfoRequest implements DatabaseInterface {
     public void createUserRating(RatingObject _rating) {
         try {
             DatabaseCreate.createUserRating(_rating);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void createUserPlanToListen(PlanToListenObject _planToListen) {
+        try {
+            DatabaseCreate.createUserPlanToListen(_planToListen);
         } catch (Exception ex) {
             Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,6 +96,16 @@ public class DBInfoRequest implements DatabaseInterface {
     public RecordObjectList readUsersRatings(String _username) {
         try {
             return DatabaseRead.readUsersRatings(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public RecordObjectList readUsersPlanToListen(String _username) {
+        try {
+            DatabaseRead.readUsersPlanToListen(_username);
         } catch (Exception ex) {
             Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
         }

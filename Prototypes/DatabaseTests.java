@@ -1,6 +1,7 @@
 package Prototypes;
 
 /**
+
  * This class is specifically for conducting tests on the Database classes. Last
  * Updated: 4/14/2020
  *
@@ -8,7 +9,15 @@ package Prototypes;
  */
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
+=======
+ * This class is specifically for conducting tests on the Database classes.
+ * Last Updated: 4/17/2020
+ * @author Fernando Villarreal
+ */
+
+
 import Models.DBInfoRequest;
+import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.UserObject;
 import Objects.RecordObjectList;
@@ -24,11 +33,13 @@ public class DatabaseTests {
      */
     public static void main(String[] args) throws Exception {
         System.out.println("Database Test 01:\n\n");
-        DBTest01();
+        //DBTest01();
         System.out.println("Database Test 02:\n\n");
-        DBTest02();
+        //DBTest02();
         System.out.println("Database Test 03:\n\n");
-        DBTest03();
+        //DBTest03();
+        System.out.println("Database Test 04:\n\n");
+        DBTest04();
     }
 
     public static void DBTest01() throws Exception {
@@ -50,14 +61,11 @@ public class DatabaseTests {
         dbRequest.createUserRecord(user02);
         dbRequest.createUserRecord(user03);
         dbRequest.createUserRecord(user04);
-
         dbRequest.createUserRating(rating01);
         dbRequest.createUserRating(rating02);
         dbRequest.createUserRating(rating03);
         dbRequest.createUserRating(rating04);
         dbRequest.createUserRating(rating05);
-
-        dbRequest.deleteUserRecord(userInfoFile, user03);
     }
 
     public static void DBTest02() throws Exception {
@@ -78,5 +86,18 @@ public class DatabaseTests {
         UserObject user05 = new UserObject("JoJo111", "joj111", "jojoloj@email.com", "Jo", "Elmo");
 //        dbRequest.createUserRecord(user05);
 
+    }
+
+    public static void DBTest04() throws Exception {
+        // Create a database adapter
+        DBInfoRequest dbRequest = new DBInfoRequest();
+        // Create new plan-to-listen records
+        PlanToListenObject planToListen01 = new PlanToListenObject("FVilla", "78lgmZwycJ3nzsdgmPPGNx", "track");
+        PlanToListenObject planToListen02 = new PlanToListenObject("FVilla", "5CQ30WqJwcep0pYcV4AMNc", "track");
+        PlanToListenObject planToListen03 = new PlanToListenObject("FVilla", "0hCB0YR03f6AmQaHbwWDe8", "track");
+        // Record the objects
+        dbRequest.createUserPlanToListen(planToListen01);
+        dbRequest.createUserPlanToListen(planToListen02);
+        dbRequest.createUserPlanToListen(planToListen03);
     }
 }

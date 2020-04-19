@@ -3,3 +3,8 @@ FVilla	village5	true
 jdoe012	password01	true
 jmiller	password02	true
 JoJo111	joj111	true
+HonestAbe	liberator	true
+HonestJane	honesty	true
+Godzilla129	incarnate	true
+JackDude12	TheDude	true
+
