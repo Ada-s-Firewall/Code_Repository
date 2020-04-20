@@ -29,7 +29,7 @@ public interface DatabaseInterface {
      * @param _file
      * @param _record
      */
-    public abstract void creatRecord(File _file, ArrayList<String> _record);
+    public abstract void createRecord(File _file, ArrayList<String> _record);
 
 
     /**
@@ -57,6 +57,18 @@ public interface DatabaseInterface {
      * @param _userObject
      */
     public abstract void deleteUserRecord(File _file, UserObject _userObject);
+
+    /**
+     * Deletes the given user from the database.
+     * @param _user
+     */
+    public void deleteUserRecord(UserObject _user);
+
+    /**
+     * Deletes the user with the associated username from the database.
+     * @param _username
+     */
+    public void deleteUserRecord(String _username);
 
     /**
      * This method returns a specified record from the database.

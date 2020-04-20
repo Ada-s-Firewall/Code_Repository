@@ -28,7 +28,7 @@ public class DBInfoRequest implements DatabaseInterface {
     //============== METHODS ==============
 
     @Override
-    public void creatRecord(File _file, ArrayList<String> _record) {
+    public void createRecord(File _file, ArrayList<String> _record) {
         try {
             DatabaseCreate.createRecord(_file, _record);
         } catch (IOException ex) {
@@ -67,6 +67,24 @@ public class DBInfoRequest implements DatabaseInterface {
     public void deleteUserRecord(File _file, UserObject _userObject) {
         try {
             DatabaseDelete.deleteUserRecord(_file, _userObject);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(UserObject _user) {
+        try {
+            DatabaseDelete.deleteUserRecord(_user);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(String _username) {
+        try {
+            DatabaseDelete.deleteUserRecord(_username);
         } catch (Exception ex) {
             Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
