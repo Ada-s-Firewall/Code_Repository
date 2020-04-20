@@ -5,9 +5,12 @@ package Controllers;
  * search results fxml file which is the code for the search results view.
  * Contributors: Eric Cortes Last Updated: 03/30/2020
  */
+import Models.DBInfoRequest;
 import Models.MusicRequest;
 import Objects.MusicObject;
 import Objects.MusicObjectList;
+import Objects.RatingObject;
+import Objects.UserObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +36,10 @@ public class ResultController implements Initializable {
 
     //Varible containin the search type that was passed in by the search page
     private String searchType;
+
+    private UserObject user;
+
+    private DBInfoRequest userRequest;
 
     //Varialbe to hold the list of the table
     ObservableList<MusicObject> tableList = FXCollections.observableArrayList();
@@ -75,9 +82,8 @@ public class ResultController implements Initializable {
     public void initData(String _searchContent, String _searchType){
 
         //Initialize variables with pssed in data as parameters
-        searchContent = _searchContent;
-        searchType = _searchType;
-
+        this.searchContent = _searchContent;
+        this.searchType = _searchType;
     }
 
     /**
