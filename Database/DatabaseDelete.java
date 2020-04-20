@@ -41,16 +41,14 @@ public class DatabaseDelete {
     public static void deleteUserRecord(File _file, UserObject _user) throws FileNotFoundException, IOException, Exception {
         File originalFile = _file;
         BufferedReader reader = new BufferedReader(new FileReader(originalFile));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(TEMPORARYFILE));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseDelete.TEMPORARYFILE));
         String lineInFile = null;
         String userName = _user.getUserName();
-
-        // Read from the original file and write to the new
-        // unless content matches data to be removed.
+        // While the file is not empty
         while ((lineInFile = reader.readLine()) != null) {
-
+            // If the username is found, it will be made to inactive
             if (lineInFile.contains(userName)) {
-                lineInFile = lineInFile.replace(ACTIVE, INACTIVE);
+                lineInFile = lineInFile.replace(DatabaseDelete.ACTIVE, DatabaseDelete.INACTIVE);
                 writer.write(lineInFile);
                 writer.newLine();
             } else {
@@ -58,23 +56,24 @@ public class DatabaseDelete {
                 writer.newLine();
             }
             writer.flush();
-            writer.close();
-            reader.close();
-
-            // Delete the original file
-            if (!originalFile.delete()) {
-                System.out.println("Could not delete file");
-                return;
-            }
-
-            // Rename the new file to the filename the original file had.
-            if (!TEMPORARYFILE.renameTo(originalFile)) {
-                System.out.println("Could not rename file");
-            }
-
-            // Delete the user's information from the UserLogin.txt file
-            DatabaseDelete.deleteUserLogin(_user);
         }
+        writer.close();
+        reader.close();
+
+        // Delete the original file
+        if (!originalFile.delete()) {
+            System.out.println("Could not delete file");
+            return;
+        }
+
+        // Rename the new file to the filename the original file had.
+        if (!DatabaseDelete.TEMPORARYFILE.renameTo(originalFile)) {
+            System.out.println("Could not rename file");
+        }
+
+        // Delete the user's information from the UserLogin.txt file
+        DatabaseDelete.deleteUserLogin(_user);
+
     }
 
     /**
@@ -91,6 +90,7 @@ public class DatabaseDelete {
      * Deletes the user associated with the given username from the database.
      *
      * @param _username
+     * @throws java.io.IOException
      * @throws Exception
      */
     public static void deleteUserRecord(String _username) throws IOException, Exception {

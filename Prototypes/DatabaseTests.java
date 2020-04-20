@@ -2,9 +2,10 @@ package Prototypes;
 
 import static Database.DatabaseInterface.userInfoFile;
 import static Database.DatabaseInterface.userLoginFile;
- /**
- * This class is specifically for conducting tests on the Database classes.
- * Last Updated: 4/20/2020
+/**
+ * This class is specifically for conducting tests on the Database classes. Last
+ * Updated: 4/20/2020
+ *
  * @author Fernando Villarreal, Quinn Tjin-A-Soe
  */
 
@@ -59,6 +60,7 @@ public class DatabaseTests {
         dbRequest.createUserRating(rating03);
         dbRequest.createUserRating(rating04);
         dbRequest.createUserRating(rating05);
+
     }
 
     public static void DBTest02() throws Exception {
@@ -78,8 +80,9 @@ public class DatabaseTests {
         DBInfoRequest dbRequest = new DBInfoRequest();
         UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
         UserObject user03 = new UserObject("Real", "Person", "realperson@email.com", "Real", "Person");
+        UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
         //dbRequest.createUserRecord(user03);
-        dbRequest.deleteUserRecord(userInfoFile, user03);
+        dbRequest.deleteUserRecord(userInfoFile, user04);
     }
 
     public static void DBTest04() throws Exception {
@@ -108,4 +111,3 @@ public class DatabaseTests {
         dbRequest.deleteUserRecord("HonestAbe");
     }
 }
-
