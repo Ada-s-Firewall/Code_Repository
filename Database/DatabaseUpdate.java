@@ -36,7 +36,7 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      */
     public void updateUserPassword(UserObject _userObject, String _newPassword) throws FileNotFoundException, IOException {
-        Scanner scanner = new Scanner(userLoginFile);
+        Scanner scanner = new Scanner(DatabaseInterface.userLoginFile);
         String userName = _userObject.getName();
         String stringRecord = "";
         scanner.useDelimiter("\t");

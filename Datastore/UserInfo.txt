@@ -1,7 +1,7 @@
 49a60461-f63e-455d-bdcf-2388c78bd9d3	JackMan93	jackword	jkessler@email.com	Jack	Kessler	true
 47265796-a1b1-421d-95a8-bf5798817ef0	FVilla	village5	fvil@email.com	Francis	Villagran	false
 6254b261-50c9-485f-8bf0-e3b76273a3b3	jdoe012	password01	jdoe1@email.com	John	Doe	true
-3ca5e21b-626f-4cd4-8ab1-570a01939dc7	jmiller	password02	jamil@email.com	Jane	Miller	true
+3ca5e21b-626f-4cd4-8ab1-570a01939dc7	jmiller	password02	jamil@email.com	Jane	Miller	false
 86697db8-31b3-43d2-a035-e28f552359da	JoJo111	joj111	jojoloj@email.com	Jo	Elmo	true
 679f134e-f9c7-4f60-8c23-2a53248b6219	JoJo111	joj111	jojoloj@email.com	Jo	Elmo	true
 e78889a1-a340-4011-9fd8-dceffbba1bd6	HonestAbe	liberator	abe09@email.com	Johnathan	Doe	false
@@ -11,4 +11,4 @@ fdcf24c7-da75-4e94-8477-e3a452fe46c8	JackDude12	TheDude	thedude@email.com	Johnat
 072c6116-0373-4518-93f1-625702924a4b	Real	Person	realperson@email.com	Real	Person	fals
 57960424-91f6-4bbe-a413-4a5bc7814582	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
 a32b5f8d-c817-4653-9497-8e246bbc8d58	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
-
+da6efa63-4eac-4299-a1c1-4b7f0348d8a3	JeffM	jefftime	jm@email.com	Jeff	Malarky	true
