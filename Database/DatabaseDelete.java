@@ -3,55 +3,75 @@ package Database;
 /*
  * This is a Database class for deleting records.
  *
- * Last Updated: April 19, 2020
+ * Last Updated: April 20, 2020
  * @author Will Higdon, Quinn Tjin-A-Soe, Fernando Villarreal
  */
+import Objects.UserObject;
+import java.io.BufferedReader;
 import Objects.UserObject;
 import Objects.RecordObject;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DatabaseDelete {
 
+    public static final String ACTIVE = "true";
+    public static final String INACTIVE = "false";
+    final static int USERINFORECORDLENGTH = 6;
+    public static final File TEMPORARYFILE = new File("tempfile.txt");
+  
     //==================== PUBLIC METHODS ====================
 
     /**
      * This method deletes a specified record from the database. This method
-     * scans the entire file for the specified record. If it exists, then it
-     * will set it to "inactive" and overwrite the previous file.
+     * writes the contents of one file onto another text file except for the
+     * specified record, which will be set to inactive onto the temporary text
+     * file. Afterwards, the temporary text file is renamed to the original text
+     * file, and the original text file is deleted.
      *
      * @param _file
      * @param _user
+     * @throws java.io.FileNotFoundException
      * @throws IOException
      */
-    public static void deleteUserRecord(File _file, UserObject _user) throws IOException, Exception {
-        Scanner scanner = new Scanner(_file);
+    public static void deleteUserRecord(File _file, UserObject _user) throws FileNotFoundException, IOException {
+        File originalFile = _file;
+        BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(TEMPORARYFILE));
+        String lineInFile = null;
         String userName = _user.getUserName();
-        ArrayList<String> arrayRecord = new ArrayList<>();
-        String stringRecord = "";
-        scanner.useDelimiter("\t");
 
-        while (scanner.hasNextLine()) {
-            String nextLine = scanner.nextLine();
-            if (nextLine.contains(userName) && nextLine.contains("" + DatabaseInterface.active)) {
-                stringRecord += _user.getUuid() + "\t";
-                stringRecord += _user.getUserName() + "\t";
-                stringRecord += _user.getUserPassword() + "\t";
-                stringRecord += _user.getUserEmail() + "\t";
-                stringRecord += _user.getUserFirstName() + "\t";
-                stringRecord += _user.getUserLastName() + "\t";
-                stringRecord += DatabaseInterface.inactive + "\n";
+        // Read from the original file and write to the new
+        // unless content matches data to be removed.
+        while ((lineInFile = reader.readLine()) != null) {
+
+            if (lineInFile.contains(userName)) {
+                lineInFile = lineInFile.replace(ACTIVE, INACTIVE);
+                writer.write(lineInFile);
+                writer.newLine();
             } else {
-                stringRecord += nextLine + "\n";
-            }
+                writer.write(lineInFile);
+                writer.newLine();
         }
-        BufferedWriter writer = new BufferedWriter(new FileWriter(_file, false));
-        writer.write(stringRecord);
+        writer.flush();
         writer.close();
+        reader.close();
+
+        // Delete the original file
+        if (!originalFile.delete()) {
+            System.out.println("Could not delete file");
+            return;
+        }
+
+        // Rename the new file to the filename the original file had.
+        if (!TEMPORARYFILE.renameTo(originalFile)) {
+            System.out.println("Could not rename file");
+        }
+          
         // Delete the user's information from the UserLogin.txt file
         DatabaseDelete.deleteUserLogin(_user);
     }
