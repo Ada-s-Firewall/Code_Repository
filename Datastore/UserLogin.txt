@@ -1,7 +1,7 @@
-JackMan93	jackword	true
+JackMan93	jackword	false
 FVilla	village5	true
 jdoe012	password01	true
-jmiller	password02	true
+jmiller	password02	false
 JoJo111	joj111	true
 HonestAbe	liberator	false
 HonestJane	honesty	true
@@ -9,3 +9,6 @@ Godzilla129	incarnate	false
 JackDude12	TheDude	true
 JeffM	jefftime	false
 JeffM	jefftime	false
+JeffM	jefftime	true
+JeffM	jefftime	true
+JeffM	jefftime	true

@@ -21,12 +21,10 @@ import java.util.logging.Logger;
 public class DBInfoRequest implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
-
     public DBInfoRequest() {
     }
 
     //============== METHODS ==============
-
     @Override
     public void createRecord(File _file, ArrayList<String> _record) {
         try {
@@ -138,5 +136,32 @@ public class DBInfoRequest implements DatabaseInterface {
     @Override
     public RecordObject makeInactive() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateUserPassword(UserObject _user, String _newPassword) {
+        try {
+            DatabaseUpdate.updateUserPassword(_user, _newPassword);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUsername(UserObject _user, String _newUsername) {
+        try {
+            DatabaseUpdate.updateUsername(_user, _newUsername);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUserEmail(UserObject _user, String _newUserEmail) {
+        try {
+            DatabaseUpdate.updateUserEmail(_user, _newUserEmail);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

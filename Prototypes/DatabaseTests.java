@@ -1,10 +1,12 @@
 package Prototypes;
 
+import static Database.DatabaseInterface.userInfoFile;
+import static Database.DatabaseInterface.userLoginFile;
 /**
-
- * This class is specifically for conducting tests on the Database classes.
- * Last Updated: 4/19/2020
- * @author Fernando Villarreal
+ * This class is specifically for conducting tests on the Database classes. Last
+ * Updated: 4/20/2020
+ *
+ * @author Fernando Villarreal, Quinn Tjin-A-Soe
  */
 
 import Models.DBInfoRequest;
@@ -28,11 +30,11 @@ public class DatabaseTests {
         System.out.println("Database Test 02:\n\n");
         //DBTest02();
         System.out.println("Database Test 03:\n\n");
-        //DBTest03();
+        DBTest03();
         System.out.println("Database Test 04:\n\n");
         //DBTest04();
         System.out.println("Database Test 05:\n\n");
-        DBTest05();
+        //DBTest05();
     }
 
     public static void DBTest01() throws Exception {
@@ -43,7 +45,6 @@ public class DatabaseTests {
         UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
         UserObject user03 = new UserObject("jdoe012", "password01", "jdoe1@email.com", "John", "Doe");
         UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
-
         RatingObject rating01 = new RatingObject("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
         RatingObject rating02 = new RatingObject("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
         RatingObject rating03 = new RatingObject("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
@@ -59,6 +60,7 @@ public class DatabaseTests {
         dbRequest.createUserRating(rating03);
         dbRequest.createUserRating(rating04);
         dbRequest.createUserRating(rating05);
+
     }
 
     public static void DBTest02() throws Exception {
@@ -74,11 +76,15 @@ public class DatabaseTests {
     }
 
     public static void DBTest03() throws Exception {
-//         Write your tests here
+        //Write your tests here
         DBInfoRequest dbRequest = new DBInfoRequest();
-        UserObject user05 = new UserObject("JoJo111", "joj111", "jojoloj@email.com", "Jo", "Elmo");
-//        dbRequest.createUserRecord(user05);
-
+        UserObject user01 = new UserObject("JackMan93", "jackword", "jkessler@email.com", "Jack", "Kessler");
+        UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
+        UserObject user03 = new UserObject("Real", "Person", "realperson@email.com", "Real", "Person");
+        UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
+        //dbRequest.createUserRecord(user03);
+        //dbRequest.deleteUserRecord(userInfoFile, user01);
+        dbRequest.updateUserEmail(user01, "THISISMYNEWEMAIL@email.com");
     }
 
     public static void DBTest04() throws Exception {
