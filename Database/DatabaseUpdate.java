@@ -239,7 +239,7 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void updateUsersMusicList(File _userInfoFile, UserMusicList _userMusicList, ArrayList<String> _newUsersFavoriteAlbums, ArrayList<String> _newUsersFavoriteArtists, ArrayList<String> _newUsersFavoriteTracks) throws FileNotFoundException {
+    public void updateUsersMusicList(File _userInfoFile, UserMusicList _userMusicList, ArrayList<String> _newUsersFavoriteAlbums, ArrayList<String> _newUsersFavoriteArtists, ArrayList<String> _newUsersFavoriteTracks) throws Exception {
         Scanner scanner = new Scanner(userInfoFile);
         String userName = _userMusicList.getUserName();
         ArrayList<String> usersFavoriteAlbums = _userMusicList.getUsersFavoriteAlbums();
