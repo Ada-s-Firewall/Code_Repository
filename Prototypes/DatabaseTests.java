@@ -30,7 +30,7 @@ public class DatabaseTests {
         System.out.println("Database Test 02:\n\n");
         //DBTest02();
         System.out.println("Database Test 03:\n\n");
-        DBTest03();
+        //DBTest03();
         System.out.println("Database Test 04:\n\n");
         //DBTest04();
         System.out.println("Database Test 05:\n\n");
@@ -85,6 +85,10 @@ public class DatabaseTests {
         //dbRequest.createUserRecord(user03);
         //dbRequest.deleteUserRecord(userInfoFile, user01);
         dbRequest.updateUserEmail(user01, "THISISMYNEWEMAIL@email.com");
+        dbRequest.updateUserEmail(user02, "THISISMYNEWEMAIL@email.com");
+        dbRequest.updateUserPassword(user01, "THISISMYNEWPASSWORD");
+        user01.setUserEmail("jkessler@email.com");
+        //System.out.println(user01.getUserEmail());
     }
 
     public static void DBTest04() throws Exception {

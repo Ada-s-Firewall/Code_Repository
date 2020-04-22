@@ -22,7 +22,7 @@ public class DatabaseDelete {
     public static final String active = "true";
     public static final String inactive = "false";
 
-    //==================== PUBLIC METHODS ====================
+    //=========================== PUBLIC METHODS ===============================
     /**
      * This method deletes a specified record from the database. This method
      * writes the contents of one file onto another text file except for the
@@ -97,7 +97,7 @@ public class DatabaseDelete {
         DatabaseDelete.deleteUserRecord(DatabaseInterface.userInfoFile, user);
     }
 
-    //==================== PRIVATE METHODS ====================
+    //========================== PRIVATE METHODS ==============================
     /**
      * Deletes a user's login information from the UserLogin.txt file.
      *

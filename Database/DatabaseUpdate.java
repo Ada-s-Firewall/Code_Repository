@@ -182,14 +182,14 @@ public class DatabaseUpdate {
         String oldPassword = _user.getUserPassword();
 
         // Update userObject password
-        _user.setUserPassword(_newPassword);
+        //_user.setUserPassword(_newPassword);
 
         // Update the record in file
         DatabaseUpdate.updateFile(_file, oldPassword, _newPassword);
     }
 
     /**
-     * This method updates a user's username, but it does not work yet.
+     * This method updates a user's username.
      *
      * @param _file
      * @param _userObject
@@ -201,7 +201,7 @@ public class DatabaseUpdate {
         String oldUsername = _user.getUserName();
 
         // Set the object new username
-        _user.setUserName(_newUsername);
+        //_user.setUserName(_newUsername);
 
         // Update the record in file
         DatabaseUpdate.updateFile(_file, oldUsername, _newUsername);
@@ -220,7 +220,7 @@ public class DatabaseUpdate {
         String oldUserEmail = _user.getUserEmail();
 
         // Set object new user email
-        _user.setUserEmail(_newUserEmail);
+        //_user.setUserEmail(_newUserEmail);
 
         // Update the record in the file
         DatabaseUpdate.updateFile(_file, oldUserEmail, _newUserEmail);
