@@ -30,11 +30,11 @@ public class DatabaseTests {
         System.out.println("Database Test 02:\n\n");
         //DBTest02();
         System.out.println("Database Test 03:\n\n");
-        //DBTest03();
+        DBTest03();
         System.out.println("Database Test 04:\n\n");
         //DBTest04();
         System.out.println("Database Test 05:\n\n");
-        DBTest05();
+        //DBTest05();
     }
 
     public static void DBTest01() throws Exception {
@@ -78,11 +78,13 @@ public class DatabaseTests {
     public static void DBTest03() throws Exception {
         //Write your tests here
         DBInfoRequest dbRequest = new DBInfoRequest();
+        UserObject user01 = new UserObject("JackMan93", "jackword", "jkessler@email.com", "Jack", "Kessler");
         UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
         UserObject user03 = new UserObject("Real", "Person", "realperson@email.com", "Real", "Person");
         UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
         //dbRequest.createUserRecord(user03);
-        dbRequest.deleteUserRecord(userInfoFile, user04);
+        //dbRequest.deleteUserRecord(userInfoFile, user01);
+        dbRequest.updateUserEmail(user01, "THISISMYNEWEMAIL@email.com");
     }
 
     public static void DBTest04() throws Exception {

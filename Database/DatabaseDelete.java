@@ -19,11 +19,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DatabaseDelete {
-
-    public static final String ACTIVE = "true";
-    public static final String INACTIVE = "false";
-    final static int USERINFORECORDLENGTH = 6;
-    public static final File TEMPORARYFILE = new File("tempfile.txt");
+    public static final String active = "true";
+    public static final String inactive = "false";
 
     //==================== PUBLIC METHODS ====================
     /**
@@ -41,14 +38,14 @@ public class DatabaseDelete {
     public static void deleteUserRecord(File _file, UserObject _user) throws FileNotFoundException, IOException, Exception {
         File originalFile = _file;
         BufferedReader reader = new BufferedReader(new FileReader(originalFile));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseDelete.TEMPORARYFILE));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.temporaryFile));
         String lineInFile = null;
         String userName = _user.getUserName();
         // While the file is not empty
         while ((lineInFile = reader.readLine()) != null) {
             // If the username is found, it will be made to inactive
             if (lineInFile.contains(userName)) {
-                lineInFile = lineInFile.replace(DatabaseDelete.ACTIVE, DatabaseDelete.INACTIVE);
+                lineInFile = lineInFile.replace(DatabaseDelete.active, DatabaseDelete.inactive);
                 writer.write(lineInFile);
                 writer.newLine();
             } else {
@@ -67,7 +64,7 @@ public class DatabaseDelete {
         }
 
         // Rename the new file to the filename the original file had.
-        if (!DatabaseDelete.TEMPORARYFILE.renameTo(originalFile)) {
+        if (!DatabaseInterface.temporaryFile.renameTo(originalFile)) {
             System.out.println("Could not rename file");
         }
 
