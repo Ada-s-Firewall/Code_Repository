@@ -22,10 +22,10 @@ import javafx.stage.Stage;
 public class SearchController implements Initializable {
 
     //Variable containing the address of the fxml files
-    private static final String ADDRESS = "/Views/";
+    private final String ADDRESS = "/Views/";
 
     //Variable set to false which coresponds to the maximize functionality
-    private static final Boolean RESIZE = false;
+    private final Boolean RESIZE = false;
 
     //Variable to hold the choice box selection
     @FXML
@@ -55,8 +55,7 @@ public class SearchController implements Initializable {
             String theSearchType = (String)this.searchType.getValue();
             String theSearchContent = this.searchContent.getText();
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ADDRESS + "AlbumResult.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ADDRESS + "AlbumResult.fxml"));
             Parent artistResultParent = loader.load();
             Scene artistResultScene = new Scene(artistResultParent);
 

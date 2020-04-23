@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileController">
+   <children>
+      <Pane layoutX="209.0" layoutY="37.0" prefHeight="427.0" prefWidth="322.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="101.0" layoutY="-6.0" prefHeight="53.0" prefWidth="120.0" text="Settings:" textAlignment="CENTER" underline="true" wrapText="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="53.0" text="Change Password:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="200.0" text="Change Email:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox layoutX="58.0" layoutY="80.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="password" prefHeight="37.0" prefWidth="200.0" promptText="password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="58.0" layoutY="118.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="confirmPassword" prefHeight="37.0" prefWidth="200.0" promptText="confirm password" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button layoutX="101.0" layoutY="156.0" mnemonicParsing="false" onAction="#changePasswordButtonClicked" text="Change Password!" />
+            <HBox layoutX="57.0" layoutY="227.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="email" prefHeight="37.0" prefWidth="200.0" promptText="email" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="57.0" layoutY="268.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <TextField fx:id="confirmEmail" prefHeight="37.0" prefWidth="200.0" promptText="confirm email" style="-fx-background-color: transparent;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button layoutX="111.0" layoutY="306.0" mnemonicParsing="false" onAction="#changeEmailButtonClicked" text="Change Email!" />
+            <Button layoutX="57.0" layoutY="363.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="200.0" style="-fx-background-color: #f00000; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="Delete Account!" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

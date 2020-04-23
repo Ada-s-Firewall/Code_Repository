@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -40,11 +41,18 @@ public class ProfileController implements Initializable {
     @FXML
     private TableColumn<?, ?> planToListenToColumn;
 
+    //Varibale to hold the rating scores
+    @FXML
+    private ChoiceBox rateScore;
+
     //Variable to hold the current user that is logged in.
     private UserObject user;
 
     //Variable to hold the list of the table.
     private final ObservableList<?> tableList = FXCollections.observableArrayList();
+
+    //Variable to hold the possible rating scores
+    private final String[] ratingScores = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
     //Variable containing the address of the fxml files.
     private final String ADDRESS = "/Views/";
@@ -55,10 +63,21 @@ public class ProfileController implements Initializable {
     /**
      * This method handles the action for when the rate button is clicked.
      * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    protected void rateButtonClicked(ActionEvent _event) {
-        //Method in progress
+    protected void rateItemButtonClicked(ActionEvent _event) throws IOException {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ADDRESS + "Rating.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+
+            //ProfileController controller = loader.getController();
+            //controller.initializeData(this.user);
+
+            stage.setScene(new Scene(root));
+            stage.resizableProperty().setValue(RESIZE);
+            stage.show();
     }
 
     /**
@@ -90,6 +109,29 @@ public class ProfileController implements Initializable {
     @FXML
     protected void searchButtonClicked(ActionEvent _event) throws IOException {
         displayPage(_event, "Search.fxml");
+    }
+
+    /**
+     * This method handles the action for when the search button is clicked.
+     * @param event
+     */
+    @FXML
+    void rateButtonClicked(ActionEvent event) {
+
+        if(this.rateScore.getValue() != null){
+
+            //Obtain the selected number
+            String score = (String)this.rateScore.getValue();
+
+            //Display Score
+            System.out.println(score);
+
+        }else{
+
+            //Display error message.
+            System.out.println("Did not select a score.");
+
+        }
     }
 
     /**
@@ -129,7 +171,7 @@ public class ProfileController implements Initializable {
     public void initialize(URL _url, ResourceBundle _rb) {
 
         Platform.runLater(() -> {
-
+            rateScore.getItems().addAll(ratingScores);
         });
     }
 
