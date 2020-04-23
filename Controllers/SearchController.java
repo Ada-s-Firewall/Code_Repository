@@ -44,8 +44,6 @@ public class SearchController implements Initializable {
     @FXML
     void searchButtonClicked(ActionEvent _event) throws IOException {
 
-        System.out.println(searchContent.getText());
-
         //If else statement to make sure what is being searched is correct
         if (this.searchContent.getText().isEmpty()) {
 
@@ -63,7 +61,7 @@ public class SearchController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initData(theSearchContent, theSearchType);
+            controller.initializeData(theSearchContent, theSearchType);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -81,7 +79,7 @@ public class SearchController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initData(theSearchContent, theSearchType);
+            controller.initializeData(theSearchContent, theSearchType);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -99,7 +97,7 @@ public class SearchController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initData(theSearchContent, theSearchType);
+            controller.initializeData(theSearchContent, theSearchType);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -120,7 +118,7 @@ public class SearchController implements Initializable {
     void returnToProfileButtonClicked(ActionEvent _event) throws IOException {
 
         //Display the login page
-        displayPage(_event, "LoginPage.fxml");
+        displayPage(_event, "Profile.fxml");
     }
 
     /**

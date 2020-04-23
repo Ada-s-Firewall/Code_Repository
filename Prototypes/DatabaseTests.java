@@ -85,6 +85,9 @@ public class DatabaseTests {
         //dbRequest.createUserRecord(user03);
         //dbRequest.deleteUserRecord(userInfoFile, user01);
         dbRequest.updateUserEmail(user01, "THISISMYNEWEMAIL@email.com");
+        dbRequest.updateUserEmail(user02, "THISISMYNEWEMAIL@email.com");
+        dbRequest.updateUserPassword(user01, "THISISMYNEWPASSWORD");
+        dbRequest.updateUserPassword(user02, "THISISMYNEWPASSWORD");
     }
 
     public static void DBTest04() throws Exception {

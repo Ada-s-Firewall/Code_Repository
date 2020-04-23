@@ -19,7 +19,7 @@ public interface DatabaseInterface {
     public static final File userLoginFile = new File("src/Datastore/UserLogin.txt");
     public static final File userRatingFile = new File("src/Datastore/UserRating.txt");
     public static final File userPlanToListen = new File("src/Datastore/UserPlanToListen.txt");
-    public static final File temporaryFile = new File("tempfile.txt");
+    public static final File temporaryFile = new File("src/Datastore/TemporaryFile.txt");
     public static final boolean active = true;
     public static final boolean inactive = false;
 
