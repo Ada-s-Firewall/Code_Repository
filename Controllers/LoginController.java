@@ -4,8 +4,8 @@ package Controllers;
  * Purpose: The purpose of this class is to serve as the controller for the
  *          login process of the application fxml files which holds the code
  *          for the views of the login process of the application.
- * Contributors: Eric Cortes
- * Last Updated: 03/25/2020
+ * Contributors: Eric Cortes | Modified: Fernando Villarreal
+ * Last Updated: 04/16/2020
  */
 
 import java.io.IOException;
@@ -20,6 +20,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import Models.DBInfoRequest;
+import Models.CheckUserInfo;
+import Objects.NewUserObject;
 
 public class LoginController implements Initializable {
 
@@ -28,6 +31,19 @@ public class LoginController implements Initializable {
 
     //Variable set to false which coresponds to the maximize functionality
     private static final Boolean RESIZE = false;
+
+    // CheckUserInfo Object
+    private final CheckUserInfo checker = new CheckUserInfo();
+
+    // DBInfoRequest Object (Adapter for database operations)
+    private final DBInfoRequest dbAdapter = new DBInfoRequest();
+
+    // Results Codes for the validity of a NewUserObject
+    private final int NO_ERRORS = 0;
+    private static final int USERNAME_ERROR = 1;
+    private static final int PASSWORD_ERROR = 2;
+    private static final int INVALID_EMAIL_ERROR = 3;
+    private static final int EMAIL_TAKEN_ERROR = 4;
 
     //The password variable that corresponds to the user input
     @FXML
@@ -64,6 +80,16 @@ public class LoginController implements Initializable {
         String theUsername = this.username.getText();
         String thePassword = this.password.getText();
 
+        // Check the provided login information
+        int userLoginValidityCode = this.checker.isUserCredentialsValid(theUsername, thePassword);
+        // If the login is valid, load the Search page.
+        if (userLoginValidityCode == this.NO_ERRORS) {
+            displayPage(_event, "Search.fxml");
+        }
+        // If the login is not valid, load the Login Error page.
+        displayPage(_event, "LoginPageError.fxml");
+
+        /* ORIGINAL CODE BELOW
         //Test if statement to see if username and password are registered
         if ("username".equals(theUsername) && "password".equals(thePassword)) {
 
@@ -74,6 +100,7 @@ public class LoginController implements Initializable {
             //If username and password are not registered error scene is opened
             displayPage(_event, "LoginPageError.fxml");
         }
+        */
     }
 
     /**
@@ -117,8 +144,40 @@ public class LoginController implements Initializable {
         String thePassword = this.password.getText();
         String theConfirmPassword = this.confirmPassword.getText();
         String theEmail = this.email.getText();
+        // First and last names fields needed in 'SingUpPage.fxml'
+        String firstName = "Johnathan"; // placeholder
+        String lastName = "Doe"; // placeholder
 
+        // Create a NewUserObject and check if its information is valid
+        NewUserObject newUser = new NewUserObject(theUsername, thePassword, theConfirmPassword, theEmail, firstName, lastName);
+        int userValidityCode = this.checker.isNewUserValid(newUser);
 
+        // Load the appropriate page based on the error code: userValidityCode
+        switch (userValidityCode) {
+            // Load and display the username error page
+            case LoginController.USERNAME_ERROR:
+                displayPage(_event, "SignUpUsernameError.fxml");
+                break;
+            // Load and display the password error page
+            case LoginController.PASSWORD_ERROR:
+                displayPage(_event, "SignUpPasswordError.fxml");
+                break;
+            // Load and display the sign up improper email page
+            case LoginController.INVALID_EMAIL_ERROR:
+                displayPage(_event, "SignUpImproperEmailError.fxml");
+                break;
+            // Load and display the email already exists page
+            case LoginController.EMAIL_TAKEN_ERROR:
+                displayPage(_event, "SignUpEmailError.fxml");
+                break;
+            // Create the new user then load and display the login page
+            default:
+                this.dbAdapter.createUserRecord(newUser);
+                displayPage(_event, "SignUpSuccessful.fxml");
+                break;
+        }
+
+        /* ORIGINAL CODE BELOW
         //This if else statement compares to see if information is adequate
         if ("username".equals(theUsername)) {
 
@@ -145,6 +204,7 @@ public class LoginController implements Initializable {
             displayPage(_event, "SignUpSuccessful.fxml");
 
         }
+        */
     }
 
     /**

@@ -2,11 +2,12 @@ package Models;
 
 /**
  * This class acts an adapter for performing CRUD operations with the Database.
- * Last Updated: 4/13/2020
+ * Last Updated: 4/17/2020
  *
  * @author Fernando Villarreal
  */
 import Database.*;
+import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.RecordObject;
 import Objects.RecordObjectList;
@@ -23,12 +24,9 @@ public class DBInfoRequest implements DatabaseInterface {
     public DBInfoRequest() {
     }
 
-    ;
-
     //============== METHODS ==============
-
     @Override
-    public void creatRecord(File _file, ArrayList<String> _record) {
+    public void createRecord(File _file, ArrayList<String> _record) {
         try {
             DatabaseCreate.createRecord(_file, _record);
         } catch (IOException ex) {
@@ -55,9 +53,36 @@ public class DBInfoRequest implements DatabaseInterface {
     }
 
     @Override
+    public void createUserPlanToListen(PlanToListenObject _planToListen) {
+        try {
+            DatabaseCreate.createUserPlanToListen(_planToListen);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
     public void deleteUserRecord(File _file, UserObject _userObject) {
         try {
             DatabaseDelete.deleteUserRecord(_file, _userObject);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(UserObject _user) {
+        try {
+            DatabaseDelete.deleteUserRecord(_user);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(String _username) {
+        try {
+            DatabaseDelete.deleteUserRecord(_username);
         } catch (Exception ex) {
             Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,6 +119,16 @@ public class DBInfoRequest implements DatabaseInterface {
     }
 
     @Override
+    public RecordObjectList readUsersPlanToListen(String _username) {
+        try {
+            DatabaseRead.readUsersPlanToListen(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
     public RecordObject makeActive() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -101,5 +136,32 @@ public class DBInfoRequest implements DatabaseInterface {
     @Override
     public RecordObject makeInactive() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateUserPassword(UserObject _user, String _newPassword) {
+        try {
+            DatabaseUpdate.updateUserPassword(_user, _newPassword);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUsername(UserObject _user, String _newUsername) {
+        try {
+            DatabaseUpdate.updateUsername(_user, _newUsername);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUserEmail(UserObject _user, String _newUserEmail) {
+        try {
+            DatabaseUpdate.updateUserEmail(_user, _newUserEmail);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

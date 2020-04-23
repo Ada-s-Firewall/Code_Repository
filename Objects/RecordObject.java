@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * Last updated 04.13.2020
+ * Last updated 04.17.2020
  * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  */
 public class RecordObject {
@@ -46,6 +46,10 @@ public class RecordObject {
 
     public void makeInactive() {
         this.active = false;
+    }
+
+    public boolean isActive() {
+        return this.active;
     }
 
      /**

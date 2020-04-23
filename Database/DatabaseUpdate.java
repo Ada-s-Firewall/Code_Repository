@@ -3,151 +3,93 @@ package Database;
 /**
  * This class holds all of the methods for updating a file.
  *
- * Last Updated: 04.14.2020.
+ * Last Updated: 04.21.2020.
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
-import static Database.DatabaseCreate.createUserRecord;
-import static Database.DatabaseCreate.createUserRating;
-import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseInterface.userInfoFile;
+import static Database.DatabaseInterface.userPlanToListen;
 import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseInterface.userRatingFile;
 import Objects.UserObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseUpdate {
 
+    //=========================== PUBLIC METHODS ================================
     /**
-     * This method updates a user password, but it does not work yet.
+     * This method updates the user's password.
      *
-     * @param _file
-     * @param _userObject
+     * @param _user
      * @param _newPassword
-     * @throws FileNotFoundException
      */
-    public void updateUserPassword(UserObject _userObject, String _newPassword) throws FileNotFoundException, IOException {
-        Scanner scanner = new Scanner(userLoginFile);
-        String userName = _userObject.getName();
-        String stringRecord = "";
-        scanner.useDelimiter("\t");
-
-        //This updates the password of the userObject.
-        _userObject.setUserPassword(_newPassword);
-
-        while (scanner.hasNext()) {
-            //If this record exists in the file, then the password will be updated.
-            if (scanner.hasNext(userName)) {
-                stringRecord += _userObject.getUuid() + "\t";
-                stringRecord += _userObject.getName() + "\t";
-                stringRecord += _userObject.getUserPassword() + "\t";
-                stringRecord += DatabaseInterface.active + "\n";
-            }
-            if (scanner.hasNext("\n")) {
-                stringRecord += "\n";
-            } //This else statement adds the rest of the records that do not match.
-            else {
-                stringRecord += scanner.next() + "\t";
-            }
+    public static void updateUserPassword(UserObject _user, String _newPassword) {
+        try {
+            // Update the user password in UserLoginFile
+            DatabaseUpdate.updateUserPassword(DatabaseInterface.userLoginFile, _user, _newPassword);
+            // Update the file in the UserInfoFile
+            DatabaseUpdate.updateUserPassword(DatabaseInterface.userInfoFile, _user, _newPassword);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseUpdate.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //This second parameter is made to be false in order to overwrite the file.
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userLoginFile, false));
-        writer.write(stringRecord);
-        writer.close();
     }
 
     /**
-     * This method updates a user's username, but it does not work yet.
+     * This method updates the user's username.
      *
-     * @param _file
-     * @param _userObject
-     * @param _newUserName
-     * @throws FileNotFoundException
+     * @param _user
+     * @param _newUsername
      */
-    public void updateUserName(UserObject _userObject, String _newUserName) throws FileNotFoundException, IOException {
-        Scanner scanner = new Scanner(userLoginFile);
-        String userName = _userObject.getName();
-        String stringRecord = "";
-        scanner.useDelimiter("\t");
-
-        //This updates the password of the userObject.
-        _userObject.setUserName(userName);
-
-        while (scanner.hasNext()) {
-            //If this record exists in the file, then the username will be updated.
-            if (scanner.hasNext(userName)) {
-                stringRecord += _userObject.getUuid() + "\t";
-                stringRecord += _userObject.getName() + "\t";
-                stringRecord += _userObject.getUserPassword() + "\t";
-                stringRecord += DatabaseInterface.active + "\n";
-            }
-            if (scanner.hasNext("\n")) {
-                stringRecord += "\n";
-            } //This else statement adds the rest of the records that do not match.
-            else {
-                stringRecord += scanner.nextLine() + "\n";
-            }
+    public static void updateUsername(UserObject _user, String _newUsername) {
+        try {
+            // Update the file in UserLoginFile
+            DatabaseUpdate.updateUsername(DatabaseInterface.userLoginFile, _user, _newUsername);
+            // Update the file in the UserInfoFile
+            DatabaseUpdate.updateUsername(DatabaseInterface.userInfoFile, _user, _newUsername);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseUpdate.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //This second parameter is made to be false in order to overwrite the file.
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userLoginFile, false));
-        writer.write(stringRecord);
-        writer.close();
     }
 
     /**
-     * This method updates a user's email
+     * This method updates the user's email.
      *
-     * @param _file
-     * @param _userObject
+     * @param _user
      * @param _newUserEmail
-     * @throws FileNotFoundException
      */
-    public void updateUserEmail(UserObject _userObject, String _newUserEmail) throws FileNotFoundException, IOException {
-        Scanner scanner = new Scanner(userLoginFile);
-        String userName = _userObject.getName();
-        String stringRecord = "";
-        scanner.useDelimiter("\t");
-
-        //This updates the password of the userObject.
-        _userObject.setUserEmail(_newUserEmail);
-
-        while (scanner.hasNext()) {
-            //If this record exists in the file, then the password will be updated.
-            if (scanner.hasNext(userName)) {
-                stringRecord += _userObject.getUuid() + "\t";
-                stringRecord += _userObject.getName() + "\t";
-                stringRecord += _userObject.getUserPassword() + "\t";
-                stringRecord += DatabaseInterface.active + "\n";
-            }
-            if (scanner.hasNext("\n")) {
-                stringRecord += "\n";
-            } //This else statement adds the rest of the records that do not match.
-            else {
-                stringRecord += scanner.next() + "\t";
-            }
+    public static void updateUserEmail(UserObject _user, String _newUserEmail) {
+        try {
+            // Update the file in UserLoginFile
+            DatabaseUpdate.updateUserEmail(DatabaseInterface.userLoginFile, _user, _newUserEmail);
+            // Update the file in the UserInfoFile
+            DatabaseUpdate.updateUserEmail(DatabaseInterface.userInfoFile, _user, _newUserEmail);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseUpdate.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //This second parameter is made to be false in order to overwrite the file.
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userLoginFile, false));
-        writer.write(stringRecord);
-        writer.close();
     }
 
     /**
      * This method updates a user's rating
      *
-     * @param _file
+     * @param _userRatingFile
      * @param _ratingObject
      * @param _newUsersRating
      * @throws FileNotFoundException
+     * @throws IOExeption
      */
-    public void updateUsersRating(RatingObject _ratingObject, double _newUsersRating) throws FileNotFoundException {
+    public void updateUsersRating(File _userRatingFile, RatingObject _ratingObject, double _newUsersRating) throws Exception {
         Scanner scanner = new Scanner(userRatingFile);
         String userName = _ratingObject.getName();
         double usersRating = _ratingObject.getUsersRating();
@@ -172,42 +114,70 @@ public class DatabaseUpdate {
                 stringRecord += scanner.next() + "\t";
             }
         }
-
+        //This second parameter is now true to overwrite the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userRatingFile, true));
+        writer.write(stringRecord);
+        writer.close();
     }
 
     /**
      * This method updates the user's list of albums they've completed or plan
      * to listen
      *
-     * @param _file
+     * @param _userPlanToListenFile
      * @param _userMusicList
      * @param _newUsersAlbumsCompleted
      * @param _newUsersAlbumsPlanToListen
      * @throws FileNotFoundException
+     * @throws IOException
      */
-    public void updateUsersMusicList(UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws FileNotFoundException {
-        Scanner scanner = new Scanner(userInfoFile);
+    public void updateUsersMusicList(File _userPlanToListenFile, UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws Exception {
+        Scanner scanner = new Scanner(_userPlanToListenFile);
         String userName = _userMusicList.getUserName();
         int usersAlbumsCompleted = _userMusicList.getUsersAlbumsCompleted();
         int usersAlbumsPlanToListen = _userMusicList.getUsersAlbumsPlanToListen();
+        String stringRecord = "";
+        scanner.useDelimiter("\t");
 
-        //Updates the users number of albums completed in their music list
+        //Updates the number of albums completed in the user's music list
         _userMusicList.setUsersAlbumsCompleted(_newUsersAlbumsCompleted);
-        //Updates the user's number of albums that they plan to listen in their music list
+        //Updates the number of albums that the user has in their plan to listen list
         _userMusicList.setUsersAlbumsPlanToListen(_newUsersAlbumsPlanToListen);
+
+        while (scanner.hasNext()) {
+            //If this record exists in the file, then the lists will be updated.
+            if (scanner.hasNext(userName)) {
+
+                stringRecord += _userMusicList.getUserName() + "\t";
+                stringRecord += _userMusicList.getUsersAlbumsCompleted() + "\t";
+                stringRecord += _userMusicList.getUsersAlbumsPlanToListen() + "\t";
+                stringRecord += DatabaseInterface.active + "\n";
+            }
+            if (scanner.hasNext("\n")) {
+                stringRecord += "\n";
+            } //This else statement adds the rest of the records that do not match.
+            else {
+                stringRecord += scanner.next() + "\t";
+            }
+        }
+        //This second parameter is now true to overwrite the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userPlanToListen, true));
+        writer.write(stringRecord);
+        writer.close();
     }
 
     /**
-     * This method updates a user's list of favorite albums, arists, and tracks
+     * This method updates a user's list of favorite albums, artists, and tracks
      *
-     * @param _file
+     * @param _userInfofile
      * @param _userMusicList
      * @param _newUsersFavoriteAlbums
      * @param _newUsersFavoriteArtists
      * @param _newUsersFavoriteTracks
      * @throws FileNotFoundException
+     * @throws IOException
      */
-    public void updateUsersMusicList(UserMusicList _userMusicList, ArrayList<String> _newUsersFavoriteAlbums, ArrayList<String> _newUsersFavoriteArtists, ArrayList<String> _newUsersFavoriteTracks) throws FileNotFoundException {
+    public void updateUsersMusicList(File _userInfoFile, UserMusicList _userMusicList, ArrayList<String> _newUsersFavoriteAlbums, ArrayList<String> _newUsersFavoriteArtists, ArrayList<String> _newUsersFavoriteTracks) throws Exception {
         Scanner scanner = new Scanner(userInfoFile);
         String userName = _userMusicList.getUserName();
         ArrayList<String> usersFavoriteAlbums = _userMusicList.getUsersFavoriteAlbums();
@@ -222,6 +192,130 @@ public class DatabaseUpdate {
         _userMusicList.setUsersFavoriteArtists(_newUsersFavoriteArtists);
         //Adds a selected track to the user's list of favorite tracks
         _userMusicList.setUsersFavoriteTracks(_newUsersFavoriteTracks);
+        
+        while (scanner.hasNext()) {
+            //If this record exists in the file, then the array lists will be updated.
+            if (scanner.hasNext(userName)) {
 
+                stringRecord += _userMusicList.getUserName() + "\t";
+                stringRecord += _userMusicList.getUsersFavoriteAlbums() + "\t";
+                stringRecord += _userMusicList.getUsersFavoriteArtists() + "\t";
+                stringRecord += _userMusicList.getUsersFavoriteTracks() + "\t";
+                stringRecord += DatabaseInterface.active + "\n";
+            }
+            if (scanner.hasNext("\n")) {
+                stringRecord += "\n";
+            } //This else statement adds the rest of the records that do not match.
+            else {
+                stringRecord += scanner.next() + "\t";
+            }
+        }
+        //This second parameter is now true to overwrite the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userInfoFile, true));
+        writer.write(stringRecord);
+        writer.close();
+    }
+
+    //=========================== PRIVATE METHODS ===============================
+    /**
+     * This method updates a user password.
+     *
+     * @param _user
+     * @param _oldPassword
+     * @param _newPassword
+     * @param _file
+     * @throws FileNotFoundException
+     */
+    private static void updateUserPassword(File _file, UserObject _user, String _newPassword) throws FileNotFoundException, IOException {
+        // The old password to be replaced
+        String oldPassword = _user.getUserPassword();
+
+        // Update userObject password
+        //_user.setUserPassword(_newPassword);
+
+        // Update the record in file
+        DatabaseUpdate.updateFile(_file, oldPassword, _newPassword);
+    }
+
+    /**
+     * This method updates a user's username.
+     *
+     * @param _file
+     * @param _userObject
+     * @param _newUserName
+     * @throws FileNotFoundException
+     */
+    private static void updateUsername(File _file, UserObject _user, String _newUsername) throws FileNotFoundException, IOException {
+        // The old username to be replaced
+        String oldUsername = _user.getUserName();
+
+        // Set the object new username
+        //_user.setUserName(_newUsername);
+
+        // Update the record in file
+        DatabaseUpdate.updateFile(_file, oldUsername, _newUsername);
+    }
+
+    /**
+     * This method updates a user's email
+     *
+     * @param _file
+     * @param _userObject
+     * @param _newUserEmail
+     * @throws FileNotFoundException
+     */
+    private static void updateUserEmail(File _file, UserObject _user, String _newUserEmail) throws FileNotFoundException, IOException {
+        // Old user email to be replaced
+        String oldUserEmail = _user.getUserEmail();
+
+        // Set object new user email
+        //_user.setUserEmail(_newUserEmail);
+
+        // Update the record in the file
+        DatabaseUpdate.updateFile(_file, oldUserEmail, _newUserEmail);
+    }
+
+    /**
+     * This method updates the record in file.
+     *
+     * @param _file
+     * @param _oldRecord
+     * @param _newRecord
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    private static void updateFile(File _file, String _oldRecord, String _newRecord) throws FileNotFoundException, IOException {
+        File originalFile = _file;
+        BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.temporaryFile));
+        String lineInFile = null;
+
+        // While the file is not empty
+        while ((lineInFile = reader.readLine()) != null) {
+
+            // If the username is found, it will be made to inactive
+            if (lineInFile.contains(_oldRecord)) {
+                lineInFile = lineInFile.replace(_oldRecord, _newRecord);
+                writer.write(lineInFile);
+                writer.newLine();
+            } else {
+                writer.write(lineInFile);
+                writer.newLine();
+            }
+            writer.flush();
+        }
+        writer.close();
+        reader.close();
+
+        // Delete the original file
+        if (!originalFile.delete()) {
+            System.out.println("Could not delete file");
+            return;
+        }
+
+        // Rename the new file to the filename the original file had.
+        if (!DatabaseInterface.temporaryFile.renameTo(originalFile)) {
+            System.out.println("Could not rename file");
+        }
     }
 }
