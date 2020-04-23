@@ -3,14 +3,11 @@ package Controllers;
 /**
  * Purpose: The purpose of this class is to serve as the controller for the
  * search results fxml file which is the code for the search results view.
- * Contributors: Eric Cortes Last Updated: 03/30/2020
+ * Contributors: Eric Cortes Last Updated: 04/22/2020
  */
-import Models.DBInfoRequest;
 import Models.MusicRequest;
 import Objects.MusicObject;
 import Objects.MusicObjectList;
-import Objects.RatingObject;
-import Objects.UserObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,19 +27,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class ResultController implements Initializable {
-
-    //Varible contining the search content that was passed in by the search page
-    private  String searchContent;
-
-    //Varible containin the search type that was passed in by the search page
-    private String searchType;
-
-    private UserObject user;
-
-    private DBInfoRequest userRequest;
-
-    //Varialbe to hold the list of the table
-    ObservableList<MusicObject> tableList = FXCollections.observableArrayList();
 
     //Variable to hold the table
     @FXML
@@ -64,6 +48,15 @@ public class ResultController implements Initializable {
     @FXML
     private TableColumn<MusicObject, String> releasedColumn;
 
+    //Varible contining the search content that was passed in by the search page
+    private String searchContent;
+
+    //Varible containin the search type that was passed in by the search page
+    private String searchType;
+
+    //Variabee to hold the list of the table
+    private final ObservableList<MusicObject> tableList = FXCollections.observableArrayList();
+
     //Variable containing the number of searches that whill be displayed
     private static final int SEARCHNUMBER = 10;
 
@@ -74,26 +67,13 @@ public class ResultController implements Initializable {
     private static final Boolean RESIZE = false;
 
     /**
-     * This method accepts to strings to initialize the view variables
-     * @param search
-     * @param _searchContent
-     * @param _searchType
-     */
-    public void initData(String _searchContent, String _searchType){
-
-        //Initialize variables with pssed in data as parameters
-        this.searchContent = _searchContent;
-        this.searchType = _searchType;
-    }
-
-    /**
      * This method handles the action for when the add to listened to button is
      * clicked
-     *
-     * @param event
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    void listenToButonClicked(ActionEvent _event) throws IOException {
+    protected void listenToButonClicked(ActionEvent _event) throws IOException {
 
         //Make an observable list of the MusicObjects the user selected
         ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
@@ -101,8 +81,19 @@ public class ResultController implements Initializable {
         if(selection.isEmpty()){
 
             System.out.println("Nothing was selected");
-            //Display no items were added message
-            //displayPage(_event, "ArtistResultError.fxml");
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ADDRESS + "ArtistResultError.fxml"));
+            Parent artistResultParent = loader.load();
+            Scene artistResultScene = new Scene(artistResultParent);
+
+            ResultController controller = loader.getController();
+            controller.initializeData(searchContent, searchType);
+
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(artistResultScene);
+            stage.resizableProperty().setValue(RESIZE);
+            stage.show();
 
         }else{
 
@@ -110,17 +101,31 @@ public class ResultController implements Initializable {
             for(MusicObject theSelection: selection){
                 System.out.println("The ID: " + theSelection.getId() + ", was added to the listened to playlist");
             }
+
+            //Display no items were added message
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ADDRESS + "SuccessfulPlaylistAddition.fxml"));
+            Parent artistResultParent = loader.load();
+            Scene artistResultScene = new Scene(artistResultParent);
+
+            ResultController controller = loader.getController();
+            controller.initializeData(searchContent, searchType);
+
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(artistResultScene);
+            stage.resizableProperty().setValue(RESIZE);
+            stage.show();
         }
     }
 
     /**
      * Method that handles the action for when the add to plan to listen to
      * button is clicked
-     *
-     * @param event
+     * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    void planToListenButtonClicked(ActionEvent _event) throws IOException {
+    protected void planToListenButtonClicked(ActionEvent _event) throws IOException {
 
         //Make an observable list of the MusicObjects the user selected
         ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
@@ -128,7 +133,18 @@ public class ResultController implements Initializable {
         if(selection.isEmpty()){
 
             //Display no items were added message
-            displayPage(_event, "ArtistResultError.fxml");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ADDRESS + "ArtistResultError.fxml"));
+            Parent artistResultParent = loader.load();
+            Scene artistResultScene = new Scene(artistResultParent);
+
+            ResultController controller = loader.getController();
+            controller.initializeData(searchContent, searchType);
+
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(artistResultScene);
+            stage.resizableProperty().setValue(RESIZE);
+            stage.show();
 
         }else{
 
@@ -136,6 +152,20 @@ public class ResultController implements Initializable {
             for(MusicObject theSelection: selection){
                 System.out.println("The ID: " + theSelection.getId() + ", was added to the plan to listen to playlist");
             }
+
+            //Display no items were added message
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ADDRESS + "SuccessfulPlaylistAddition.fxml"));
+            Parent artistResultParent = loader.load();
+            Scene artistResultScene = new Scene(artistResultParent);
+
+            ResultController controller = loader.getController();
+            controller.initializeData(searchContent, searchType);
+
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(artistResultScene);
+            stage.resizableProperty().setValue(RESIZE);
+            stage.show();
         }
 
     }
@@ -143,11 +173,11 @@ public class ResultController implements Initializable {
     /**
      * This method handles the action for when the return to search button is
      * clicked
-     *
      * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    void returnToSearchButtonClicked(ActionEvent _event) throws IOException {
+    protected void returnToSearchButtonClicked(ActionEvent _event) throws IOException {
 
         //Display the search view page
         displayPage(_event, "Search.fxml");
@@ -155,12 +185,11 @@ public class ResultController implements Initializable {
 
     /**
      * This method displays the page that was passed in as a string
-     *
      * @param _event
      * @param _fxmlFile
      * @throws IOException
      */
-    protected void displayPage(ActionEvent _event, String _fxmlFile) throws IOException {
+    private void displayPage(ActionEvent _event, String _fxmlFile) throws IOException {
 
         //Load and display a view page
         Parent root = FXMLLoader.load(getClass().getResource(ADDRESS + _fxmlFile));
@@ -170,6 +199,18 @@ public class ResultController implements Initializable {
         stage.resizableProperty().setValue(RESIZE);
         stage.show();
 
+    }
+
+    /**
+     * This method accepts two strings to initialize the view variables
+     * @param _searchContent
+     * @param _searchType
+     */
+    public void initializeData(String _searchContent, String _searchType){
+
+        //Initialize variables with pssed in data as parameters
+        this.searchContent = _searchContent;
+        this.searchType = _searchType;
     }
 
     /**

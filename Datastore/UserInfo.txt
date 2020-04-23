@@ -12,3 +12,4 @@ fdcf24c7-da75-4e94-8477-e3a452fe46c8	JackDude12	TheDude	thedude@email.com	Johnat
 57960424-91f6-4bbe-a413-4a5bc7814582	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
 a32b5f8d-c817-4653-9497-8e246bbc8d58	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
 da6efa63-4eac-4299-a1c1-4b7f0348d8a3	JeffM	jefftime	jm@email.com	Jeff	Malarky	true
+72557a41-1e25-429f-bd7d-004f38ee1759	Eric C	123	e_cortes@uncg.edu	Johnathan	Doe	true
