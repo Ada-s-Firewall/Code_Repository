@@ -27,7 +27,7 @@
               </columns>
             </TableView>
             <Button layoutX="264.0" layoutY="362.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
-            <Label layoutX="269.0" layoutY="307.0" text="No items were selected!" textFill="RED" />
+            <Label layoutX="229.0" layoutY="307.0" text="Item was successfully added to playlist!" textFill="RED" />
          </children>
       </Pane>
    </children>

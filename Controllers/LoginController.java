@@ -5,7 +5,7 @@ package Controllers;
  *          login process of the application fxml files which holds the code
  *          for the views of the login process of the application.
  * Contributors: Eric Cortes | Modified: Fernando Villarreal
- * Last Updated: 04/16/2020
+ * Last Updated: 04/22/2020
  */
 
 import java.io.IOException;
@@ -80,27 +80,26 @@ public class LoginController implements Initializable {
         String theUsername = this.username.getText();
         String thePassword = this.password.getText();
 
-        // Check the provided login information
-        int userLoginValidityCode = this.checker.isUserCredentialsValid(theUsername, thePassword);
-        // If the login is valid, load the Search page.
-        if (userLoginValidityCode == this.NO_ERRORS) {
+        /*
+        if ("username".equals(theUsername) && "password".equals(thePassword)){
             displayPage(_event, "Search.fxml");
         }
-        // If the login is not valid, load the Login Error page.
-        displayPage(_event, "LoginPageError.fxml");
-
-        /* ORIGINAL CODE BELOW
-        //Test if statement to see if username and password are registered
-        if ("username".equals(theUsername) && "password".equals(thePassword)) {
-
-            //Display the user's profile page
-            displayPage(_event, "Search.fxml");
-        } else {
-
-            //If username and password are not registered error scene is opened
+        else{
             displayPage(_event, "LoginPageError.fxml");
         }
         */
+
+        // Check the provided login information
+        int userLoginValidityCode = this.checker.isUserCredentialsValid(theUsername, thePassword);
+
+        // If the login is valid, load the Search page.
+        if (userLoginValidityCode == this.NO_ERRORS) {
+            displayPage(_event, "Profile.fxml");
+        }
+
+        // If the login is not valid, load the Login Error page.
+        displayPage(_event, "LoginPageError.fxml");
+
     }
 
     /**
@@ -176,35 +175,6 @@ public class LoginController implements Initializable {
                 displayPage(_event, "SignUpSuccessful.fxml");
                 break;
         }
-
-        /* ORIGINAL CODE BELOW
-        //This if else statement compares to see if information is adequate
-        if ("username".equals(theUsername)) {
-
-            //Load and display the sign up error page
-            displayPage(_event, "SignUpUsernameError.fxml");
-
-        } else if (!theConfirmPassword.equals(thePassword)) {
-
-            //Load and display the second sign up error page
-            displayPage(_event, "SignUpPasswordError.fxml");
-
-        } else if (!(theEmail.contains("@") || theEmail.contains("."))){
-
-            //Load and display the sign up improper email page
-            displayPage(_event, "SignUpImproperEmailError.fxml");
-
-        } else if("yahoo@gmail.com".equals(theEmail)){
-
-            //Load and display the email already exists page
-            displayPage(_event, "SignUpEmailError.fxml");
-
-        }else {
-            //Load and display the login page
-            displayPage(_event, "SignUpSuccessful.fxml");
-
-        }
-        */
     }
 
     /**
