@@ -38,31 +38,34 @@ public class MusicAPITests {
         // Keywords used in searches
         String metallica = "metallica";
         String michaelJackson = "michael jackson";
-        // Perform and check searches for 'metallica'
+        // Test the search method by searching for 'metallica'
         MusicObjectList list01 = adapter.search(metallica, "artist", 5);
         MusicObjectList list02 = adapter.search(metallica, "album, track", 10);
         MusicObjectList list03 = adapter.search(metallica, "artist, track, album", 10);
         MusicObjectList list04 = adapter.search(metallica, "track", 12);
-        MusicAPITests.checkSearchResults(list01, metallica, 1);
-        MusicAPITests.checkSearchResults(list02, metallica, 15);
-        MusicAPITests.checkSearchResults(list03, metallica, 20);
-        MusicAPITests.checkSearchResults(list04, metallica, 10);
-        // Perform and check searches for 'michael jackson'
+        MusicAPITests.checkForKeywordPrecense(list01, metallica, 1);
+        MusicAPITests.checkForKeywordPrecense(list02, metallica, 15);
+        MusicAPITests.checkForKeywordPrecense(list03, metallica, 20);
+        MusicAPITests.checkForKeywordPrecense(list04, metallica, 10);
+        // Test the search method by searching for 'michael jackson'
         MusicObjectList list05 = adapter.search(michaelJackson, "artist", 3);
-        MusicObjectList list06 = adapter.search(michaelJackson, "artist, track, album", 15);
+        MusicObjectList list06 = adapter.search(michaelJackson, "artist, track, album", 10);
         MusicObjectList list07 = adapter.search(michaelJackson, "track", 30);
-        MusicAPITests.checkSearchResults(list05, michaelJackson, 1);
-        MusicAPITests.checkSearchResults(list06, michaelJackson, 10);
-        MusicAPITests.checkSearchResults(list07, michaelJackson, 25);
+        MusicAPITests.checkForKeywordPrecense(list05, michaelJackson, 1);
+        MusicAPITests.checkForKeywordPrecense(list06, michaelJackson, 25);
+        MusicAPITests.checkForKeywordPrecense(list07, michaelJackson, 25);
+        // Test the load-MusicObject-By-ID methods
+        MusicAPITests.testloadMusicObjectByID(list03);
+        MusicAPITests.testloadMusicObjectByID(list06);
     }
 
     /**
-     * Checks if the list of search results has at least the minimum expected number of occurrences of a keyword.
-     * @param _list
-     * @param _keyword
-     * @param _expectedHits
+     * Checks if the MusicObjectList has at least the minimum number of expected occurrences of a keyword.
+     * @param _list : The MusicObjectList.
+     * @param _keyword : The keyword to look for.
+     * @param _expectedHits : The minimum number of times the keyword is expected to appear.
      */
-    private static void checkSearchResults(MusicObjectList _list, String _keyword, int _minExpectedHits) {
+    private static void checkForKeywordPrecense(MusicObjectList _list, String _keyword, int _minExpectedHits) {
         int actualHits = 0;
         // Check if the keyword is present in each MusicObject in the list
         for (MusicObject object : _list.toArrayList()) {
@@ -123,5 +126,84 @@ public class MusicAPITests {
         }
         // Return false otherwise
         return false;
+    }
+
+    /**
+     * Prints all the names of the MusicObjects in the given MusicObjectList.
+     * @param _list
+     */
+    private static void printNames(MusicObjectList _list) {
+        // Print an introduction to the list
+        System.out.println("\n======================================================");
+        System.out.println("\nNames of MusicObjects in the list:");
+        // Print all the artist names in the list
+        System.out.println("\nARTISTS:\n");
+        MusicObjectList artists = _list.getAllArtistObjects();
+        for (MusicObject artist : artists.toArrayList()) {
+            System.out.println(artist.getName());
+        }
+        // Print all the album names in the list
+        System.out.println("\nALBUMS:\n");
+        MusicObjectList albums = _list.getAllAlbumObjects();
+        for (MusicObject album : albums.toArrayList()) {
+            System.out.println(album.getName());
+        }
+        // Print all the track names in the list
+        System.out.println("\nTRACKS:\n");
+        MusicObjectList tracks = _list.getAllTrackObjects();
+        for (MusicObject track : tracks.toArrayList()) {
+            System.out.println(track.getName());
+        }
+    }
+
+    private static void testloadMusicObjectByID(MusicObjectList _list) {
+        // Print introduction
+        System.out.println("\n======================================================");
+        System.out.println("\nLoad-MusicObject-By-ID Tests:");
+        System.out.println("\nName of Original Object | Name of Loaded Object | PASS/FAIL\n");
+        // Print and load names of MusicObjects
+        MusicAPIAdapter adapter = new MusicAPIAdapter();
+        for (MusicObject obj : _list.toArrayList()) {
+            String originalName = obj.getName();
+            System.out.print(originalName + " | ");
+            // The object is an artist
+            if (obj.getType().equals(MusicAPIInterface.ARTIST)) {
+                ArtistObject artist = adapter.loadArtistById(obj.getId());
+                String loadedName = artist.getName();
+                System.out.print(loadedName);
+                // Check if the names are the same
+                MusicAPITests.areNamesTheSame(originalName, loadedName);
+            }
+            // The object is an album
+            if (obj.getType().equals(MusicAPIInterface.ALBUM)) {
+                AlbumObject album = adapter.loadAlbumById(obj.getId());
+                String loadedName = album.getName();
+                System.out.print(loadedName);
+                // Check if the names are the same
+                MusicAPITests.areNamesTheSame(originalName, loadedName);
+            }
+            // The object is a track
+            if (obj.getType().equals(MusicAPIInterface.TRACK)) {
+                TrackObject track = adapter.loadTrackById(obj.getId());
+                String loadedName = track.getName();
+                System.out.print(loadedName);
+                // Check if the names are the same
+                MusicAPITests.areNamesTheSame(originalName, loadedName);
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Prints 'PASS' if the names are the same or 'FAIL' if not.
+     * @param _name1
+     * @param _name2
+     */
+    private static void areNamesTheSame(String _name1, String _name2) {
+        if (_name1.equals(_name2)) {
+            System.out.print(" | *** PASS ***");
+        } else {
+            System.out.print(" | *** FAIL ***");
+        }
     }
 }
