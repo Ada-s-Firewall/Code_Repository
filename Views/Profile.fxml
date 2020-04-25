@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileController">
    <children>
       <Pane layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
@@ -15,7 +14,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#rateButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Rate!" />
+            <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#rateItemButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Rate Item!" />
             <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="640.0">
                <columns>
                   <TableColumn fx:id="listenedToColumn" prefWidth="320.0" text="Listened To:" />

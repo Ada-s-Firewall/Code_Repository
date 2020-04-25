@@ -5,9 +5,13 @@ package Controllers;
  * search results fxml file which is the code for the search results view.
  * Contributors: Eric Cortes Last Updated: 04/22/2020
  */
+
+import Objects.PlanToListenObject;
+import Models.DBInfoRequest;
 import Models.MusicRequest;
 import Objects.MusicObject;
 import Objects.MusicObjectList;
+import Objects.UserObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,6 +70,12 @@ public class ResultController implements Initializable {
     //Variable set to false which coresponds to the maximize functionality
     private static final Boolean RESIZE = false;
 
+    //Variable to hold the current user
+    private UserObject user;
+
+    //Variable to hold the database adapter object
+    private DBInfoRequest dbAdapter;
+
     /**
      * This method handles the action for when the add to listened to button is
      * clicked
@@ -88,7 +98,7 @@ public class ResultController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType);
+            controller.initializeData(searchContent, searchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -109,7 +119,7 @@ public class ResultController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType);
+            controller.initializeData(searchContent, searchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -139,7 +149,7 @@ public class ResultController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType);
+            controller.initializeData(searchContent, searchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -150,7 +160,17 @@ public class ResultController implements Initializable {
 
             //Print api id's of the songs selected
             for(MusicObject theSelection: selection){
-                System.out.println("The ID: " + theSelection.getId() + ", was added to the plan to listen to playlist");
+
+                //Obtain information to make database adapter request
+                String username = this.user.getUserName();
+                String spotifyID = theSelection.getId();
+                String itemType = theSelection.getType();
+                
+                //Make PlanToListenObject with information obtained above
+                PlanToListenObject item = new PlanToListenObject(username, spotifyID, itemType);
+
+                //Make database request
+                dbAdapter.createUserPlanToListen(item);
             }
 
             //Display no items were added message
@@ -160,7 +180,7 @@ public class ResultController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType);
+            controller.initializeData(searchContent, searchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -206,11 +226,12 @@ public class ResultController implements Initializable {
      * @param _searchContent
      * @param _searchType
      */
-    public void initializeData(String _searchContent, String _searchType){
+    public void initializeData(String _searchContent, String _searchType, UserObject _user){
 
         //Initialize variables with pssed in data as parameters
         this.searchContent = _searchContent;
         this.searchType = _searchType;
+        this.user = _user;
     }
 
     /**

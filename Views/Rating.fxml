@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="250.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileController">
+   <children>
+      <Pane layoutX="20.0" layoutY="15.0" prefHeight="120.0" prefWidth="210.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="26.0" layoutY="24.0" text="Rating:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="rateScore" layoutX="111.0" layoutY="29.0" prefHeight="25.0" prefWidth="81.0" />
+            <Button layoutX="83.0" layoutY="75.0" mnemonicParsing="false" onAction="#rateButtonClicked" text="Rate!" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
