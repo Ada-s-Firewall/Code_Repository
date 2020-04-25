@@ -192,7 +192,7 @@ public class DatabaseUpdate {
         _userMusicList.setUsersFavoriteArtists(_newUsersFavoriteArtists);
         //Adds a selected track to the user's list of favorite tracks
         _userMusicList.setUsersFavoriteTracks(_newUsersFavoriteTracks);
-        
+
         while (scanner.hasNext()) {
             //If this record exists in the file, then the array lists will be updated.
             if (scanner.hasNext(userName)) {
@@ -230,9 +230,6 @@ public class DatabaseUpdate {
         // The old password to be replaced
         String oldPassword = _user.getUserPassword();
 
-        // Update userObject password
-        //_user.setUserPassword(_newPassword);
-
         // Update the record in file
         DatabaseUpdate.updateFile(_file, oldPassword, _newPassword);
     }
@@ -249,9 +246,6 @@ public class DatabaseUpdate {
         // The old username to be replaced
         String oldUsername = _user.getUserName();
 
-        // Set the object new username
-        //_user.setUserName(_newUsername);
-
         // Update the record in file
         DatabaseUpdate.updateFile(_file, oldUsername, _newUsername);
     }
@@ -267,9 +261,6 @@ public class DatabaseUpdate {
     private static void updateUserEmail(File _file, UserObject _user, String _newUserEmail) throws FileNotFoundException, IOException {
         // Old user email to be replaced
         String oldUserEmail = _user.getUserEmail();
-
-        // Set object new user email
-        //_user.setUserEmail(_newUserEmail);
 
         // Update the record in the file
         DatabaseUpdate.updateFile(_file, oldUserEmail, _newUserEmail);
