@@ -1,30 +1,45 @@
 package Objects;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- *
- * @author Quinn Tjin-A-Soe Last updated 04.02.2020
+ * Last updated 04.17.2020
+ * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  */
 public class RecordObject {
+
+    //================================ CLASS VARIABLES ================================
 
     protected String uuid;
     protected String name;
     protected int id;
     protected boolean active = true;
-// ================================ CONSTRUCTORS ====================================
+
+    // ================================ CONSTRUCTORS ====================================
+
+    public RecordObject(String _name, int _id) {
+        this.uuid = RecordObject.generateUuid();
+        this.name = _name;
+        this.id = _id;
+    }
+
+    public RecordObject(String _uuid, String _name, int _id) {
+        this.uuid = _uuid;
+        this.name = _name;
+        this.id = _id;
+    }
 
     public RecordObject() {
-        this.setUuid(RecordObject.generateUuid());
+        this.uuid = RecordObject.generateUuid();
     }
 
-    public RecordObject(String uuid, String name, int id) {
-        this.uuid = uuid;
-        this.name = name;
-        this.id = id;
+    public RecordObject(String _uuid) {
+        this.uuid = _uuid;
     }
 
-// ================================ METHODS ====================================
+    // ================================ METHODS ====================================
+
     public void makeActive() {
         this.active = true;
     }
@@ -33,33 +48,55 @@ public class RecordObject {
         this.active = false;
     }
 
+    public boolean isActive() {
+        return this.active;
+    }
+
+     /**
+     * Returns this object's information in an ArrayList of Strings.
+     * @return list
+     */
+    public ArrayList<String> toArrayList() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(this.uuid);
+        return list;
+    }
+
     protected static String generateUuid() {
         return UUID.randomUUID().toString();
     }
 
-// ================================ GETTERS ====================================
+    @Override
+    public String toString() {
+        String objectText = "UUID: " + this.uuid + "\nActive: " + this.active;
+        return objectText;
+    }
+
+    // ================================ GETTERS ====================================
+
     public String getUuid() {
-        return uuid;
+        return this.uuid;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
+
     // ================================ SETTERS ================================
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUuid(String _uuid) {
+        this.uuid = _uuid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String _name) {
+        this.name = _name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int _id) {
+        this.id = _id;
     }
 }

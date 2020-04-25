@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserInfoController">
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileController">
+   <children>
+      <Pane layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="235.0" layoutY="30.0" prefHeight="53.0" prefWidth="198.0" text="My Music List:" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#rateButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Rate!" />
+            <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="640.0">
+               <columns>
+                  <TableColumn fx:id="listenedToColumn" prefWidth="320.0" text="Listened To:" />
+                  <TableColumn fx:id="planToListenToColumn" prefWidth="320.0" text="Plan to Listen To:" />
+               </columns>
+            </TableView>
+            <Button layoutX="599.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out!" />
+            <Button layoutX="600.0" layoutY="398.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="25.0" prefWidth="62.0" text="Settings" />
+            <Button layoutX="374.0" layoutY="328.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Search!" />
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

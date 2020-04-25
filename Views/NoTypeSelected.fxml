@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controllers.SearchController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchController">
    <children>
       <Pane layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -25,6 +24,7 @@
             </HBox>
             <Button layoutX="200.0" layoutY="214.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="103.0" text="Search" />
             <Button layoutX="364.0" layoutY="214.0" mnemonicParsing="false" onAction="#returnToProfileButtonClicked" text="Return to Profile" />
+            <Label layoutX="271.0" layoutY="190.0" text="Please Choose a Type!" textFill="RED" />
          </children>
       </Pane>
    </children>

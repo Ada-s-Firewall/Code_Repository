@@ -1,0 +1,167 @@
+package Models;
+
+/**
+ * This class acts an adapter for performing CRUD operations with the Database.
+ * Last Updated: 4/17/2020
+ *
+ * @author Fernando Villarreal
+ */
+import Database.*;
+import Objects.PlanToListenObject;
+import Objects.RatingObject;
+import Objects.RecordObject;
+import Objects.RecordObjectList;
+import Objects.UserObject;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class DBInfoRequest implements DatabaseInterface {
+
+    //============== CONSTRUCTOR ==============
+    public DBInfoRequest() {
+    }
+
+    //============== METHODS ==============
+    @Override
+    public void createRecord(File _file, ArrayList<String> _record) {
+        try {
+            DatabaseCreate.createRecord(_file, _record);
+        } catch (IOException ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void createUserRecord(UserObject _user) {
+        try {
+            DatabaseCreate.createUserRecord(_user);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void createUserRating(RatingObject _rating) {
+        try {
+            DatabaseCreate.createUserRating(_rating);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void createUserPlanToListen(PlanToListenObject _planToListen) {
+        try {
+            DatabaseCreate.createUserPlanToListen(_planToListen);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(File _file, UserObject _userObject) {
+        try {
+            DatabaseDelete.deleteUserRecord(_file, _userObject);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(UserObject _user) {
+        try {
+            DatabaseDelete.deleteUserRecord(_user);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deleteUserRecord(String _username) {
+        try {
+            DatabaseDelete.deleteUserRecord(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ArrayList<String> readRecord(File _file, String _string) {
+        try {
+            return DatabaseRead.readRecord(_file, _string);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public UserObject readUserRecord(String _username) {
+        try {
+            return DatabaseRead.readUserRecord(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public RecordObjectList readUsersRatings(String _username) {
+        try {
+            return DatabaseRead.readUsersRatings(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public RecordObjectList readUsersPlanToListen(String _username) {
+        try {
+            DatabaseRead.readUsersPlanToListen(_username);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public RecordObject makeActive() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public RecordObject makeInactive() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateUserPassword(UserObject _user, String _newPassword) {
+        try {
+            DatabaseUpdate.updateUserPassword(_user, _newPassword);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUsername(UserObject _user, String _newUsername) {
+        try {
+            DatabaseUpdate.updateUsername(_user, _newUsername);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUserEmail(UserObject _user, String _newUserEmail) {
+        try {
+            DatabaseUpdate.updateUserEmail(_user, _newUserEmail);
+        } catch (Exception ex) {
+            Logger.getLogger(DBInfoRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
