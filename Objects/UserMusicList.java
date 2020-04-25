@@ -4,7 +4,7 @@ package Objects;
 * Object for the user's full music list.
 *
 * @author: Will Higdon
-* Last Updated: April 14, 2020
+* Last Updated: April 25, 2020
 */
 
 import Objects.AlbumObject;
@@ -22,15 +22,15 @@ public class UserMusicList {
     * Variables for the user's music list.
     */
     private String userName;
-    private int usersAlbumsCompleted;
-    private int usersAlbumsPlanToListen;
-    ArrayList<String> usersFavoriteAlbums = new ArrayList<String>();
-    ArrayList<String> usersFavoriteArtists = new ArrayList<String>();
-    ArrayList<String> usersFavoriteTracks = new ArrayList<String>();
+    ArrayList<String> usersAlbumsCompleted;
+    ArrayList<String> usersAlbumsPlanToListen;
+    ArrayList<String> usersFavoriteAlbums;
+    ArrayList<String> usersFavoriteArtists;
+    ArrayList<String> usersFavoriteTracks;
 
     //=================  CONSTRUCTORS =================
 
-    public UserMusicList(String _userName, int _usersAlbumsCompleted, int _usersAlbumsPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
+    public UserMusicList(String _userName, ArrayList<String> _usersAlbumsCompleted, ArrayList<String> _usersAlbumsPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
         this.userName = userName;
         this.usersAlbumsCompleted = usersAlbumsCompleted;
         this.usersAlbumsPlanToListen = usersAlbumsPlanToListen;
@@ -44,10 +44,10 @@ public class UserMusicList {
     public String getUserName() {
         return this.userName;
     }
-    public int getUsersAlbumsCompleted() {
+    public ArrayList<String> getUsersAlbumsCompleted() {
         return this.usersAlbumsCompleted;
     }
-    public int getUsersAlbumsPlanToListen() {
+    public ArrayList<String> getUsersAlbumsPlanToListen() {
         return this.usersAlbumsPlanToListen;
     }
     public ArrayList<String> getUsersFavoriteAlbums() {
@@ -65,10 +65,10 @@ public class UserMusicList {
     public void setUserName(String _userName) {
         this.userName = userName;
     }
-    public void setUsersAlbumsCompleted(int _usersAlbumsCompleted) {
+    public void setUsersAlbumsCompleted(ArrayList<String> _usersAlbumsCompleted) {
         this.usersAlbumsCompleted = usersAlbumsCompleted;
     }
-    public void setUsersAlbumsPlanToListen(int _usersAlbumsPlanToListen) {
+    public void setUsersAlbumsPlanToListen(ArrayList<String> _usersAlbumsPlanToListen) {
         this.usersAlbumsPlanToListen = usersAlbumsPlanToListen;
     }
     public void setUsersFavoriteAlbums(ArrayList<String> usersFavoriteAlbums) {
@@ -81,4 +81,3 @@ public class UserMusicList {
         this.usersFavoriteTracks = usersFavoriteTracks;
     }
 }
-
