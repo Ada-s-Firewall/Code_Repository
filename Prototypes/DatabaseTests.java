@@ -96,7 +96,7 @@ public class DatabaseTests {
         // Create new plan-to-listen records
         PlanToListenObject planToListen01 = new PlanToListenObject("FVilla", "78lgmZwycJ3nzsdgmPPGNx", "track");
         PlanToListenObject planToListen02 = new PlanToListenObject("FVilla", "5CQ30WqJwcep0pYcV4AMNc", "track");
-        PlanToListenObject planToListen03 = new PlanToListenObject("FVilla", "0hCB0YR03f6AmQaHbwWDe8", "track");
+        PlanToListenObject planToListen03 = new PlanToListenObject("Eric C", "5tz69p7tJuGPeMGwNTxYuV", "track");
         // Record the objects
         dbRequest.createUserPlanToListen(planToListen01);
         dbRequest.createUserPlanToListen(planToListen02);

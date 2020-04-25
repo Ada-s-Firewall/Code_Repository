@@ -5,6 +5,7 @@ package Controllers;
  * search fxml file which is the code for the search view. Contributors: Eric
  * Cortes Last Updated: 03/25/2020
  */
+import Objects.UserObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,10 +23,10 @@ import javafx.stage.Stage;
 public class SearchController implements Initializable {
 
     //Variable containing the address of the fxml files
-    private static final String ADDRESS = "/Views/";
+    private final String ADDRESS = "/Views/";
 
     //Variable set to false which coresponds to the maximize functionality
-    private static final Boolean RESIZE = false;
+    private final Boolean RESIZE = false;
 
     //Variable to hold the choice box selection
     @FXML
@@ -34,6 +35,9 @@ public class SearchController implements Initializable {
     //Variable to hold search selection
     @FXML
     private TextField searchContent;
+
+    //Variable to hold user
+    private UserObject user;
 
     /**
      * This method handles the action of when the search button is clicked
@@ -55,13 +59,12 @@ public class SearchController implements Initializable {
             String theSearchType = (String)this.searchType.getValue();
             String theSearchContent = this.searchContent.getText();
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ADDRESS + "AlbumResult.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ADDRESS + "AlbumResult.fxml"));
             Parent artistResultParent = loader.load();
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(theSearchContent, theSearchType);
+            controller.initializeData(theSearchContent, theSearchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -79,7 +82,7 @@ public class SearchController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(theSearchContent, theSearchType);
+            controller.initializeData(theSearchContent, theSearchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -97,7 +100,7 @@ public class SearchController implements Initializable {
             Scene artistResultScene = new Scene(artistResultParent);
 
             ResultController controller = loader.getController();
-            controller.initializeData(theSearchContent, theSearchType);
+            controller.initializeData(theSearchContent, theSearchType, this.user);
 
             Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
             stage.setScene(artistResultScene);
@@ -138,6 +141,16 @@ public class SearchController implements Initializable {
         stage.resizableProperty().setValue(RESIZE);
         stage.show();
 
+    }
+
+    /**
+     * This method initializes the user variable with the passed in user
+     * @param _user
+     */
+    public void initializeUser(UserObject _user){
+
+        //Initialize user to user passed in as parameter
+        this.user = _user;
     }
 
     /**
