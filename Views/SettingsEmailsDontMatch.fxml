@@ -33,7 +33,7 @@
                   </TextField>
                </children>
             </HBox>
-            <Button layoutX="157.0" layoutY="325.0" mnemonicParsing="false" onAction="#changeEmailButtonClicked" text="Change Email!" />
+            <Button layoutX="163.0" layoutY="335.0" mnemonicParsing="false" onAction="#changeEmailButtonClicked" text="Change Email!" />
             <HBox layoutX="109.0" layoutY="118.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
                <children>
                   <TextField fx:id="confirmPassword" prefHeight="37.0" prefWidth="200.0" promptText="confirm password" style="-fx-background-color: transparent;">
@@ -43,7 +43,7 @@
                   </TextField>
                </children>
             </HBox>
-            <Button layoutX="152.0" layoutY="159.0" mnemonicParsing="false" onAction="#changePasswordButtonClicked" text="Change Password!" />
+            <Button layoutX="152.0" layoutY="162.0" mnemonicParsing="false" onAction="#changePasswordButtonClicked" text="Change Password!" />
             <Label layoutX="146.0" layoutY="214.0" text="Change Email:">
                <font>
                   <Font size="18.0" />
@@ -68,6 +68,7 @@
                </children>
             </HBox>
             <Button layoutX="4.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="27.0" prefWidth="49.0" style="-fx-background-color: ;" text="Back" />
+            <Label layoutX="153.0" layoutY="315.0" text="Emails do not match!" textFill="RED" />
          </children>
       </Pane>
    </children>

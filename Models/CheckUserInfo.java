@@ -94,7 +94,7 @@ public class CheckUserInfo {
      * @param _email
      * @return
      */
-    private boolean isEmailValid(String _email) {
+    public boolean isEmailValid(String _email) {
         String at = "@";
         String dot = ".";
         // If the email does not contain '@ ' or '.' characters, return false.
