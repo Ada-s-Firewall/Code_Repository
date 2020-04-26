@@ -30,9 +30,9 @@ public class DatabaseTests {
         System.out.println("Database Test 02:\n\n");
         //DBTest02();
         System.out.println("Database Test 03:\n\n");
-        DBTest03();
+        //DBTest03();
         System.out.println("Database Test 04:\n\n");
-        //DBTest04();
+        DBTest04();
         System.out.println("Database Test 05:\n\n");
         //DBTest05();
     }

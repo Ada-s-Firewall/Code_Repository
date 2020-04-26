@@ -51,7 +51,7 @@ public class SettingsController implements Initializable {
     private final String ADDRESS = "/Views/";
 
     //Variable to hold the database adapter
-    private DBInfoRequest dbAdapter;
+    private DBInfoRequest dbAdapter = new DBInfoRequest();
 
     //Variable to hold the CheckUserInfo object
     private CheckUserInfo userInfoChecker;

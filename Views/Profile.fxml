@@ -15,10 +15,11 @@
                </font>
             </Label>
             <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#rateItemButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Rate Item!" />
-            <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="640.0">
+            <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="630.0">
                <columns>
-                  <TableColumn fx:id="listenedToColumn" prefWidth="320.0" text="Listened To:" />
-                  <TableColumn fx:id="planToListenToColumn" prefWidth="320.0" text="Plan to Listen To:" />
+                  <TableColumn fx:id="nameColumn" prefWidth="210.0" text="Name:" />
+                  <TableColumn fx:id="typeColumn" prefWidth="210.0" text="Type:" />
+                  <TableColumn fx:id="ratingColumn" prefWidth="210.0" text="Rating" />
                </columns>
             </TableView>
             <Button layoutX="599.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out!" />

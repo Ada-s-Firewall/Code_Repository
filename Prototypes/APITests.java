@@ -29,8 +29,8 @@ public class APITests {
         System.out.println("\n\nAPI TEST 03:\n");
         APITests.test03();
         // Perform API Test 04
-        //System.out.println("\n\nAPI TEST 04:\n");
-        //APITests.test04();
+        System.out.println("\n\nAPI TEST 04:\n");
+        APITests.test04();
     }
 
     /**

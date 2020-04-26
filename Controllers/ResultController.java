@@ -74,7 +74,7 @@ public class ResultController implements Initializable {
     private UserObject user;
 
     //Variable to hold the database adapter object
-    private DBInfoRequest dbAdapter;
+    private DBInfoRequest dbAdapter = new DBInfoRequest();
 
     /**
      * This method handles the action for when the add to listened to button is
@@ -165,7 +165,11 @@ public class ResultController implements Initializable {
                 String username = this.user.getUserName();
                 String spotifyID = theSelection.getId();
                 String itemType = theSelection.getType();
-                
+
+                System.out.println("Username: " + username);
+                System.out.println("Spotify ID: " + spotifyID);
+                System.out.println("Item type: " + itemType);
+
                 //Make PlanToListenObject with information obtained above
                 PlanToListenObject item = new PlanToListenObject(username, spotifyID, itemType);
 
@@ -256,7 +260,7 @@ public class ResultController implements Initializable {
 
                 //Make music request with infomation passed in
                 MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(searchContent, searchType, SEARCHNUMBER);
+                MusicObjectList searchResults = request.search(searchContent, searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
@@ -276,7 +280,7 @@ public class ResultController implements Initializable {
 
                 //Make music request with infomation passed in
                 MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(searchContent, searchType, SEARCHNUMBER);
+                MusicObjectList searchResults = request.search(searchContent, searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
@@ -293,7 +297,7 @@ public class ResultController implements Initializable {
 
                 //Make music request with infomation passed in
                 MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(searchContent, searchType, SEARCHNUMBER);
+                MusicObjectList searchResults = request.search(searchContent, searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){

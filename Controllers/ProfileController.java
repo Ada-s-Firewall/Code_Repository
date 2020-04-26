@@ -7,6 +7,7 @@ package Controllers;
  * Last Updated: 04/22/2020
  */
 
+import Objects.PlanToListenObject;
 import Models.DBInfoRequest;
 import Objects.MusicObject;
 import Objects.RatingObject;
@@ -27,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
@@ -38,15 +40,22 @@ public class ProfileController implements Initializable {
 
     //Variable to hold the table.
     @FXML
-    private TableView<?> tableView;
+    private TableView<RatingObject> tableView;
 
     //Variable to hold the first column.
     @FXML
-    private TableColumn<?, ?> listenedToColumn;
+    private TableColumn<RatingObject, String> nameColumn;
 
     //Variable to hold the second column.
     @FXML
-    private TableColumn<?, ?> planToListenToColumn;
+    private TableColumn<RatingObject, String> typeColumn;
+
+    //Variable to hold the second column.
+    @FXML
+    private TableColumn<RatingObject, String> ratingColumn;
+
+    //Variabee to hold the list of the table
+    private final ObservableList<RatingObject> tableList = FXCollections.observableArrayList();
 
 
 //======================= Rating View Varaiables ===============================
@@ -283,6 +292,9 @@ public class ProfileController implements Initializable {
     public void initialize(URL _url, ResourceBundle _rb) {
 
         Platform.runLater(() -> {
+
+            
+
             rateScore.getItems().addAll(SCORES);
         });
     }

@@ -134,15 +134,15 @@ public class DatabaseUpdate {
     public void updateUsersMusicList(File _userPlanToListenFile, UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws Exception {
         Scanner scanner = new Scanner(_userPlanToListenFile);
         String userName = _userMusicList.getUserName();
-        int usersAlbumsCompleted = _userMusicList.getUsersAlbumsCompleted();
-        int usersAlbumsPlanToListen = _userMusicList.getUsersAlbumsPlanToListen();
+        //int usersAlbumsCompleted = _userMusicList.getUsersAlbumsCompleted();
+        //int usersAlbumsPlanToListen = _userMusicList.getUsersAlbumsPlanToListen();
         String stringRecord = "";
         scanner.useDelimiter("\t");
 
         //Updates the number of albums completed in the user's music list
-        _userMusicList.setUsersAlbumsCompleted(_newUsersAlbumsCompleted);
+        //_userMusicList.setUsersAlbumsCompleted(_newUsersAlbumsCompleted);
         //Updates the number of albums that the user has in their plan to listen list
-        _userMusicList.setUsersAlbumsPlanToListen(_newUsersAlbumsPlanToListen);
+        //_userMusicList.setUsersAlbumsPlanToListen(_newUsersAlbumsPlanToListen);
 
         while (scanner.hasNext()) {
             //If this record exists in the file, then the lists will be updated.
