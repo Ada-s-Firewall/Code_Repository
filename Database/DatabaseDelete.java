@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 
 public class DatabaseDelete {
 
-    public static final String active = "true";
-    public static final String inactive = "false";
+    private static final String active = "true";
+    private static final String inactive = "false";
 
     //=========================== PUBLIC METHODS ===============================
     /**
