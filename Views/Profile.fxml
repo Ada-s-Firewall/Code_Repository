@@ -14,7 +14,6 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#rateItemButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Rate Item!" />
             <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="630.0">
                <columns>
                   <TableColumn fx:id="nameColumn" prefWidth="210.0" text="Name:" />
@@ -24,7 +23,7 @@
             </TableView>
             <Button layoutX="599.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out!" />
             <Button layoutX="600.0" layoutY="398.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="25.0" prefWidth="62.0" text="Settings" />
-            <Button layoutX="374.0" layoutY="328.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Search!" />
+            <Button layoutX="293.0" layoutY="329.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Search!" />
          </children>
       </Pane>
    </children>

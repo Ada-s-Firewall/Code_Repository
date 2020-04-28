@@ -15,6 +15,7 @@ import Objects.RatingObject;
 import Objects.UserObject;
 import Objects.RecordObjectList;
 import Database.*;
+import Objects.RecordObject;
 
 public class DatabaseTests {
 
@@ -25,16 +26,18 @@ public class DatabaseTests {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        System.out.println("Database Test 01:\n\n");
+        //System.out.println("Database Test 01:\n\n");
         //DBTest01();
-        System.out.println("Database Test 02:\n\n");
+        //System.out.println("Database Test 02:\n\n");
         //DBTest02();
-        System.out.println("Database Test 03:\n\n");
+        //System.out.println("Database Test 03:\n\n");
         //DBTest03();
-        System.out.println("Database Test 04:\n\n");
-        DBTest04();
-        System.out.println("Database Test 05:\n\n");
+        //System.out.println("Database Test 04:\n\n");
+        //DBTest04();
+        //System.out.println("Database Test 05:\n\n");
         //DBTest05();
+        System.out.println("Database Test 06:\n\n");
+        DBTest06();
     }
 
     public static void DBTest01() throws Exception {
@@ -45,11 +48,11 @@ public class DatabaseTests {
         UserObject user02 = new UserObject("FVilla", "village5", "fvil@email.com", "Francis", "Villagran");
         UserObject user03 = new UserObject("jdoe012", "password01", "jdoe1@email.com", "John", "Doe");
         UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
-        RatingObject rating01 = new RatingObject("FVilla", 9.0, "37394IP6uhnjIpsawpMu4l", "artist");
-        RatingObject rating02 = new RatingObject("JackMan93", 8.5, "2ye2Wgw4gimLv2eAKyk1NB", "artist");
-        RatingObject rating03 = new RatingObject("FVilla", 9.5, "278ZYwGhdK6QTzE3MFePnP", "artist");
-        RatingObject rating04 = new RatingObject("JackMan93", 8.8, "36QJpDe2go2KgaRleHCDTp", "artist");
-        RatingObject rating05 = new RatingObject("jdoe012", 8.3, "2wOqMjp9TyABvtHdOSOTUS", "artist");
+        RatingObject rating01 = new RatingObject("FVilla", "9.0", "37394IP6uhnjIpsawpMu4l", "artist");
+        RatingObject rating02 = new RatingObject("JackMan93", "8.5", "2ye2Wgw4gimLv2eAKyk1NB", "artist");
+        RatingObject rating03 = new RatingObject("FVilla", "9.5", "278ZYwGhdK6QTzE3MFePnP", "artist");
+        RatingObject rating04 = new RatingObject("JackMan93", "8.8", "36QJpDe2go2KgaRleHCDTp", "artist");
+        RatingObject rating05 = new RatingObject("jdoe012", "8.3", "2wOqMjp9TyABvtHdOSOTUS", "artist");
         // Record the new users and ratings
         dbRequest.createUserRecord(user01);
         dbRequest.createUserRecord(user02);
@@ -114,5 +117,25 @@ public class DatabaseTests {
         // Delete users with usernames 'Godzilla129' and 'HonestAbe' from the database
         dbRequest.deleteUserRecord("Godzilla129");
         dbRequest.deleteUserRecord("HonestAbe");
+    }
+
+    public static void DBTest06() throws Exception {
+        // Create a new database adapter
+        DBInfoRequest request = new DBInfoRequest();
+        //Create username variable
+        String username = "Eric C";
+        //Make database request to obtain music in database for user
+        RecordObjectList musicList = request.readUsersPlanToListen(username);
+        //Print the list
+        for(int i = 1; i <= musicList.getLength(); i++){
+
+            RatingObject item = (RatingObject) musicList.get(i);
+            System.out.println(item.getUuid());
+            System.out.println(item.getName());
+            System.out.println(item.getUsername());
+            System.out.println(item.getUsersRating());
+            System.out.println(item.getMusicObjectType());
+            System.out.println(item.getSpotifyId());
+        }
     }
 }

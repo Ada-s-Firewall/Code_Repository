@@ -9,21 +9,26 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ResultController">
    <children>
-      <Pane layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="rateScore" layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="273.0" layoutY="14.0" text="Results:">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button layoutX="131.0" layoutY="319.0" mnemonicParsing="false" onAction="#listenToButonClicked" prefHeight="25.0" prefWidth="186.0" text="Add to Listened to Playlist" />
-            <Button layoutX="355.0" layoutY="319.0" mnemonicParsing="false" onAction="#planToListenButtonClicked" text="Add to Want to Listen to Playlist" />
             <TableView fx:id="tableView" layoutX="252.0" layoutY="67.0" prefHeight="231.0" prefWidth="162.0">
               <columns>
                 <TableColumn fx:id="artistColumn" prefWidth="160.0" text="Artist" />
               </columns>
             </TableView>
-            <Button layoutX="264.0" layoutY="362.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
+            <Button layoutX="273.0" layoutY="388.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
+            <Button layoutX="243.0" layoutY="355.0" mnemonicParsing="false" onAction="#addToMusicListButtonClicked" prefHeight="25.0" prefWidth="198.0" text="Add to Music List!" />
+            <ChoiceBox fx:id="rateScore" layoutX="339.0" layoutY="308.0" prefHeight="25.0" prefWidth="55.0" />
+            <Label layoutX="271.0" layoutY="307.0" text="Rating:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

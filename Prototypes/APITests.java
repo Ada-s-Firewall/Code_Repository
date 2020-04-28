@@ -21,16 +21,16 @@ public class APITests {
     public static void main(String[] args){
         // Perform API Test 01
         System.out.println("API TEST 01:\n");
-        APITests.test01();
+        //APITests.test01();
         // Perform API Test 02
         System.out.println("\n\nAPI TEST 02:\n");
-        APITests.test02();
+        //APITests.test02();
         // Perform API Test 03
         System.out.println("\n\nAPI TEST 03:\n");
         APITests.test03();
         // Perform API Test 04
         System.out.println("\n\nAPI TEST 04:\n");
-        APITests.test04();
+        //APITests.test04();
     }
 
     /**
@@ -75,7 +75,9 @@ public class APITests {
      * Perform API Test 03
      */
     public static void test03() {
-        // Write your own tests here
+        MusicRequest request = new MusicRequest();
+        TrackObject track = request.loadTrackById("4xkOaSrkexMciUUogZKVTS");
+        System.out.println(track.getName());
     }
 
     /**

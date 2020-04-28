@@ -14,20 +14,20 @@ public class RatingObject extends RecordObject {
     * Variables for the user's rating.
     */
     private String username;
-    private double usersRating;
+    private String usersRating;
     private String spotifyID;
     private String musicObjectType;
 
     //=================  CONSTRUCTORS ===================
 
-    public RatingObject(String _name, int _id, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _name, int _id, String _usersRating, String _spotifyID, String _musicObjectType) {
         super(_name, _id);
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
         this.musicObjectType = _musicObjectType;
     }
 
-    public RatingObject(String _uuid, String _name, int _id, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _uuid, String _name, int _id, String _usersRating, String _spotifyID, String _musicObjectType) {
         super(_uuid, _name, _id);
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
@@ -36,7 +36,7 @@ public class RatingObject extends RecordObject {
 
     // The constructors below do not use the id and name variables.
 
-    public RatingObject(String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _username, String _usersRating, String _spotifyID, String _musicObjectType) {
         super();
         this.username = _username;
         this.usersRating = _usersRating;
@@ -44,8 +44,16 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
-    public RatingObject(String _uuid, String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _uuid, String _username, String _usersRating, String _spotifyID, String _musicObjectType) {
         super(_uuid);
+        this.username = _username;
+        this.usersRating = _usersRating;
+        this.spotifyID = _spotifyID;
+        this.musicObjectType = _musicObjectType;
+    }
+
+    public RatingObject(String _uuid, String _name, String _username, String _usersRating, String _spotifyID, String _musicObjectType) {
+        super(_uuid, _name);
         this.username = _username;
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
@@ -61,12 +69,14 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
+    /*
     public RatingObject(String _uuid, String _username, String _spotifyID, String _musicObjectType) {
         super(_uuid);
         this.username = _username;
         this.spotifyID = _spotifyID;
         this.musicObjectType = _musicObjectType;
     }
+    */
 
     // This constrcutors is for Null RatingObjects
 
@@ -101,7 +111,7 @@ public class RatingObject extends RecordObject {
         return this.username;
     }
 
-    public double getUsersRating() {
+    public String getUsersRating() {
         return this.usersRating;
     }
 
@@ -119,7 +129,7 @@ public class RatingObject extends RecordObject {
         this.username = _username;
     }
 
-    public void setUsersRating(double _usersRating) {
+    public void setUsersRating(String _usersRating) {
         this.usersRating = _usersRating;
     }
 
