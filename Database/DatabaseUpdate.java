@@ -3,7 +3,7 @@ package Database;
 /**
  * This class holds all of the methods for updating a file.
  *
- * Last Updated: 04.25.2020.
+ * Last Updated: 04.27.2020.
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
@@ -175,8 +175,23 @@ public class DatabaseUpdate {
     private static void updateUsersPlanToListenList(File _file, UserMusicList _user, ArrayList<String> _newUsersPlanToListen) throws FileNotFoundException, IOException {
         //old plan to listen list to be updated
         ArrayList<String> oldUsersPlanToListen = _user.getUsersPlanToListen();
+        
+        //string builder for the arraylists
+        StringBuilder sb = new StringBuilder();
+        for (String s : oldUsersPlanToListen) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        for (String k : _newUsersPlanToListen) {
+            sb.append(k);
+            sb.append(" ");
+        }
+        //converts to strings
+        String _stringOldUsersPlanToListen = sb.toString();
+        String _stringNewUsersPlanToListen = sb.toString();
+
         //updates the record in the file
-        //DatabaseUpdate.updateFile(_file, oldUsersPlanToListen, _newUsersPlanToListen);
+        DatabaseUpdate.updateFile(_file, _stringOldUsersPlanToListen, _stringNewUsersPlanToListen);
     }
 
     /**
@@ -191,8 +206,13 @@ public class DatabaseUpdate {
     private static void updateUsersRating(File _file, RatingObject _user, double _newUsersRating) throws FileNotFoundException, IOException {
         //the old rating that will be updated
         double oldUsersRating = _user.getUsersRating();
+        
+        //converts the double ratings to strings for the UpdateFile method
+        String _stringOldUsersRating = Double.toString(oldUsersRating);
+        String _stringNewUsersRating = Double.toString(_newUsersRating);
+
         //updates the user's rating
-        //DatabaseUpdate.updateFile(_file, oldUsersRating, _newUsersRating);
+        DatabaseUpdate.updateFile(_file, _stringOldUsersRating, _stringNewUsersRating);
     }
 
     /**
