@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ResultController">
    <children>
-      <Pane fx:id="rateScore" layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
+      <Pane layoutX="37.0" layoutY="37.0" prefHeight="427.0" prefWidth="667.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="273.0" layoutY="14.0" text="Results:">
                <font>
@@ -23,12 +23,12 @@
             </TableView>
             <Button layoutX="273.0" layoutY="388.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
             <Button layoutX="243.0" layoutY="355.0" mnemonicParsing="false" onAction="#addToMusicListButtonClicked" prefHeight="25.0" prefWidth="198.0" text="Add to Music List!" />
-            <ChoiceBox fx:id="rateScore" layoutX="339.0" layoutY="308.0" prefHeight="25.0" prefWidth="55.0" />
             <Label layoutX="271.0" layoutY="307.0" text="Rating:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="rateScore" layoutX="339.0" layoutY="308.0" prefHeight="25.0" prefWidth="55.0" />
          </children>
       </Pane>
    </children>

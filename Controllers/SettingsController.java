@@ -62,7 +62,7 @@ public class SettingsController implements Initializable {
     private final String LOGIN = this.ADDRESS + "LoginPage.fxml";
     private final String PROFILE = this.ADDRESS + "Profile.fxml";
     private final String PASSWORDCHANGED = this.ADDRESS + "SettingsPasswordChanged.fxml";
-    private final String EMAILCHANGED = this.ADDRESS + "EmailChanged.fxml";
+    private final String EMAILCHANGED = this.ADDRESS + "SettingsEmailChanged.fxml";
     private final String SETTINGSPASSWORDSDONTMATCH = this.ADDRESS + "SettingsPasswordsDontMatch.fxml";
     private final String SETTINGSEMAILSDONTMATCH = this.ADDRESS + "SettingsEmailsDontMatch.fxml";
     private final String SETTINGSIMPROPEREMAIL = this.ADDRESS + "SettingsImproperEmail.fxml";

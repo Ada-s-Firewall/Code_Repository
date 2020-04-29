@@ -25,31 +25,41 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Models.DBInfoRequest;
+import Objects.MusicObject;
+import Objects.RatingObject;
 import Objects.RecordObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
+import javafx.scene.control.ChoiceBox;
 
 
 public class ProfileController implements Initializable {
 
     //Variable to hold the table.
     @FXML
-    private TableView<RecordObject> tableView;
+    private TableView<RatingObject> tableView;
 
     //Variable to hold the first column.
     @FXML
-    private TableColumn<RecordObject, String> nameColumn;
+    private TableColumn<RatingObject, String> nameColumn;
 
     //Variable to hold the second column.
     @FXML
-    private TableColumn<RecordObject, String> typeColumn;
+    private TableColumn<RatingObject, String> typeColumn;
 
     //Variable to hold the second column.
     @FXML
-    private TableColumn<RecordObject, String> ratingColumn;
+    private TableColumn<RatingObject, String> ratingColumn;
+
+    //Variable to hold the choice box options
+    @FXML
+    private ChoiceBox rateScore;
+
+    //Variable to hold the scores being displayed in the choicebox
+    private final ObservableList<String> SCORES = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
     //Variable to hold the list of the table
-    private final ObservableList<RecordObject> TABLELIST = FXCollections.observableArrayList();
+    private final ObservableList<RatingObject> TABLELIST = FXCollections.observableArrayList();
 
     //Variable to hold the current user that is logged in.
     private UserObject user;
@@ -68,6 +78,7 @@ public class ProfileController implements Initializable {
     private final String RATINGFXML = this.ADDRESS + "Rating.fxml";
     private final String SETTINGSFXML = this.ADDRESS + "Settings.fxml";
     private final String SEARCHFXML = this.ADDRESS + "Search.fxml";
+    private final String PROFILE = this.ADDRESS + "Profile.fxml";
 
     /**
      * This method handles the action for when the log out button is clicked.
@@ -104,6 +115,52 @@ public class ProfileController implements Initializable {
 
         //Display search page
         displayPage(_event, this.SEARCHFXML);
+    }
+
+    /**
+     * This method handles the action for when the delete item button is clicked
+     * @param _event
+     */
+    @FXML
+    protected void deleteItemButtonClicked(ActionEvent _event) {
+
+    }
+
+    /**
+     * This method handles the action for when the change rating button is clicked
+     * @param _event
+     */
+    @FXML
+    void changeRatingButtonCLicked(ActionEvent _event) throws IOException {
+
+         //Make an observable list of the MusicObjects the user selected
+        ObservableList<RatingObject> selection = tableView.getSelectionModel().getSelectedItems();
+
+        if(selection == null){
+            System.out.println("Nothing selected");
+        } else if((this.rateScore.getValue()) == null){
+            System.out.println("Rate score not selected!");
+        } else{
+
+            //Print api id's of the songs selected
+            for(RatingObject theSelection: selection){
+
+                //Obtain information to make database adapter request
+                String username = this.user.getUserName();
+                String spotifyID = theSelection.getSpotifyId();
+                String itemType = theSelection.getMusicObjectType();
+                String userRating = (String)this.rateScore.getValue();
+
+                //Make PlanToListenObject with information obtained above
+                RatingObject item = new RatingObject(username, userRating, spotifyID, itemType);
+
+                //Make database request
+                this.DBADAPTER.createUserRating(item);
+            }
+
+            //Refresh the profile view
+            displayPage(_event, this.PROFILE);
+        }
     }
 
     /**
@@ -211,11 +268,14 @@ public class ProfileController implements Initializable {
 
             //Add results to the table list to display
             for(int i = 1; i <= results.getLength(); i++){
-                this.TABLELIST.add(results.get(i));
+                this.TABLELIST.add((RatingObject)results.get(i));
             }
 
             //Set the table with the items in the table list
             this.tableView.setItems(this.TABLELIST);
+
+            //Set the rate choice box scores
+            this.rateScore.getItems().addAll(SCORES);
         });
     }
 

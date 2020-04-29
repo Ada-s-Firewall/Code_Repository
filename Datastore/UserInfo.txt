@@ -12,6 +12,6 @@ fdcf24c7-da75-4e94-8477-e3a452fe46c8	JackDude12	TheDude	thedude@email.com	Johnat
 57960424-91f6-4bbe-a413-4a5bc7814582	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
 a32b5f8d-c817-4653-9497-8e246bbc8d58	JeffM	jefftime	jm@email.com	Jeff	Malarky	false
 da6efa63-4eac-4299-a1c1-4b7f0348d8a3	JeffM	jefftime	jm@email.com	Jeff	Malarky	true
-de40cc00-9873-4919-bc81-effcc1955f11	Eric	1234	yahoo@gmail.com	Johnathan	Doe	false
-fcfe085c-fd45-4c41-bf47-ed83c596ae71	Eric	1234	yahoo@gmail.com	Johnathan	Doe	false
-3c83a49b-ebde-4fa9-bf36-ce0f9ef6fbcf	Eric C	1234	e_cortes@uncg.edu	Johnathan	Doe	true
+de40cc00-9873-4919-bc81-effcc1955f11	Eric	1	yahoo@gmail.com	Johnathan	Doe	false
+fcfe085c-fd45-4c41-bf47-ed83c596ae71	Eric	1	yahoo@gmail.com	Johnathan	Doe	false
+3c83a49b-ebde-4fa9-bf36-ce0f9ef6fbcf	Eric C	1	hi@gmail.com	Johnathan	Doe	true

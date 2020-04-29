@@ -86,6 +86,9 @@ public class ResultController implements Initializable {
     private final Boolean RESIZE = false;
 
     //Variables to hold the address of the fxml files
+    private final String ALBUMRESULT = this.ADDRESS + "Result(Album).fxml";
+    private final String ARTISTRESULT = this.ADDRESS + "Result(Artist).fxml";
+    private final String TRACKRESULT = this.ADDRESS + "Result(Track).fxml";
     private final String ALBUMCONFIRMATON = this.ADDRESS + "ResultConfirmation(Album).fxml";
     private final String ARTISTCONFIRMATION = this.ADDRESS + "ResultConfirmation(Artist).fxml";
     private final String TRACKCONFIRMATION = this.ADDRESS + "ResultConfirmation(Track).fxml";
@@ -103,9 +106,9 @@ public class ResultController implements Initializable {
         //Make an observable list of the MusicObjects the user selected
         ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
 
-        if(selection.isEmpty()){
+        if(selection == null){
             System.out.println("Nothing selected");
-        } else if(((String)this.rateScore.getValue()).isEmpty()){
+        } else if((this.rateScore.getValue()) == null){
             System.out.println("Rate score not selected!");
         } else{
 
@@ -125,24 +128,36 @@ public class ResultController implements Initializable {
                 this.DBADAPTER.createUserRating(item);
             }
 
+            //Load and display the appropriate confirmation page
+            if(this.searchType == "artists"){
 
+                displayPage(_event, this.ARTISTCONFIRMATION);
+
+            }else if (this.searchType == "albums"){
+
+                displayPage(_event, this.ALBUMCONFIRMATON);
+
+            }else{
+
+                displayPage(_event, this.TRACKCONFIRMATION);
+
+            }
         }
 
         //Load and display the appropriate page
         if(this.searchType == "artists"){
 
-            displayPage(_event, this.ARTISTCONFIRMATION);
+            displayPage(_event, this.ARTISTRESULT);
 
         }else if (this.searchType == "albums"){
 
-            displayPage(_event, this.ALBUMCONFIRMATON);
+            displayPage(_event, this.ALBUMRESULT);
 
         }else{
 
-            displayPage(_event, this.TRACKCONFIRMATION);
+            displayPage(_event, this.TRACKRESULT);
 
         }
-
     }
 
     /**

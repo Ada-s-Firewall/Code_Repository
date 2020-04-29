@@ -16,7 +16,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button layoutX="234.0" layoutY="354.0" mnemonicParsing="false" onAction="#addToMusicListButtonClicked" prefHeight="25.0" prefWidth="198.0" text="Add to Music List!" />
+            <Button layoutX="234.0" layoutY="364.0" mnemonicParsing="false" onAction="#addToMusicListButtonClicked" prefHeight="25.0" prefWidth="198.0" text="Add to Music List!" />
             <TableView fx:id="tableView" layoutX="94.0" layoutY="67.0" prefHeight="231.0" prefWidth="480.0">
               <columns>
                   <TableColumn fx:id="albumColumn" prefWidth="160.0" text="Album" />
@@ -24,13 +24,14 @@
                   <TableColumn fx:id="releasedColumn" prefWidth="160.0" text="Released" />
               </columns>
             </TableView>
-            <Button layoutX="264.0" layoutY="392.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
-            <Label layoutX="273.0" layoutY="305.0" text="Rating:">
+            <Button layoutX="264.0" layoutY="402.0" mnemonicParsing="false" onAction="#returnToSearchButtonClicked" style="-fx-background-color: #ffffff;" text="Return to Search Page!" textFill="#0ccaff" underline="true" />
+            <Label layoutX="268.0" layoutY="325.0" text="Rating:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="rateScore" layoutX="346.0" layoutY="306.0" prefHeight="25.0" prefWidth="55.0" />
+            <ChoiceBox fx:id="rateScore" layoutX="341.0" layoutY="325.0" prefHeight="25.0" prefWidth="55.0" />
+            <Label layoutX="258.0" layoutY="299.0" text="Album was added to playlist!" textFill="RED" />
          </children>
       </Pane>
    </children>
