@@ -141,7 +141,7 @@ public class RatingObject extends RecordObject {
         this.uuid = _uuid;
     }
 
-    public void setMusicObjectTupe(String _musicObjectType) {
+    public void setMusicObjectType(String _musicObjectType) {
         this.musicObjectType = _musicObjectType;
     }
 }
