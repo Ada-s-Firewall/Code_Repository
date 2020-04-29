@@ -14,3 +14,4 @@ d15b72f8-19c7-4725-a17e-3e6834da508f	Eric C	10	6NeJONAsrs5xp24Jnkr4K0	album	true
 6a844092-4d47-4758-abe3-243406357d55	Eric C	7	0VSzREd1OjEWJ9tXoFHRQH	track	true
 777fb1ea-85e3-4d2a-a032-2868bc25f764	Eric C	5	2IvkS5MXK0vPGnwyJsrEyV	artist	true
 bfed347c-58fe-48f5-b5ad-0d9f9ecee1d5	Eric C	10	17TSJlshgQ5zu0e8dedAla	track	true
+870ae49f-599b-4c68-bae8-da8dda0268b1	Eric C	6	5yGSR75I5RwV9TN8aHanjd	artist	true
