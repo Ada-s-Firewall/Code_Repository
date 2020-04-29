@@ -33,11 +33,11 @@ public class DatabaseDelete {
      */
     public static void deletePlanToListen(PlanToListenObject _planToListen) {
         // Find the username in the file
-        String username = _planToListen.getUsername();
+        String spotifyId = _planToListen.getSpotifyId();
 
         // Delete the user's record in userPlanToListen
         try {
-            deleteRecord(DatabaseInterface.userPlanToListen, username);
+            deleteRecord(DatabaseInterface.userPlanToListen, spotifyId);
         } catch (IOException ex) {
             Logger.getLogger(DatabaseDelete.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,11 +50,11 @@ public class DatabaseDelete {
      */
     public static void deleteRating(RatingObject _rating) {
         // Find the username in the file
-        String username = _rating.getUsername();
+        String spotifyId = _rating.getSpotifyId();
 
         // Delete the user's record in userRatingFile
         try {
-            deleteRecord(DatabaseInterface.userRatingFile, username);
+            deleteRecord(DatabaseInterface.userRatingFile, spotifyId);
         } catch (IOException ex) {
             Logger.getLogger(DatabaseDelete.class.getName()).log(Level.SEVERE, null, ex);
         }

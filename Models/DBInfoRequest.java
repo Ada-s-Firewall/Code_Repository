@@ -1,11 +1,11 @@
 package Models;
 
 /**
- * This class acts wrapper for an instance of the DatabaseAdapter.
- * Last Updated: 4/28/2020
+ * This class acts wrapper for an instance of the DatabaseAdapter. Last Updated:
+ * 4/28/2020
+ *
  * @author Fernando Villarreal
  */
-
 import Database.DatabaseAdapter;
 import Database.DatabaseInterface;
 import Objects.PlanToListenObject;
@@ -19,11 +19,9 @@ import java.util.ArrayList;
 public class DBInfoRequest implements DatabaseInterface {
 
     //============== CLASS VARIABLES ==============
-
     private final DatabaseAdapter adapter = new DatabaseAdapter();
 
     //============== METHODS ==============
-
     @Override
     public void createRecord(File _file, ArrayList<String> _record) {
         this.adapter.createRecord(_file, _record);
@@ -57,6 +55,16 @@ public class DBInfoRequest implements DatabaseInterface {
     @Override
     public void deleteUserRecord(String _username) {
         this.adapter.deleteUserRecord(_username);
+    }
+
+    @Override
+    public void deleteRating(RatingObject _rating) {
+        this.adapter.deleteRating(_rating);
+    }
+
+    @Override
+    public void deletePlanToListen(PlanToListenObject _planToListen) {
+        this.adapter.deletePlanToListen(_planToListen);
     }
 
     @Override

@@ -1,11 +1,10 @@
 package Database;
 
 /**
- * This class acts as an adapter for the Database.
- * Last Updated: 4/28/2020
+ * This class acts as an adapter for the Database. Last Updated: 4/28/2020
+ *
  * @author Fernando Villarreal
  */
-
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.RecordObject;
@@ -20,12 +19,10 @@ import java.util.logging.Logger;
 public class DatabaseAdapter implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
-
     public DatabaseAdapter() {
     }
 
     //============== METHODS ==============
-
     @Override
     public void createRecord(File _file, ArrayList<String> _record) {
         try {
@@ -89,6 +86,23 @@ public class DatabaseAdapter implements DatabaseInterface {
         }
     }
 
+    @Override
+    public void deleteRating(RatingObject _rating) {
+        try {
+            DatabaseDelete.deleteRating(_rating);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deletePlanToListen(PlanToListenObject _planToListen) {
+        try {
+            DatabaseDelete.deletePlanToListen(_planToListen);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @Override
     public ArrayList<String> readRecord(File _file, String _string) {
         try {

@@ -26,18 +26,18 @@ public class DatabaseTests {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        //System.out.println("Database Test 01:\n\n");
+        System.out.println("Database Test 01:\n\n");
         //DBTest01();
-        //System.out.println("Database Test 02:\n\n");
+        System.out.println("Database Test 02:\n\n");
         //DBTest02();
-        //System.out.println("Database Test 03:\n\n");
-        //DBTest03();
-        //System.out.println("Database Test 04:\n\n");
+        System.out.println("Database Test 03:\n\n");
+        DBTest03();
+        System.out.println("Database Test 04:\n\n");
         //DBTest04();
-        //System.out.println("Database Test 05:\n\n");
+        System.out.println("Database Test 05:\n\n");
         //DBTest05();
         System.out.println("Database Test 06:\n\n");
-        DBTest06();
+        //DBTest06();
     }
 
     public static void DBTest01() throws Exception {
@@ -91,6 +91,12 @@ public class DatabaseTests {
         dbRequest.updateUserEmail(user02, "THISISMYNEWEMAIL@email.com");
         dbRequest.updateUserPassword(user01, "THISISMYNEWPASSWORD");
         dbRequest.updateUserPassword(user02, "THISISMYNEWPASSWORD");
+//        RatingObject rating01 = new RatingObject("FVilla", "9.0", "37394IP6uhnjIpsawpMu4l", "artist");
+//        RatingObject rating02 = new RatingObject("JackMan93", "8.5", "2ye2Wgw4gimLv2eAKyk1NB", "artist");
+        PlanToListenObject planToListen03 = new PlanToListenObject("Eric C", "5tz69p7tJuGPeMGwNTxYuV", "track");
+        //dbRequest.deleteRating(rating02);
+        dbRequest.deletePlanToListen(planToListen03);
+
     }
 
     public static void DBTest04() throws Exception {
@@ -127,7 +133,7 @@ public class DatabaseTests {
         //Make database request to obtain music in database for user
         RecordObjectList musicList = request.readUsersPlanToListen(username);
         //Print the list
-        for(int i = 1; i <= musicList.getLength(); i++){
+        for (int i = 1; i <= musicList.getLength(); i++) {
 
             RatingObject item = (RatingObject) musicList.get(i);
             System.out.println(item.getUuid());
