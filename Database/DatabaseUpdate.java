@@ -3,7 +3,7 @@ package Database;
 /**
  * This class holds all of the methods for updating a file.
  *
- * Last Updated: 04.21.2020.
+ * Last Updated: 04.28.2020.
  *
  * @authors Quinn Tjin-A-Soe, Will Higdon
  */
@@ -12,6 +12,7 @@ import static Database.DatabaseInterface.userPlanToListen;
 import static Database.DatabaseInterface.userLoginFile;
 import static Database.DatabaseInterface.userRatingFile;
 import Objects.UserObject;
+import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
 import java.io.BufferedReader;
@@ -29,6 +30,7 @@ import java.util.logging.Logger;
 public class DatabaseUpdate {
 
     //=========================== PUBLIC METHODS ================================
+
     /**
      * This method updates the user's password.
      *
@@ -81,8 +83,9 @@ public class DatabaseUpdate {
     }
 
     /**
-     * This method updates a user's rating
+     * This method will update a user's music list and their ratings
      *
+
      * @param _userRatingFile
      * @param _ratingObject
      * @param _newUsersRating
@@ -160,63 +163,37 @@ public class DatabaseUpdate {
                 stringRecord += scanner.next() + "\t";
             }
         }
-        //This second parameter is now true to overwrite the file
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userPlanToListen, true));
-        writer.write(stringRecord);
-        writer.close();
+    }
+     /*
+     * @param _user
+     * @param _newUsersPlanToListen
+     */
+    public static void updateUsersPlanToListenList(UserMusicList _user, ArrayList<String> _newUsersPlanToListen) {
+        //Updates the plan to listen list in the UserPlanToListen file
+        try {
+            DatabaseUpdate.updateUsersPlanToListenList(DatabaseInterface.userPlanToListen, _user, _newUsersPlanToListen);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseUpdate.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
-     * This method updates a user's list of favorite albums, artists, and tracks
+     * public method for updating users rating
      *
-     * @param _userInfofile
-     * @param _userMusicList
-     * @param _newUsersFavoriteAlbums
-     * @param _newUsersFavoriteArtists
-     * @param _newUsersFavoriteTracks
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @param _user
+     * @param _newUsersRating
      */
-    public void updateUsersMusicList(File _userInfoFile, UserMusicList _userMusicList, ArrayList<String> _newUsersFavoriteAlbums, ArrayList<String> _newUsersFavoriteArtists, ArrayList<String> _newUsersFavoriteTracks) throws Exception {
-        Scanner scanner = new Scanner(userInfoFile);
-        String userName = _userMusicList.getUserName();
-        ArrayList<String> usersFavoriteAlbums = _userMusicList.getUsersFavoriteAlbums();
-        ArrayList<String> usersFavoriteArtists = _userMusicList.getUsersFavoriteArtists();
-        ArrayList<String> usersFavoriteTracks = _userMusicList.getUsersFavoriteTracks();
-        String stringRecord = "";
-        scanner.useDelimiter("\t");
-
-        //Adds a selected album to the user's list of favorite albums
-        _userMusicList.setUsersFavoriteAlbums(_newUsersFavoriteAlbums);
-        //Adds a selected artist to the user's list of favorite artists
-        _userMusicList.setUsersFavoriteArtists(_newUsersFavoriteArtists);
-        //Adds a selected track to the user's list of favorite tracks
-        _userMusicList.setUsersFavoriteTracks(_newUsersFavoriteTracks);
-
-        while (scanner.hasNext()) {
-            //If this record exists in the file, then the array lists will be updated.
-            if (scanner.hasNext(userName)) {
-
-                stringRecord += _userMusicList.getUserName() + "\t";
-                stringRecord += _userMusicList.getUsersFavoriteAlbums() + "\t";
-                stringRecord += _userMusicList.getUsersFavoriteArtists() + "\t";
-                stringRecord += _userMusicList.getUsersFavoriteTracks() + "\t";
-                stringRecord += DatabaseInterface.active + "\n";
-            }
-            if (scanner.hasNext("\n")) {
-                stringRecord += "\n";
-            } //This else statement adds the rest of the records that do not match.
-            else {
-                stringRecord += scanner.next() + "\t";
-            }
+    public static void updateUsersRating(RatingObject _user, double _newUsersRating) {
+        //updates the user's rating in the userRating file
+        try {
+            DatabaseUpdate.updateUsersRating(DatabaseInterface.userRatingFile, _user, _newUsersRating);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseUpdate.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //This second parameter is now true to overwrite the file
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userInfoFile, true));
-        writer.write(stringRecord);
-        writer.close();
     }
 
     //=========================== PRIVATE METHODS ===============================
+
     /**
      * This method updates a user password.
      *
@@ -267,6 +244,58 @@ public class DatabaseUpdate {
     }
 
     /**
+     * private method for updating a plan to listen list
+     *
+     * @param _file
+     * @param _user
+     * @param _newUsersPlanToListen
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    private static void updateUsersPlanToListenList(File _file, UserMusicList _user, ArrayList<String> _newUsersPlanToListen) throws FileNotFoundException, IOException {
+        //old plan to listen list to be updated
+        ArrayList<String> oldUsersPlanToListen = _user.getUsersPlanToListen();
+
+        //string builder for the arraylists
+        StringBuilder sb = new StringBuilder();
+        for (String s : oldUsersPlanToListen) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        for (String k : _newUsersPlanToListen) {
+            sb.append(k);
+            sb.append(" ");
+        }
+        //converts to strings
+        String _stringOldUsersPlanToListen = sb.toString();
+        String _stringNewUsersPlanToListen = sb.toString();
+
+        //updates the record in the file
+        DatabaseUpdate.updateFile(_file, _stringOldUsersPlanToListen, _stringNewUsersPlanToListen);
+    }
+
+    /**
+     * private method for updating users rating
+     *
+     * @param _file
+     * @param _user
+     * @param _newUsersRating
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    private static void updateUsersRating(File _file, RatingObject _user, double _newUsersRating) throws FileNotFoundException, IOException {
+        //the old rating that will be updated
+        double oldUsersRating = _user.getUsersRating();
+
+        //converts the double ratings to strings for the UpdateFile method
+        String _stringOldUsersRating = Double.toString(oldUsersRating);
+        String _stringNewUsersRating = Double.toString(_newUsersRating);
+
+        //updates the user's rating
+        DatabaseUpdate.updateFile(_file, _stringOldUsersRating, _stringNewUsersRating);
+    }
+
+    /**
      * This method updates the record in file.
      *
      * @param _file
@@ -310,3 +339,4 @@ public class DatabaseUpdate {
         }
     }
 }
+

@@ -22,18 +22,18 @@ public class UserMusicList {
     * Variables for the user's music list.
     */
     private String userName;
-    ArrayList<String> usersAlbumsCompleted;
-    ArrayList<String> usersAlbumsPlanToListen;
-    ArrayList<String> usersFavoriteAlbums;
-    ArrayList<String> usersFavoriteArtists;
-    ArrayList<String> usersFavoriteTracks;
+    protected ArrayList<String> usersAlbumsCompleted;
+    protected ArrayList<String> usersPlanToListen;
+    protected ArrayList<String> usersFavoriteAlbums;
+    protected ArrayList<String> usersFavoriteArtists;
+    protected ArrayList<String> usersFavoriteTracks;
 
     //=================  CONSTRUCTORS =================
 
-    public UserMusicList(String _userName, ArrayList<String> _usersAlbumsCompleted, ArrayList<String> _usersAlbumsPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
+    public UserMusicList(String _userName, ArrayList<String> _usersAlbumsCompleted, ArrayList<String> _usersPlanToListen, ArrayList<String> _usersFavoriteAlbums, ArrayList<String> _usersFavoriteArtists, ArrayList<String> _usersFavoriteTracks) {
         this.userName = userName;
         this.usersAlbumsCompleted = usersAlbumsCompleted;
-        this.usersAlbumsPlanToListen = usersAlbumsPlanToListen;
+        this.usersPlanToListen = usersPlanToListen;
         this.usersFavoriteAlbums = usersFavoriteAlbums;
         this.usersFavoriteArtists = usersFavoriteArtists;
         this.usersFavoriteTracks = usersFavoriteTracks;
@@ -47,8 +47,8 @@ public class UserMusicList {
     public ArrayList<String> getUsersAlbumsCompleted() {
         return this.usersAlbumsCompleted;
     }
-    public ArrayList<String> getUsersAlbumsPlanToListen() {
-        return this.usersAlbumsPlanToListen;
+    public ArrayList<String> getUsersPlanToListen() {
+        return this.usersPlanToListen;
     }
     public ArrayList<String> getUsersFavoriteAlbums() {
         return this.usersFavoriteAlbums;
@@ -68,16 +68,17 @@ public class UserMusicList {
     public void setUsersAlbumsCompleted(ArrayList<String> _usersAlbumsCompleted) {
         this.usersAlbumsCompleted = usersAlbumsCompleted;
     }
-    public void setUsersAlbumsPlanToListen(ArrayList<String> _usersAlbumsPlanToListen) {
-        this.usersAlbumsPlanToListen = usersAlbumsPlanToListen;
+    public void setUsersPlanToListen(ArrayList<String> _usersPlanToListen) {
+        this.usersPlanToListen = usersPlanToListen;
     }
-    public void setUsersFavoriteAlbums(ArrayList<String> usersFavoriteAlbums) {
+    public void setUsersFavoriteAlbums(ArrayList<String> _usersFavoriteAlbums) {
         this.usersFavoriteAlbums = usersFavoriteAlbums;
     }
-    public void setUsersFavoriteArtists(ArrayList<String> usersFavoriteArtists) {
+    public void setUsersFavoriteArtists(ArrayList<String> _usersFavoriteArtists) {
         this.usersFavoriteArtists = usersFavoriteArtists;
     }
-    public void setUsersFavoriteTracks(ArrayList<String> usersFavoriteTracks) {
+    public void setUsersFavoriteTracks(ArrayList<String> _usersFavoriteTracks) {
         this.usersFavoriteTracks = usersFavoriteTracks;
     }
 }
+

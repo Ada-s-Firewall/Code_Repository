@@ -2,7 +2,7 @@ package Models;
 
 /**
  * This class acts as a wrapper for the MusicAPIAdapter class.
- * Last Updated: 4/3/2020
+ * Last Updated: 4/28/2020
  * @author Fernando Villarreal
  */
 
@@ -122,50 +122,6 @@ public class MusicRequest implements MusicAPIInterface {
      */
     public MusicObjectList loadAlbumsOfArtist(String _artistID) {
         return this.loadAlbumsOfArtist(_artistID, this.DEFAULT_QUERY_LIMIT);
-    }
-
-    /**
-     * Call this method for information on how to use this class/object.
-     * This method will be deleted before the full version of this software is released.
-     */
-    public void help() {
-        System.out.println(
-            "================================ HELP ================================\n"
-            + "\n"
-            + "MusicRequest.java" + "\n"
-                + "This class acts as wrapper for the MusicAPIAdapter class (API.MusicAPIAdapter.java).\n"
-                + "MusicAPIAdapter uses a Translator class called apiTranslator. Please make sure you know how to use \n"
-                + "the translator before using this class. Requirements for different APIs and their translators vary.\n"
-                + "\n"
-                + "To use this class:\n"
-                + "Import the class and create a new MusicRequest object.\n"
-                + "\n"
-                + "The methods available for use are:\n"
-                + "search(String _keyword, String _type, int _limit) returns a MusicObjectList.\n"
-                + "search(String _keyword, String _type) returns a MusicObjectList.\n"
-                + "search(String _keyword) returns a MusicObjectList.\n"
-                + "loadArtistById(String _id) returns an ArtistObject.\n"
-                + "loadAlbumById(String _id) returns an AlbumObject.\n"
-                + "loadTrackById(String _id) returns a TrackObject.\n"
-                + "loadAlbumTracks(AlbumObject _album), this is a void method.\n"
-                + "help() displays this message.\n"
-                + "\n"
-                + "The search method parameters:\n"
-                + "_keyword: The keyword can be any string.\n"
-                + "_type: The type or types of MusicObjects you are searching for. These objects can be artists, albums, \n"
-                + "\tand/or tracks. Please use the variables from API.MusicAPIInterface.java for this paremeter. You \n"
-                + "\tcan simply append them together into one string and pass that as the parameter as well.\n"
-                + "\tFor example: String type = MusicAPIInterface.ALBUM + \", \" + MusicAPIInterface.TRACK\n"
-                + "_limit: The limit for how many MusicObjects of each type you want in the search results. For \n"
-                + "\texample: if the limit is 5, you will receive up to 5 ArtistObjects, up to 5 AlbumObjects, and \n"
-                + "\tup to 5 TrackObjects in the search results (up to 15 MusicObjects total).\n"
-                + "\n"
-                + "MusicObject IDs: The IDs of MusicObjects are specific to the Music API that is being used.\n"
-                + "\n"
-                + "Please consult the author of this class if you have anymore questions.\n"
-            + "\n"
-            + "====================================================================="
-        );
     }
 
     //=================== PRIVATE METHODS ===================

@@ -1,20 +1,18 @@
 package Database;
-/*
- * This Database class returns records.
- * This class uses scanners and reads from a textfile.
- */
 
 /**
- * Last Updated: 04.17.2020
+ * This Database class returns records.
+ * This class uses scanners and reads from a text file.
+ * This class uses scanners and reads from a text file.Last Updated: 04.23.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
+
 import Objects.TrackObject;
 import Models.MusicRequest;
 import Objects.AlbumObject;
 import Objects.ArtistObject;
 import Objects.RatingObject;
-import Objects.RecordObject;
 import Objects.PlanToListenObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
