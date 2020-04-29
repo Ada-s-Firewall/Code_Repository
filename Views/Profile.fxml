@@ -14,16 +14,24 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#rateItemButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Rate Item!" />
-            <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="640.0">
+            <TableView fx:id="tableView" layoutX="14.0" layoutY="81.0" prefHeight="231.0" prefWidth="630.0">
                <columns>
-                  <TableColumn fx:id="listenedToColumn" prefWidth="320.0" text="Listened To:" />
-                  <TableColumn fx:id="planToListenToColumn" prefWidth="320.0" text="Plan to Listen To:" />
+                  <TableColumn fx:id="nameColumn" prefWidth="210.0" text="Name:" />
+                  <TableColumn fx:id="typeColumn" prefWidth="210.0" text="Type:" />
+                  <TableColumn fx:id="ratingColumn" prefWidth="210.0" text="Rating" />
                </columns>
             </TableView>
-            <Button layoutX="599.0" layoutY="5.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out!" />
-            <Button layoutX="600.0" layoutY="398.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="25.0" prefWidth="62.0" text="Settings" />
-            <Button layoutX="374.0" layoutY="328.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Search!" />
+            <Button layoutX="4.0" layoutY="4.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log Out!" />
+            <Button layoutX="601.0" layoutY="398.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="25.0" prefWidth="62.0" text="Settings" />
+            <Button layoutX="591.0" layoutY="4.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Search!" />
+            <Button layoutX="229.0" layoutY="398.0" mnemonicParsing="false" onAction="#deleteItemButtonClicked" prefHeight="25.0" prefWidth="198.0" text="Delete item!" />
+            <Label layoutX="228.0" layoutY="315.0" text="Change Rating:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="rateScore" layoutX="353.0" layoutY="316.0" prefHeight="25.0" prefWidth="72.0" />
+            <Button layoutX="283.0" layoutY="347.0" mnemonicParsing="false" onAction="#changeRatingButtonCLicked" prefHeight="25.0" prefWidth="93.0" text="Change!" />
          </children>
       </Pane>
    </children>

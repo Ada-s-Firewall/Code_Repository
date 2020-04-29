@@ -22,11 +22,11 @@ public class UserMusicList {
     * Variables for the user's music list.
     */
     private String userName;
-    ArrayList<String> usersAlbumsCompleted;
-    ArrayList<String> usersPlanToListen;
-    ArrayList<String> usersFavoriteAlbums;
-    ArrayList<String> usersFavoriteArtists;
-    ArrayList<String> usersFavoriteTracks;
+    protected ArrayList<String> usersAlbumsCompleted;
+    protected ArrayList<String> usersPlanToListen;
+    protected ArrayList<String> usersFavoriteAlbums;
+    protected ArrayList<String> usersFavoriteArtists;
+    protected ArrayList<String> usersFavoriteTracks;
 
     //=================  CONSTRUCTORS =================
 
@@ -71,13 +71,13 @@ public class UserMusicList {
     public void setUsersPlanToListen(ArrayList<String> _usersPlanToListen) {
         this.usersPlanToListen = usersPlanToListen;
     }
-    public void setUsersFavoriteAlbums(ArrayList<String> usersFavoriteAlbums) {
+    public void setUsersFavoriteAlbums(ArrayList<String> _usersFavoriteAlbums) {
         this.usersFavoriteAlbums = usersFavoriteAlbums;
     }
-    public void setUsersFavoriteArtists(ArrayList<String> usersFavoriteArtists) {
+    public void setUsersFavoriteArtists(ArrayList<String> _usersFavoriteArtists) {
         this.usersFavoriteArtists = usersFavoriteArtists;
     }
-    public void setUsersFavoriteTracks(ArrayList<String> usersFavoriteTracks) {
+    public void setUsersFavoriteTracks(ArrayList<String> _usersFavoriteTracks) {
         this.usersFavoriteTracks = usersFavoriteTracks;
     }
 }
