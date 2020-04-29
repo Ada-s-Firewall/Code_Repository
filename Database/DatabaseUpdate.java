@@ -153,7 +153,7 @@ public class DatabaseUpdate {
 
                 stringRecord += _userMusicList.getUserName() + "\t";
                 stringRecord += _userMusicList.getUsersAlbumsCompleted() + "\t";
-                stringRecord += _userMusicList.getUsersAlbumsPlanToListen() + "\t";
+                stringRecord += _userMusicList.getUsersPlanToListen() + "\t";
                 stringRecord += DatabaseInterface.active + "\n";
             }
             if (scanner.hasNext("\n")) {
@@ -285,10 +285,10 @@ public class DatabaseUpdate {
      */
     private static void updateUsersRating(File _file, RatingObject _user, double _newUsersRating) throws FileNotFoundException, IOException {
         //the old rating that will be updated
-        double oldUsersRating = _user.getUsersRating();
+        String oldUsersRating = _user.getUsersRating();
 
         //converts the double ratings to strings for the UpdateFile method
-        String _stringOldUsersRating = Double.toString(oldUsersRating);
+        String _stringOldUsersRating = (oldUsersRating);
         String _stringNewUsersRating = Double.toString(_newUsersRating);
 
         //updates the user's rating
