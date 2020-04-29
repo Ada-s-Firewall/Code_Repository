@@ -1,18 +1,17 @@
 package Database;
 
+/**
+ * This interface holds all the methods for the database classes.
+ * Last Updated: 04.13.2020
+ * @author Quinn Tjin-A-Soe, Fernando Villarreal
+ */
+
 import Objects.*;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
- * This interface holds all the methods for the database classes.
- *
- * Last Updated: 04.13.2020
- *
- * @author Quinn Tjin-A-Soe, Fernando Villarreal
- *
- */
 public interface DatabaseInterface {
+
 //=========================== CLASS VARIABLES ==================================
 
     public static final File userInfoFile = new File("src/Datastore/UserInfo.txt");
