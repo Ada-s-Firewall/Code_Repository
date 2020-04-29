@@ -85,6 +85,86 @@ public class DatabaseUpdate {
     /**
      * This method will update a user's music list and their ratings
      *
+
+     * @param _userRatingFile
+     * @param _ratingObject
+     * @param _newUsersRating
+     * @throws FileNotFoundException
+     * @throws IOExeption
+     */
+    public void updateUsersRating(File _userRatingFile, RatingObject _ratingObject, String _newUsersRating) throws Exception {
+        Scanner scanner = new Scanner(userRatingFile);
+        String userName = _ratingObject.getName();
+        String usersRating = _ratingObject.getUsersRating();
+        String stringRecord = "";
+        scanner.useDelimiter("\t");
+
+        //This will update the user's rating
+        _ratingObject.setUsersRating(_newUsersRating);
+
+        while (scanner.hasNext()) {
+            //If this record exists in the file, then the rating will be updated.
+            if (scanner.hasNext(userName)) {
+                stringRecord += _ratingObject.getUuid() + "\t";
+                stringRecord += _ratingObject.getName() + "\t";
+                stringRecord += _ratingObject.getUsersRating() + "\t";
+                stringRecord += DatabaseInterface.active + "\n";
+            }
+            if (scanner.hasNext("\n")) {
+                stringRecord += "\n";
+            } //This else statement adds the rest of the records that do not match.
+            else {
+                stringRecord += scanner.next() + "\t";
+            }
+        }
+        //This second parameter is now true to overwrite the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userRatingFile, true));
+        writer.write(stringRecord);
+        writer.close();
+    }
+
+    /**
+     * This method updates the user's list of albums they've completed or plan
+     * to listen
+     *
+     * @param _userPlanToListenFile
+     * @param _userMusicList
+     * @param _newUsersAlbumsCompleted
+     * @param _newUsersAlbumsPlanToListen
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void updateUsersMusicList(File _userPlanToListenFile, UserMusicList _userMusicList, int _newUsersAlbumsCompleted, int _newUsersAlbumsPlanToListen) throws Exception {
+        Scanner scanner = new Scanner(_userPlanToListenFile);
+        String userName = _userMusicList.getUserName();
+        //int usersAlbumsCompleted = _userMusicList.getUsersAlbumsCompleted();
+        //int usersAlbumsPlanToListen = _userMusicList.getUsersAlbumsPlanToListen();
+        String stringRecord = "";
+        scanner.useDelimiter("\t");
+
+        //Updates the number of albums completed in the user's music list
+        //_userMusicList.setUsersAlbumsCompleted(_newUsersAlbumsCompleted);
+        //Updates the number of albums that the user has in their plan to listen list
+        //_userMusicList.setUsersAlbumsPlanToListen(_newUsersAlbumsPlanToListen);
+
+        while (scanner.hasNext()) {
+            //If this record exists in the file, then the lists will be updated.
+            if (scanner.hasNext(userName)) {
+
+                stringRecord += _userMusicList.getUserName() + "\t";
+                stringRecord += _userMusicList.getUsersAlbumsCompleted() + "\t";
+                stringRecord += _userMusicList.getUsersAlbumsPlanToListen() + "\t";
+                stringRecord += DatabaseInterface.active + "\n";
+            }
+            if (scanner.hasNext("\n")) {
+                stringRecord += "\n";
+            } //This else statement adds the rest of the records that do not match.
+            else {
+                stringRecord += scanner.next() + "\t";
+            }
+        }
+    }
+     /*
      * @param _user
      * @param _newUsersPlanToListen
      */

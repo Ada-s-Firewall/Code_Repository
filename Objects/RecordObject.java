@@ -30,6 +30,11 @@ public class RecordObject {
         this.id = _id;
     }
 
+    public RecordObject(String _uuid, String _name) {
+        this.uuid = _uuid;
+        this.name = _name;
+    }
+
     public RecordObject() {
         this.uuid = RecordObject.generateUuid();
     }

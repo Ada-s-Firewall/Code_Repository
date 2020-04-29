@@ -2,16 +2,11 @@ package Controllers;
 
 /**
  * Purpose: The purpose of this class is to serve as the controller for the
- * search results fxml file which is the code for the search results view.
- * Contributors: Eric Cortes Last Updated: 04/22/2020
+ *          search results fxml file which is the code for the search results view.
+ * Contributors: Eric Cortes
+ * Last Updated: 04/28/2020
  */
 
-import Objects.PlanToListenObject;
-import Models.DBInfoRequest;
-import Models.MusicRequest;
-import Objects.MusicObject;
-import Objects.MusicObjectList;
-import Objects.UserObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,10 +20,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import Models.DBInfoRequest;
+import Models.MusicRequest;
+import Objects.MusicObject;
+import Objects.MusicObjectList;
+import Objects.RatingObject;
+import Objects.UserObject;
 
 public class ResultController implements Initializable {
 
@@ -52,81 +54,45 @@ public class ResultController implements Initializable {
     @FXML
     private TableColumn<MusicObject, String> releasedColumn;
 
+    //Variable to hold the choice box options
+    @FXML
+    private ChoiceBox rateScore;
+
+    //Variable to hold the scores being displayed in the choicebox
+    private final ObservableList<String> SCORES = FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+
     //Varible contining the search content that was passed in by the search page
     private String searchContent;
 
     //Varible containin the search type that was passed in by the search page
     private String searchType;
 
+    //Variable to hold the item that is being rated
+    private MusicObject item;
+
     //Variabee to hold the list of the table
-    private final ObservableList<MusicObject> tableList = FXCollections.observableArrayList();
-
-    //Variable containing the number of searches that whill be displayed
-    private static final int SEARCHNUMBER = 10;
-
-    //Variable containing the address of the fxml files
-    private static final String ADDRESS = "/Views/";
-
-    //Variable set to false which coresponds to the maximize functionality
-    private static final Boolean RESIZE = false;
+    private final ObservableList<MusicObject> TABLELIST = FXCollections.observableArrayList();
 
     //Variable to hold the current user
     private UserObject user;
 
     //Variable to hold the database adapter object
-    private DBInfoRequest dbAdapter;
+    private final DBInfoRequest DBADAPTER = new DBInfoRequest();
 
-    /**
-     * This method handles the action for when the add to listened to button is
-     * clicked
-     * @param _event
-     * @throws java.io.IOException
-     */
-    @FXML
-    protected void listenToButonClicked(ActionEvent _event) throws IOException {
+    //Variable containing the address of the fxml files
+    private final String ADDRESS = "/Views/";
 
-        //Make an observable list of the MusicObjects the user selected
-        ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
+    //Variable set to false which coresponds to the maximize functionality
+    private final Boolean RESIZE = false;
 
-        if(selection.isEmpty()){
-
-            System.out.println("Nothing was selected");
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ADDRESS + "ArtistResultError.fxml"));
-            Parent artistResultParent = loader.load();
-            Scene artistResultScene = new Scene(artistResultParent);
-
-            ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType, this.user);
-
-            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
-            stage.setScene(artistResultScene);
-            stage.resizableProperty().setValue(RESIZE);
-            stage.show();
-
-        }else{
-
-            //Print api id's of the songs selected
-            for(MusicObject theSelection: selection){
-                System.out.println("The ID: " + theSelection.getId() + ", was added to the listened to playlist");
-            }
-
-            //Display no items were added message
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ADDRESS + "SuccessfulPlaylistAddition.fxml"));
-            Parent artistResultParent = loader.load();
-            Scene artistResultScene = new Scene(artistResultParent);
-
-            ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType, this.user);
-
-            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
-            stage.setScene(artistResultScene);
-            stage.resizableProperty().setValue(RESIZE);
-            stage.show();
-        }
-    }
+    //Variables to hold the address of the fxml files
+    private final String ALBUMRESULT = this.ADDRESS + "Result(Album).fxml";
+    private final String ARTISTRESULT = this.ADDRESS + "Result(Artist).fxml";
+    private final String TRACKRESULT = this.ADDRESS + "Result(Track).fxml";
+    private final String ALBUMCONFIRMATON = this.ADDRESS + "ResultConfirmation(Album).fxml";
+    private final String ARTISTCONFIRMATION = this.ADDRESS + "ResultConfirmation(Artist).fxml";
+    private final String TRACKCONFIRMATION = this.ADDRESS + "ResultConfirmation(Track).fxml";
+    private final String SEARCH = this.ADDRESS + "Search.fxml";
 
     /**
      * Method that handles the action for when the add to plan to listen to
@@ -135,28 +101,16 @@ public class ResultController implements Initializable {
      * @throws java.io.IOException
      */
     @FXML
-    protected void planToListenButtonClicked(ActionEvent _event) throws IOException {
+    protected void addToMusicListButtonClicked(ActionEvent _event) throws IOException {
 
         //Make an observable list of the MusicObjects the user selected
         ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
 
-        if(selection.isEmpty()){
-
-            //Display no items were added message
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ADDRESS + "ArtistResultError.fxml"));
-            Parent artistResultParent = loader.load();
-            Scene artistResultScene = new Scene(artistResultParent);
-
-            ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType, this.user);
-
-            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
-            stage.setScene(artistResultScene);
-            stage.resizableProperty().setValue(RESIZE);
-            stage.show();
-
-        }else{
+        if(selection == null){
+            System.out.println("Nothing selected");
+        } else if((this.rateScore.getValue()) == null){
+            System.out.println("Rate score not selected!");
+        } else{
 
             //Print api id's of the songs selected
             for(MusicObject theSelection: selection){
@@ -165,29 +119,45 @@ public class ResultController implements Initializable {
                 String username = this.user.getUserName();
                 String spotifyID = theSelection.getId();
                 String itemType = theSelection.getType();
-                
+                String userRating = (String)this.rateScore.getValue();
+
                 //Make PlanToListenObject with information obtained above
-                PlanToListenObject item = new PlanToListenObject(username, spotifyID, itemType);
+                RatingObject item = new RatingObject(username, userRating, spotifyID, itemType);
 
                 //Make database request
-                dbAdapter.createUserPlanToListen(item);
+                this.DBADAPTER.createUserRating(item);
             }
 
-            //Display no items were added message
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(ADDRESS + "SuccessfulPlaylistAddition.fxml"));
-            Parent artistResultParent = loader.load();
-            Scene artistResultScene = new Scene(artistResultParent);
+            //Load and display the appropriate confirmation page
+            if(this.searchType == "artists"){
 
-            ResultController controller = loader.getController();
-            controller.initializeData(searchContent, searchType, this.user);
+                displayPage(_event, this.ARTISTCONFIRMATION);
 
-            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
-            stage.setScene(artistResultScene);
-            stage.resizableProperty().setValue(RESIZE);
-            stage.show();
+            }else if (this.searchType == "albums"){
+
+                displayPage(_event, this.ALBUMCONFIRMATON);
+
+            }else{
+
+                displayPage(_event, this.TRACKCONFIRMATION);
+
+            }
         }
 
+        //Load and display the appropriate page
+        if(this.searchType == "artists"){
+
+            displayPage(_event, this.ARTISTRESULT);
+
+        }else if (this.searchType == "albums"){
+
+            displayPage(_event, this.ALBUMRESULT);
+
+        }else{
+
+            displayPage(_event, this.TRACKRESULT);
+
+        }
     }
 
     /**
@@ -200,7 +170,7 @@ public class ResultController implements Initializable {
     protected void returnToSearchButtonClicked(ActionEvent _event) throws IOException {
 
         //Display the search view page
-        displayPage(_event, "Search.fxml");
+        displayPage(_event, this.SEARCH);
     }
 
     /**
@@ -211,13 +181,39 @@ public class ResultController implements Initializable {
      */
     private void displayPage(ActionEvent _event, String _fxmlFile) throws IOException {
 
-        //Load and display a view page
-        Parent root = FXMLLoader.load(getClass().getResource(ADDRESS + _fxmlFile));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.resizableProperty().setValue(RESIZE);
-        stage.show();
+        if(_fxmlFile.equals(this.SEARCH)){
+
+            //Obtain location of fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(_fxmlFile));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Pass variables to controller
+            SearchController controller = loader.getController();
+            controller.initializeUser(this.user);
+
+            //Display stage
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.resizableProperty().setValue(this.RESIZE);
+
+        } else{
+
+            //Obtain location of fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(_fxmlFile));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Pass variables to controller
+            ResultController controller = loader.getController();
+            controller.initializeData(this.searchContent, this.searchType, this.user);
+
+            //Display stage
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.resizableProperty().setValue(this.RESIZE);
+            stage.show();
+        }
 
     }
 
@@ -225,6 +221,7 @@ public class ResultController implements Initializable {
      * This method accepts two strings to initialize the view variables
      * @param _searchContent
      * @param _searchType
+     * @param _user
      */
     public void initializeData(String _searchContent, String _searchType, UserObject _user){
 
@@ -245,64 +242,68 @@ public class ResultController implements Initializable {
 
         Platform.runLater(() -> {
 
-            if(searchType == "tracks"){
+            if("tracks".equals(this.searchType)){
 
                 //Initialize each column to look for key word content in object
-                trackColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
-                artistColumn.setCellValueFactory(new PropertyValueFactory <> ("artist"));
-                albumColumn.setCellValueFactory(new PropertyValueFactory <> ("album"));
-                releasedColumn.setCellValueFactory(new PropertyValueFactory <> ("year"));
+                this.trackColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
+                this.artistColumn.setCellValueFactory(new PropertyValueFactory <> ("artist"));
+                this.albumColumn.setCellValueFactory(new PropertyValueFactory <> ("album"));
+                this.releasedColumn.setCellValueFactory(new PropertyValueFactory <> ("year"));
 
 
                 //Make music request with infomation passed in
                 MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(searchContent, searchType, SEARCHNUMBER);
+                MusicObjectList searchResults = request.search(this.searchContent, this.searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
-                    tableList.add(searchResults.get(i));
+                    this.TABLELIST.add(searchResults.get(i));
                 }
 
                 //Set the table with the items in the table list
-                tableView.setItems(tableList);
+                this.tableView.setItems(this.TABLELIST);
 
-            } else if (searchType == "albums"){
+            } else if ("albums".equals(this.searchType)){
 
                 //Initialize each column to look for key word content in object
-                albumColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
-                artistColumn.setCellValueFactory(new PropertyValueFactory <> ("artist"));
-                releasedColumn.setCellValueFactory(new PropertyValueFactory <> ("year"));
+                this.albumColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
+                this.artistColumn.setCellValueFactory(new PropertyValueFactory <> ("artist"));
+                this.releasedColumn.setCellValueFactory(new PropertyValueFactory <> ("year"));
 
 
                 //Make music request with infomation passed in
                 MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(searchContent, searchType, SEARCHNUMBER);
+                MusicObjectList searchResults = request.search(this.searchContent, this.searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
-                    tableList.add(searchResults.get(i));
+                    this.TABLELIST.add(searchResults.get(i));
                 }
 
                 //Set the table with the items in the table list
-                tableView.setItems(tableList);
+                this.tableView.setItems(this.TABLELIST);
 
             } else{
 
                 //Initialize each column to look for key word content in object
-                artistColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
+                this.artistColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
 
                 //Make music request with infomation passed in
                 MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(searchContent, searchType, SEARCHNUMBER);
+                MusicObjectList searchResults = request.search(this.searchContent, this.searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
-                    tableList.add(searchResults.get(i));
+                    this.TABLELIST.add(searchResults.get(i));
                 }
 
                 //Set the table with the items in the table list
-                tableView.setItems(tableList);
+                this.tableView.setItems(this.TABLELIST);
             }
+
+            //Set the rate choice box scores
+            this.rateScore.getItems().addAll(SCORES);
+
         });
     }
 

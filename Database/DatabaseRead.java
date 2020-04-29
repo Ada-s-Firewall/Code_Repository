@@ -8,6 +8,10 @@ package Database;
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
 
+import Objects.TrackObject;
+import Models.MusicRequest;
+import Objects.AlbumObject;
+import Objects.ArtistObject;
 import Objects.RatingObject;
 import Objects.PlanToListenObject;
 import Objects.RecordObjectList;
@@ -38,6 +42,9 @@ public class DatabaseRead {
     // Active and Inactive record values
     private static final String active = "true";
     private static final String inactive = "false";
+
+    //Model to obtain name of spotify id
+    private static MusicRequest musicRequest = new MusicRequest();
 
     //=============== METHODS ===============
 
@@ -134,10 +141,23 @@ public class DatabaseRead {
             // Create a RatingObject and add it to ratingsList
             String uuid = record.get(DatabaseRead.indexUUID);
             String username = record.get(DatabaseRead.indexUsername);
-            Double rating = new Double(record.get(DatabaseRead.indexRating));
+            String rating = new String(record.get(DatabaseRead.indexRating));
             String spotifyID = record.get(DatabaseRead.indexSpotifyID);
             String musicObjectType = record.get(DatabaseRead.indexMusicObjectType);
-            RatingObject ratingObj = new RatingObject(uuid, username, rating, spotifyID, musicObjectType);
+            String name = "hello";
+            if("track".equals(musicObjectType)){
+                System.out.println(spotifyID);
+                TrackObject track = musicRequest.loadTrackById(spotifyID);
+                name = track.getName();
+                System.out.println(name);
+            } else if ("album".equals(musicObjectType)){
+                AlbumObject album = musicRequest.loadAlbumById(spotifyID);
+                name = album.getName();
+            } else if ("artist".equals(musicObjectType)){
+                ArtistObject artist = musicRequest.loadArtistById(spotifyID);
+                name = artist.getName();
+            }
+            RatingObject ratingObj = new RatingObject(uuid, name, username, rating, spotifyID, musicObjectType);
             ratingsList.add(ratingObj);
         }
         // Return the list of ratings
