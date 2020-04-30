@@ -136,10 +136,11 @@ public class ProfileController implements Initializable {
          //Make an observable list of the MusicObjects the user selected
         ObservableList<RatingObject> selection = tableView.getSelectionModel().getSelectedItems();
 
-        if(selection == null){
-            System.out.println("Nothing selected");
-        } else if((this.rateScore.getValue()) == null){
-            System.out.println("Rate score not selected!");
+        if(selection == null || this.rateScore.getValue() == null){
+
+            //Refresh the profile view
+            displayPage(_event, this.PROFILE);
+
         } else{
 
             //Print api id's of the songs selected
@@ -157,9 +158,6 @@ public class ProfileController implements Initializable {
                 //Make database request
                 this.DBADAPTER.createUserRating(item);
             }
-
-            //Refresh the profile view
-            displayPage(_event, this.PROFILE);
         }
     }
 

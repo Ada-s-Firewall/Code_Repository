@@ -106,10 +106,22 @@ public class ResultController implements Initializable {
         //Make an observable list of the MusicObjects the user selected
         ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
 
-        if(selection == null){
-            System.out.println("Nothing selected");
-        } else if((this.rateScore.getValue()) == null){
-            System.out.println("Rate score not selected!");
+        if(selection == null || this.rateScore.getValue() == null){
+
+            //Load and display the appropriate page
+            if(this.searchType == "artists"){
+
+                displayPage(_event, this.ARTISTRESULT);
+
+            }else if (this.searchType == "albums"){
+
+                displayPage(_event, this.ALBUMRESULT);
+
+            }else{
+
+                displayPage(_event, this.TRACKRESULT);
+
+            }
         } else{
 
             //Print api id's of the songs selected
@@ -142,21 +154,6 @@ public class ResultController implements Initializable {
                 displayPage(_event, this.TRACKCONFIRMATION);
 
             }
-        }
-
-        //Load and display the appropriate page
-        if(this.searchType == "artists"){
-
-            displayPage(_event, this.ARTISTRESULT);
-
-        }else if (this.searchType == "albums"){
-
-            displayPage(_event, this.ALBUMRESULT);
-
-        }else{
-
-            displayPage(_event, this.TRACKRESULT);
-
         }
     }
 
