@@ -1,9 +1,9 @@
 package Database;
 
 /**
- * This class acts as an adapter for the Database. Last Updated: 4/28/2020
+ * This class acts as an adapter for the Database. Last Updated: 4/29/2020
  *
- * @author Fernando Villarreal
+ * @authors Fernando Villarreal, Will Higdon
  */
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
@@ -182,9 +182,9 @@ public class DatabaseAdapter implements DatabaseInterface {
     }
 
     @Override
-    public void updateUsersRating(RatingObject _ratingObject, String _stringNewUsersRating) {
+    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating) {
         try {
-            //DatabaseUpdate.updateUsersRating(_ratingObject, _stringNewUsersRating);
+            DatabaseUpdate.updateUsersRating(_ratingObject, _newUsersRating);
         } catch (Exception ex) {
             Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -193,7 +193,7 @@ public class DatabaseAdapter implements DatabaseInterface {
     @Override
     public void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen) {
         try {
-            //DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
+            DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
         } catch (Exception ex) {
             Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
