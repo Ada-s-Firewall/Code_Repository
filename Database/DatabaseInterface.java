@@ -2,7 +2,7 @@ package Database;
 
 /**
  * This interface holds all the methods for the database classes. Last Updated:
- * 04.13.2020
+ * 04.29.2020
  *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
@@ -116,9 +116,9 @@ public interface DatabaseInterface {
     /**
      *
      * @param _user
-     * @param _stringNewUsersPlanToListen
+     * @param _newUsersPlanToListen
      */
-    public abstract void updateUsersPlanToListen(UserMusicList _user, String _stringNewUsersPlanToListen);
+    public abstract void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen);
 
     /**
      * This method returns a specified record from the database.
