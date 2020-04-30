@@ -1,7 +1,5 @@
 package Objects;
 
-import java.util.ArrayList;
-
 /**
  * This is an object for the user's rating of a particular album or song.
  *
@@ -9,10 +7,12 @@ import java.util.ArrayList;
  * Last Updated: April 14, 2020
  */
 
+import java.util.ArrayList;
+
 public class RatingObject extends RecordObject {
-    /*
-    * Variables for the user's rating.
-    */
+
+    //=================  CLASS VARIABLES ===================
+
     private String username;
     private String usersRating;
     private String spotifyID;
@@ -69,16 +69,7 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
-    /*
-    public RatingObject(String _uuid, String _username, String _spotifyID, String _musicObjectType) {
-        super(_uuid);
-        this.username = _username;
-        this.spotifyID = _spotifyID;
-        this.musicObjectType = _musicObjectType;
-    }
-    */
-
-    // This constrcutors is for Null RatingObjects
+    // This constructor is for Null RatingObjects.
 
     public RatingObject(String _nullValue) {
         super(_nullValue);

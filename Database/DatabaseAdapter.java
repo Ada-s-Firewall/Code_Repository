@@ -1,35 +1,35 @@
 package Database;
 
 /**
- * This class acts as an adapter for the Database. Last Updated: 4/29/2020
- *
+ * This class acts as an adapter for the Database.
+ * Last Updated: 4/30/2020.
  * @authors Fernando Villarreal, Will Higdon
  */
+
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.UserMusicList;
-import Objects.RecordObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseAdapter implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
+
     public DatabaseAdapter() {
     }
 
     //============== METHODS ==============
+
     @Override
     public void createRecord(File _file, ArrayList<String> _record) {
         try {
             DatabaseCreate.createRecord(_file, _record);
         } catch (IOException ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseCreate.createUserRecord(_user);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseCreate.createUserRating(_rating);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseCreate.createUserPlanToListen(_planToListen);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseDelete.deleteUserRecord(_file, _userObject);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -74,7 +74,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseDelete.deleteUserRecord(_user);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseDelete.deleteUserRecord(_username);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -92,7 +92,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseDelete.deleteRating(_rating);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -101,7 +101,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseDelete.deletePlanToListen(_planToListen);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
     @Override
@@ -109,7 +109,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             return DatabaseRead.readRecord(_file, _string);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
     }
@@ -119,7 +119,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             return DatabaseRead.readUserRecord(_username);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
     }
@@ -129,7 +129,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             return DatabaseRead.readUsersRatings(_username);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
     }
@@ -139,19 +139,9 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseRead.readUsersPlanToListen(_username);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
-    }
-
-    @Override
-    public RecordObject makeActive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public RecordObject makeInactive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -159,7 +149,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseUpdate.updateUserPassword(_user, _newPassword);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -168,7 +158,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseUpdate.updateUsername(_user, _newUsername);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -177,7 +167,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseUpdate.updateUserEmail(_user, _newUserEmail);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -186,7 +176,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseUpdate.updateUsersRating(_ratingObject, _newUsersRating);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
@@ -195,7 +185,7 @@ public class DatabaseAdapter implements DatabaseInterface {
         try {
             DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 }
