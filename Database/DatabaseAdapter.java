@@ -179,4 +179,13 @@ public class DatabaseAdapter implements DatabaseInterface {
             Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating) {
+        try {
+            DatabaseUpdate.updateUsersRating(_ratingObject, _newUsersRating);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

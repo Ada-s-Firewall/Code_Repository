@@ -111,4 +111,9 @@ public class DBInfoRequest implements DatabaseInterface {
     public void updateUserEmail(UserObject _user, String _newUserEmail) {
         this.adapter.updateUserEmail(_user, _newUserEmail);
     }
+
+    @Override
+    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating){
+        this.adapter.updateUsersRating(_ratingObject, _newUsersRating);
+    }
 }

@@ -107,6 +107,13 @@ public interface DatabaseInterface {
     public abstract void updateUserEmail(UserObject _user, String _newUserEmail);
 
     /**
+     *
+     * @param _ratingObject
+     * @param _newUsersRating
+     */
+    public abstract void updateUsersRating(RatingObject _ratingObject, String _newUsersRating);
+
+    /**
      * This method returns a specified record from the database.
      *
      * @param _file

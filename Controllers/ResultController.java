@@ -103,37 +103,46 @@ public class ResultController implements Initializable {
     @FXML
     protected void addToMusicListButtonClicked(ActionEvent _event) throws IOException {
 
-        //Make an observable list of the MusicObjects the user selected
-        ObservableList<MusicObject> selection = tableView.getSelectionModel().getSelectedItems();
+        //Obtain the item as a Music Object
+        MusicObject selection = tableView.getSelectionModel().getSelectedItem();
 
-        if(selection == null){
-            System.out.println("Nothing selected");
-        } else if((this.rateScore.getValue()) == null){
-            System.out.println("Rate score not selected!");
+        //Make sure selection or rate score are not empty
+        if(selection == null || this.rateScore.getValue() == null){
+
+            //Load and display the appropriate page
+            if(this.searchType == "artists"){
+
+                displayPage(_event, this.ARTISTRESULT);
+
+            }else if (this.searchType == "albums"){
+
+                displayPage(_event, this.ALBUMRESULT);
+
+            }else{
+
+                displayPage(_event, this.TRACKRESULT);
+
+            }
         } else{
 
-            //Print api id's of the songs selected
-            for(MusicObject theSelection: selection){
+            //Obtain information to make database adapter request
+            String username = this.user.getUserName();
+            String spotifyID = selection.getId();
+            String itemType = selection.getType();
+            String userRating = (String)this.rateScore.getValue();
 
-                //Obtain information to make database adapter request
-                String username = this.user.getUserName();
-                String spotifyID = theSelection.getId();
-                String itemType = theSelection.getType();
-                String userRating = (String)this.rateScore.getValue();
+            //Make RatingObject with information obtained above
+            RatingObject itemToSave = new RatingObject(username, userRating, spotifyID, itemType);
 
-                //Make PlanToListenObject with information obtained above
-                RatingObject item = new RatingObject(username, userRating, spotifyID, itemType);
-
-                //Make database request
-                this.DBADAPTER.createUserRating(item);
-            }
+            //Make database request
+            this.DBADAPTER.createUserRating(itemToSave);
 
             //Load and display the appropriate confirmation page
             if(this.searchType == "artists"){
 
                 displayPage(_event, this.ARTISTCONFIRMATION);
 
-            }else if (this.searchType == "albums"){
+            }else if(this.searchType == "albums"){
 
                 displayPage(_event, this.ALBUMCONFIRMATON);
 
@@ -142,21 +151,6 @@ public class ResultController implements Initializable {
                 displayPage(_event, this.TRACKCONFIRMATION);
 
             }
-        }
-
-        //Load and display the appropriate page
-        if(this.searchType == "artists"){
-
-            displayPage(_event, this.ARTISTRESULT);
-
-        }else if (this.searchType == "albums"){
-
-            displayPage(_event, this.ALBUMRESULT);
-
-        }else{
-
-            displayPage(_event, this.TRACKRESULT);
-
         }
     }
 
