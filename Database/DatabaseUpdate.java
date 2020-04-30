@@ -30,7 +30,6 @@ import java.util.logging.Logger;
 public class DatabaseUpdate {
 
     //=========================== PUBLIC METHODS ================================
-
     /**
      * This method updates the user's password.
      *
@@ -82,7 +81,7 @@ public class DatabaseUpdate {
         }
     }
 
-     /*
+    /*
      * @param _user
      * @param _newUsersPlanToListen
      */
@@ -111,7 +110,6 @@ public class DatabaseUpdate {
     }
 
     //=========================== PRIVATE METHODS ===============================
-
     /**
      * This method updates a user password.
      *
@@ -197,7 +195,7 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      * @throws IOException
      */
-     private static void updateUsersRating(File _file, RatingObject _user, String _newUsersRating) throws FileNotFoundException, IOException {
+    private static void updateUsersRating(File _file, RatingObject _user, String _newUsersRating) throws FileNotFoundException, IOException {
         //the old rating that will be updated
         String oldUsersRating = _user.getUsersRating();
 
@@ -218,7 +216,8 @@ public class DatabaseUpdate {
      * @throws IOException
      */
     private static void updateFile(File _file, String _oldRecord, String _newRecord) throws FileNotFoundException, IOException {
-        File originalFile = _file;
+        String path = _file.getAbsolutePath();
+        File originalFile = new File(path);
         BufferedReader reader = new BufferedReader(new FileReader(originalFile));
         BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.temporaryFile));
         String lineInFile = null;
@@ -245,11 +244,9 @@ public class DatabaseUpdate {
             System.out.println("Could not delete file");
             return;
         }
-
         // Rename the new file to the filename the original file had.
         if (!DatabaseInterface.temporaryFile.renameTo(originalFile)) {
             System.out.println("Could not rename file");
         }
     }
 }
-

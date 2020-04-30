@@ -81,6 +81,12 @@ public class DatabaseTests {
         UserObject user04 = new UserObject("jmiller", "password02", "jamil@email.com", "Jane", "Miller");
         //dbRequest.createUserRecord(user03);
         //dbRequest.deleteUserRecord(userInfoFile, user01);
+//        dbRequest.updateUserEmail(user01, "THISISMYNEWEMAIL@email.com");
+//        dbRequest.updateUserEmail(user02, "THISISMYNEWEMAIL@email.com");
+//        dbRequest.updateUserPassword(user01, "THISISMYNEWPASSWORD");
+//        dbRequest.updateUserPassword(user02, "THISISMYNEWPASSWORD");
+//        RatingObject rating01 = new RatingObject("FVilla", "9.0", "37394IP6uhnjIpsawpMu4l", "artist");
+//        RatingObject rating02 = new RatingObject("JackMan93", "8.5", "2ye2Wgw4gimLv2eAKyk1NB", "artist");
         dbRequest.updateUserEmail(user01, "THISISMYNEWEMAIL@email.com");
         dbRequest.updateUserEmail(user02, "THISISMYNEWEMAIL@email.com");
         dbRequest.updateUserPassword(user01, "THISISMYNEWPASSWORD");
@@ -88,9 +94,9 @@ public class DatabaseTests {
         //RatingObject rating01 = new RatingObject("FVilla", "9.0", "37394IP6uhnjIpsawpMu4l", "artist");
         //RatingObject rating02 = new RatingObject("JackMan93", "8.5", "2ye2Wgw4gimLv2eAKyk1NB", "artist");
         PlanToListenObject planToListen03 = new PlanToListenObject("Eric C", "5tz69p7tJuGPeMGwNTxYuV", "track");
+        dbRequest.updateUserPassword(user04, "password03");
         //dbRequest.deleteRating(rating02);
         dbRequest.deletePlanToListen(planToListen03);
-
     }
 
     public static void DBTest04() throws Exception {
