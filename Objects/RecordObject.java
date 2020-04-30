@@ -1,12 +1,13 @@
 package Objects;
 
+/**
+ * Last Updated 04.17.2020
+ * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
+ */
+
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- * Last updated 04.17.2020
- * @author Quinn Tjin-A-Soe | Modified: Fernando Villarreal
- */
 public class RecordObject {
 
     //================================ CLASS VARIABLES ================================

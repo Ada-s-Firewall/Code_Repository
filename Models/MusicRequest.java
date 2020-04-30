@@ -2,7 +2,7 @@ package Models;
 
 /**
  * This class acts as a wrapper for the MusicAPIAdapter class.
- * Last Updated: 4/28/2020
+ * Last Updated: 4/30/2020
  * @author Fernando Villarreal
  */
 
@@ -12,18 +12,16 @@ import Objects.AlbumObject;
 import Objects.ArtistObject;
 import Objects.MusicObjectList;
 import Objects.TrackObject;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MusicRequest implements MusicAPIInterface {
 
     //=================== CLASS VARIABLES ===================
 
     protected final MusicAPIAdapter adapter = new MusicAPIAdapter();
-    private final String DEFAULT_SEARCH_TYPE = MusicAPIInterface.ALL_MUSIC_OBJECT_TYPES;
-    private final int DEFAULT_QUERY_LIMIT = 20;
-    private final int MIN_QUERY_LIMIT = 1;
-    private final int MAX_QUERY_LIMIT = 50;
+    private final String defaultSearchTypes = MusicAPIInterface.ALL_MUSIC_OBJECT_TYPES;
+    private final int defaultQueryLimit = 20;
+    private final int minQueryLimit = 1;
+    private final int maxQueryLimit = 50;
 
     //=================== PUBLIC METHODS ===================
 
@@ -33,7 +31,7 @@ public class MusicRequest implements MusicAPIInterface {
             MusicObjectList searchResults = this.searchHelper(_keyword, _type, _limit);
             return searchResults;
         } catch (Exception ex) {
-            Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
     }
@@ -46,10 +44,10 @@ public class MusicRequest implements MusicAPIInterface {
      */
     public MusicObjectList search(String _keyword, String _type) {
         try {
-            MusicObjectList searchResults = this.searchHelper(_keyword, _type, this.DEFAULT_QUERY_LIMIT);
+            MusicObjectList searchResults = this.searchHelper(_keyword, _type, this.defaultQueryLimit);
             return searchResults;
         } catch (Exception ex) {
-            Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
     }
@@ -61,10 +59,10 @@ public class MusicRequest implements MusicAPIInterface {
      */
     public MusicObjectList search(String _keyword) {
         try {
-            MusicObjectList searchResults = this.searchHelper(_keyword, this.DEFAULT_SEARCH_TYPE, this.DEFAULT_QUERY_LIMIT);
+            MusicObjectList searchResults = this.searchHelper(_keyword, this.defaultSearchTypes, this.defaultQueryLimit);
             return searchResults;
         } catch (Exception ex) {
-            Logger.getLogger(MusicRequest.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
     }
@@ -108,11 +106,11 @@ public class MusicRequest implements MusicAPIInterface {
 
     /**
      * Load and return a MusicObjectList with the AlbumObjects of the given ArtistObject.
-     * @param _artist : The ArtistObject
+     * @param _artist : The ArtistObject.
      * @return MusicObjectList
      */
     public MusicObjectList loadAlbumsOfArtist(ArtistObject _artist) {
-        return this.loadAlbumsOfArtist(_artist, this.DEFAULT_QUERY_LIMIT);
+        return this.loadAlbumsOfArtist(_artist, this.defaultQueryLimit);
     }
 
     /**
@@ -121,7 +119,7 @@ public class MusicRequest implements MusicAPIInterface {
      * @return MusicObjectList
      */
     public MusicObjectList loadAlbumsOfArtist(String _artistID) {
-        return this.loadAlbumsOfArtist(_artistID, this.DEFAULT_QUERY_LIMIT);
+        return this.loadAlbumsOfArtist(_artistID, this.defaultQueryLimit);
     }
 
     //=================== PRIVATE METHODS ===================
@@ -135,11 +133,11 @@ public class MusicRequest implements MusicAPIInterface {
      * @throws Exception
      */
     private MusicObjectList searchHelper(String _keyword, String _type, int _limit) throws Exception {
-        // Check if the keyword is empty
+        // Check if the keyword is empty.
         if (_keyword.isEmpty()) {
             throw new Exception("ERROR: The value of _keyword is invalid.");
         }
-        // Check that the _type is valid and create a new type
+        // Check that the _type is valid and create a new type.
         String type = "";
         if (_type.contains(MusicAPIInterface.ARTIST)) {
             type += MusicAPIInterface.ARTIST + ",";
@@ -150,19 +148,19 @@ public class MusicRequest implements MusicAPIInterface {
         if (_type.contains(MusicAPIInterface.TRACK)) {
             type += MusicAPIInterface.TRACK;
         }
-        // Check if type is empty
+        // Check if type is empty.
         if (type.isEmpty()) {
             throw new Exception("ERROR: The value of _type is invalid.");
         }
-        // Trim the trailing comma in type if present
+        // Trim the trailing comma in type if present.
         if (type.endsWith(",")) {
             type = type.substring(0, type.length() - 1);
         }
-        // Check that the limit is valid
-        if (_limit < this.MIN_QUERY_LIMIT || _limit > this.MAX_QUERY_LIMIT) {
+        // Check that the limit is valid.
+        if (_limit < this.minQueryLimit || _limit > this.maxQueryLimit) {
             throw new Exception("ERROR: The limit must be an integer between 1 and 50.");
         }
-        // Perform the search using the adapter
+        // Perform the search using the adapter.
         System.out.println("Searching for \"" + _keyword + "\" in \"" + type + "\".");
         return this.adapter.search(_keyword, type, _limit);
     }
