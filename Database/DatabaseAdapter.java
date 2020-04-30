@@ -193,7 +193,7 @@ public class DatabaseAdapter implements DatabaseInterface {
     @Override
     public void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen) {
         try {
-            DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
+            //DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
         } catch (Exception ex) {
             Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
