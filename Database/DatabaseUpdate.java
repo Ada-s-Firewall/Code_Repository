@@ -86,7 +86,7 @@ public class DatabaseUpdate {
      * @param _user
      * @param _newUsersPlanToListen
      */
-    public static void updateUsersPlanToListenList(UserMusicList _user, ArrayList<String> _newUsersPlanToListen) {
+    public static void updateUsersPlanToListenList(UserMusicList _user, String _newUsersPlanToListen) {
         //Updates the plan to listen list in the UserPlanToListen file
         try {
             DatabaseUpdate.updateUsersPlanToListenList(DatabaseInterface.userPlanToListen, _user, _newUsersPlanToListen);
@@ -170,7 +170,7 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    private static void updateUsersPlanToListenList(File _file, UserMusicList _user, ArrayList<String> _newUsersPlanToListen) throws FileNotFoundException, IOException {
+    private static void updateUsersPlanToListenList(File _file, UserMusicList _user, String _newUsersPlanToListen) throws FileNotFoundException, IOException {
         //old plan to listen list to be updated
         ArrayList<String> oldUsersPlanToListen = _user.getUsersPlanToListen();
 
@@ -180,16 +180,12 @@ public class DatabaseUpdate {
             sb.append(s);
             sb.append(" ");
         }
-        for (String k : _newUsersPlanToListen) {
-            sb.append(k);
-            sb.append(" ");
-        }
+
         //converts to strings
         String _stringOldUsersPlanToListen = sb.toString();
-        String _stringNewUsersPlanToListen = sb.toString();
 
         //updates the record in the file
-        DatabaseUpdate.updateFile(_file, _stringOldUsersPlanToListen, _stringNewUsersPlanToListen);
+        DatabaseUpdate.updateFile(_file, _stringOldUsersPlanToListen, _newUsersPlanToListen);
     }
 
     /**
