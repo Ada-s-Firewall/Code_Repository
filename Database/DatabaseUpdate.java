@@ -101,7 +101,7 @@ public class DatabaseUpdate {
      * @param _user
      * @param _newUsersRating
      */
-    public static void updateUsersRating(RatingObject _user, double _newUsersRating) {
+    public static void updateUsersRating(RatingObject _user, String _newUsersRating) {
         //updates the user's rating in the userRating file
         try {
             DatabaseUpdate.updateUsersRating(DatabaseInterface.userRatingFile, _user, _newUsersRating);
@@ -201,16 +201,15 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    private static void updateUsersRating(File _file, RatingObject _user, double _newUsersRating) throws FileNotFoundException, IOException {
+     private static void updateUsersRating(File _file, RatingObject _user, String _newUsersRating) throws FileNotFoundException, IOException {
         //the old rating that will be updated
         String oldUsersRating = _user.getUsersRating();
 
         //converts the double ratings to strings for the UpdateFile method
         String _stringOldUsersRating = (oldUsersRating);
-        String _stringNewUsersRating = Double.toString(_newUsersRating);
 
         //updates the user's rating
-        DatabaseUpdate.updateFile(_file, _stringOldUsersRating, _stringNewUsersRating);
+        DatabaseUpdate.updateFile(_file, _stringOldUsersRating, _newUsersRating);
     }
 
     /**
