@@ -1,17 +1,17 @@
 JackMan93	THISISMYNEWPASSWORD	false
 FVilla	THISISMYNEWPASSWORD	true
-jdoe01232	password0123	true
+jdoe012	password01	true
 jmiller	password02	false
-JoJo123123123	joj123123123	true
+JoJo111	joj111	true
 HonestAbe	liberator	false
 HonestJane	honesty	true
-Godzilla12329	incarnate	false
-JackDude1232	TheDude	true
+Godzilla129	incarnate	false
+JackDude12	TheDude	true
 JeffM	jefftime	false
 JeffM	jefftime	false
 JeffM	jefftime	true
 JeffM	jefftime	true
 JeffM	jefftime	true
-Eric	123	false
-Eric	123	false
-Eric C	123	true
+Eric	1	false
+Eric	1	false
+Eric C	1	true

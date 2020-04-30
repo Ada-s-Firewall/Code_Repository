@@ -1,17 +1,1 @@
-0e9fc3ae-6257-4998-ac8e-29100b9f810e	FVilla	9.0	37394IP6uhnjIpsawpMu4l	artist	true
-1b17594d-49e0-4fe2-86a3-4ba481a404d3	JackMan93	8.5	2ye2Wgw4gimLv2eAKyk1NB	artist	true
-fa02b677-17e2-4469-93ad-e565234b52c7	FVilla	9.5	278ZYwGhdK6QTzE3MFePnP	artist	true
-29b31b3f-0d9b-4e42-aa37-2039f915f5d1	JackMan93	8.8	36QJpDe2go2KgaRleHCDTp	artist	true
-55862e05-cf43-4af6-90d1-d1ba99ca2221	jdoe012	8.3	2wOqMjp9TyABvtHdOSOTUS	artist	true
-381809d7-a0b9-4dd6-af2c-2810c9c88d75	Eric C	0.0	6TkwBmyNs21ihKTi8Bp0eo	track	true
-3ff009e9-b694-4d48-9f23-557c1db817e7	Eric C	0.0	5tz69p7tJuGPeMGwNTxYuV	track	true
-82a3bdd6-9d02-4257-803f-979ee058e232	Eric C	0.0	7FIWs0pqAYbP91WWM0vlTQ	track	true
-c68e8890-5591-4edc-bd75-d18b11d0106f	Eric C	0.0	4xkOaSrkexMciUUogZKVTS	track	true
-371eb73a-498f-433b-991b-ce9abd605888	Eric C	10	4otkd9As6YaxxEkIjXPiZ6	album	true
-8644842f-5605-4d26-9018-dda674a5ee13	Eric C	10	7M2tXmeS15NAzEn7ABFeBg	track	true
-d15b72f8-19c7-4725-a17e-3e6834da508f	Eric C	10	6NeJONAsrs5xp24Jnkr4K0	album	true
-9fe684e5-b526-467f-bccf-ea0143e9a2c4	Eric C	6	2cWBwpqMsDJC1ZUwz813lo	album	true
-6a844092-4d47-4758-abe3-243406357d55	Eric C	7	0VSzREd1OjEWJ9tXoFHRQH	track	true
-777fb1ea-85e3-4d2a-a032-2868bc25f764	Eric C	5	2IvkS5MXK0vPGnwyJsrEyV	artist	true
-bfed347c-58fe-48f5-b5ad-0d9f9ecee1d5	Eric C	10	17TSJlshgQ5zu0e8dedAla	track	true
-870ae49f-599b-4c68-bae8-da8dda0268b1	Eric C	6	5yGSR75I5RwV9TN8aHanjd	artist	true
+

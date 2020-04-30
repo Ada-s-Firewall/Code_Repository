@@ -1,13 +1,13 @@
 package Database;
 
 /**
- * This class acts as an adapter for the Database.
- * Last Updated: 4/28/2020
- * @author Fernando Villarreal
+ * This class acts as an adapter for the Database. Last Updated: 4/29/2020
+ *
+ * @authors Fernando Villarreal, Will Higdon
  */
-
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
+import Objects.UserMusicList;
 import Objects.RecordObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
@@ -20,12 +20,10 @@ import java.util.logging.Logger;
 public class DatabaseAdapter implements DatabaseInterface {
 
     //============== CONSTRUCTOR ==============
-
     public DatabaseAdapter() {
     }
 
     //============== METHODS ==============
-
     @Override
     public void createRecord(File _file, ArrayList<String> _record) {
         try {
@@ -89,6 +87,23 @@ public class DatabaseAdapter implements DatabaseInterface {
         }
     }
 
+    @Override
+    public void deleteRating(RatingObject _rating) {
+        try {
+            DatabaseDelete.deleteRating(_rating);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void deletePlanToListen(PlanToListenObject _planToListen) {
+        try {
+            DatabaseDelete.deletePlanToListen(_planToListen);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @Override
     public ArrayList<String> readRecord(File _file, String _string) {
         try {
@@ -161,6 +176,24 @@ public class DatabaseAdapter implements DatabaseInterface {
     public void updateUserEmail(UserObject _user, String _newUserEmail) {
         try {
             DatabaseUpdate.updateUserEmail(_user, _newUserEmail);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating) {
+        try {
+            DatabaseUpdate.updateUsersRating(_ratingObject, _newUsersRating);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen) {
+        try {
+            DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
         } catch (Exception ex) {
             Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }

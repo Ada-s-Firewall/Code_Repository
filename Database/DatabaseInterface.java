@@ -1,11 +1,11 @@
 package Database;
 
 /**
- * This interface holds all the methods for the database classes.
- * Last Updated: 04.13.2020
+ * This interface holds all the methods for the database classes. Last Updated:
+ * 04.29.2020
+ *
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
-
 import Objects.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public interface DatabaseInterface {
 
 //=========================== CLASS VARIABLES ==================================
-
     public static final File userInfoFile = new File("src/Datastore/UserInfo.txt");
     public static final File userLoginFile = new File("src/Datastore/UserLogin.txt");
     public static final File userRatingFile = new File("src/Datastore/UserRating.txt");
@@ -58,7 +57,7 @@ public interface DatabaseInterface {
      * @param _file
      * @param _userObject
      */
-    public abstract void deleteUserRecord(File _file, UserObject _userObject);
+    public void deleteUserRecord(File _file, UserObject _userObject);
 
     /**
      * Deletes the given user from the database.
@@ -73,6 +72,18 @@ public interface DatabaseInterface {
      * @param _username
      */
     public void deleteUserRecord(String _username);
+
+    /**
+     *
+     * @param _rating
+     */
+    public void deleteRating(RatingObject _rating);
+
+    /**
+     *
+     * @param _planToListen
+     */
+    public void deletePlanToListen(PlanToListenObject _planToListen);
 
     /**
      *
@@ -94,6 +105,20 @@ public interface DatabaseInterface {
      * @param _newUserEmail
      */
     public abstract void updateUserEmail(UserObject _user, String _newUserEmail);
+
+    /**
+     *
+     * @param _ratingObject
+     * @param _newUsersRating
+     */
+    public abstract void updateUsersRating(RatingObject _ratingObject, String _newUsersRating);
+
+    /**
+     *
+     * @param _user
+     * @param _newUsersPlanToListen
+     */
+    public abstract void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen);
 
     /**
      * This method returns a specified record from the database.
