@@ -15,3 +15,5 @@ JeffM	jefftime	true
 Eric	1	false
 Eric	1	false
 Eric C	1	true
+FVilla	computer	true
+JackMan9000	eightthousand	true
