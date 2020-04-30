@@ -119,7 +119,7 @@ public class DBInfoRequest implements DatabaseInterface {
     }
 
     @Override
-    public void updateUsersPlanToListen(UserMusicList _user, String _stringNewUsersPlanToListen) {
-        this.adapter.updateUsersPlanToListen(_user, _stringNewUsersPlanToListen);
+    public void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen) {
+        this.adapter.updateUsersPlanToListen(_user, _newUsersPlanToListen);
     }
 }
