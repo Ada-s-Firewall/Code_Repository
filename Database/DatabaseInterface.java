@@ -118,7 +118,7 @@ public interface DatabaseInterface {
      * @param _user
      * @param _newUsersPlanToListen
      */
-    public abstract void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen);
+    public abstract void updateUsersPlanToListen(UserMusicList _user, ArrayList<String> _newUsersPlanToListen);
 
     /**
      * This method returns a specified record from the database.

@@ -191,7 +191,7 @@ public class DatabaseAdapter implements DatabaseInterface {
     }
 
     @Override
-    public void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen) {
+    public void updateUsersPlanToListen(UserMusicList _user, ArrayList<String> _newUsersPlanToListen) {
         try {
             DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
         } catch (Exception ex) {
