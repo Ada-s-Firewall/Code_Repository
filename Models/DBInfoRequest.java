@@ -11,6 +11,7 @@ import Database.DatabaseInterface;
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.RecordObject;
+import Objects.UserMusicList;
 import Objects.RecordObjectList;
 import Objects.UserObject;
 import java.io.File;
@@ -115,5 +116,10 @@ public class DBInfoRequest implements DatabaseInterface {
     @Override
     public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating){
         this.adapter.updateUsersRating(_ratingObject, _newUsersRating);
+    }
+
+    @Override
+    public void updateUsersPlanToListen(UserMusicList _user, String _stringNewUsersPlanToListen) {
+        this.adapter.updateUsersPlanToListen(_user, _stringNewUsersPlanToListen);
     }
 }
