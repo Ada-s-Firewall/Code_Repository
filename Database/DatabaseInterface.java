@@ -12,13 +12,12 @@ import java.util.ArrayList;
 
 public interface DatabaseInterface {
 
-    //=========================== CLASS VARIABLES ==================================
-
-    public static final File userInfoFile = new File("src/Datastore/UserInfo.txt");
-    public static final File userLoginFile = new File("src/Datastore/UserLogin.txt");
-    public static final File userRatingFile = new File("src/Datastore/UserRating.txt");
-    public static final File userPlanToListen = new File("src/Datastore/UserPlanToListen.txt");
-    public static final File temporaryFile = new File("src/Datastore/TemporaryFile.txt");
+//=========================== CLASS VARIABLES ==================================
+    public static final File userInfoFile = new File("src" + File.separator + "Datastore" + File.separator + "UserInfo.txt");
+    public static final File userLoginFile = new File("src" + File.separator + "Datastore" + File.separator + "UserLogin.txt");
+    public static final File userRatingFile = new File("src" + File.separator + "Datastore" + File.separator + "UserRating.txt");
+    public static final File userPlanToListen = new File("src" + File.separator + "Datastore" + File.separator + "UserPlanToListen.txt");
+    public static final File temporaryFile = new File("src" + File.separator + "Datastore" + File.separator + "TemporaryFile.txt");
     public static final boolean active = true;
     public static final boolean inactive = false;
 
