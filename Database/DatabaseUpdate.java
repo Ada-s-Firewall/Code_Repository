@@ -216,8 +216,11 @@ public class DatabaseUpdate {
      * @throws IOException
      */
     private static void updateFile(File _file, String _oldRecord, String _newRecord) throws FileNotFoundException, IOException {
+        File originalFile = _file;
+        /* Original code below
         String path = _file.getAbsolutePath();
         File originalFile = new File(path);
+        */
         BufferedReader reader = new BufferedReader(new FileReader(originalFile));
         BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.temporaryFile));
         String lineInFile = null;
