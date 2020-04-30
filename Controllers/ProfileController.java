@@ -25,9 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Models.DBInfoRequest;
-import Objects.MusicObject;
 import Objects.RatingObject;
-import Objects.RecordObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
 import javafx.scene.control.ChoiceBox;
@@ -75,10 +73,10 @@ public class ProfileController implements Initializable {
 
     //Variables containing fxml files obtainable from this fxml view
     private final String LOGINFXML = this.ADDRESS + "LoginPage.fxml";
-    private final String RATINGFXML = this.ADDRESS + "Rating.fxml";
     private final String SETTINGSFXML = this.ADDRESS + "Settings.fxml";
     private final String SEARCHFXML = this.ADDRESS + "Search.fxml";
     private final String PROFILE = this.ADDRESS + "Profile.fxml";
+    private final String PROFILEITEMDELETED = this.ADDRESS + "ProfileItemDeleted.fxml";
 
     /**
      * This method handles the action for when the log out button is clicked.
@@ -120,22 +118,40 @@ public class ProfileController implements Initializable {
     /**
      * This method handles the action for when the delete item button is clicked
      * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    protected void deleteItemButtonClicked(ActionEvent _event) {
+    protected void deleteItemButtonClicked(ActionEvent _event) throws IOException {
 
+        //Obtain selected item
+        RatingObject selection = tableView.getSelectionModel().getSelectedItem();
+
+        //Check if something was selected
+        if(selection == null){
+
+            //Refresh the profile view
+            displayPage(_event, this.PROFILE);
+
+        } else{
+
+            //Delete item and refrash page
+            this.DBADAPTER.deleteRating(selection);
+            displayPage(_event, this.PROFILE);
+        }
     }
 
     /**
      * This method handles the action for when the change rating button is clicked
      * @param _event
+     * @throws java.io.IOException
      */
     @FXML
-    void changeRatingButtonCLicked(ActionEvent _event) throws IOException {
+    protected void changeRatingButtonCLicked(ActionEvent _event) throws IOException {
 
-         //Make an observable list of the MusicObjects the user selected
-        ObservableList<RatingObject> selection = tableView.getSelectionModel().getSelectedItems();
+        //Obtain selected item
+        RatingObject selection = tableView.getSelectionModel().getSelectedItem();
 
+        //Check to make sure selection and rate score are not empty
         if(selection == null || this.rateScore.getValue() == null){
 
             //Refresh the profile view
@@ -143,21 +159,19 @@ public class ProfileController implements Initializable {
 
         } else{
 
-            //Print api id's of the songs selected
-            for(RatingObject theSelection: selection){
+            //Obtain new rate score for item
+            String userRating = (String)this.rateScore.getValue();
 
-                //Obtain information to make database adapter request
-                String username = this.user.getUserName();
-                String spotifyID = theSelection.getSpotifyId();
-                String itemType = theSelection.getMusicObjectType();
-                String userRating = (String)this.rateScore.getValue();
+            //Test print selection and new rating
+            String previousRating = selection.getUsersRating();
+            String itemName = selection.getName();
+            System.out.println("The item: " + itemName + ", will change its rating from " + previousRating + " to " + userRating + ".");
 
-                //Make PlanToListenObject with information obtained above
-                RatingObject item = new RatingObject(username, userRating, spotifyID, itemType);
+            //Make database request
+            this.DBADAPTER.updateUsersRating(selection, userRating);
 
-                //Make database request
-                this.DBADAPTER.createUserRating(item);
-            }
+            //Refresh the profile view
+            displayPage(_event, this.PROFILE);
         }
     }
 
@@ -176,24 +190,6 @@ public class ProfileController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.resizableProperty().setValue(this.RESIZE);
-            stage.show();
-
-        }else if(_fxmlFile.equals(this.RATINGFXML)){
-
-            //Obtain location of fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(_fxmlFile));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-
-            //Pass variables to controller
-            ProfileController controller = loader.getController();
-            controller.initializeUser(this.user);
-
-            //controller.initializeItem(item);
-
-            //Display stage
-            stage.setScene(new Scene(root));
             stage.resizableProperty().setValue(this.RESIZE);
             stage.show();
 
@@ -230,6 +226,24 @@ public class ProfileController implements Initializable {
             stage.setScene(scene);
             stage.resizableProperty().setValue(this.RESIZE);
             stage.show();
+
+        }else if(_fxmlFile.equals(this.PROFILE)){
+
+            //Obtain location of fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(_fxmlFile));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Pass variables to controller
+            ProfileController controller = loader.getController();
+            controller.initializeUser(this.user);
+
+            //Display stage
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.resizableProperty().setValue(this.RESIZE);
+            stage.show();
+
         }
     }
 

@@ -92,7 +92,7 @@ public class DatabaseUpdate {
      * @throws FileNotFoundException
      * @throws IOExeption
      */
-    public void updateUsersRating(File _userRatingFile, RatingObject _ratingObject, String _newUsersRating) throws Exception {
+    public static void updateUsersRating(RatingObject _ratingObject, String _newUsersRating) throws Exception {
         Scanner scanner = new Scanner(userRatingFile);
         String userName = _ratingObject.getName();
         String usersRating = _ratingObject.getUsersRating();
