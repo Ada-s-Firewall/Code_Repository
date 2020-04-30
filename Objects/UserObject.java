@@ -4,15 +4,14 @@ import java.util.ArrayList;
 
 /*
  * Object for the user and their information.
- *
  * @authors: Will Higdon, Quinn Tjin-A-Soe | Modified: Fernando Villarreal
  * Last Updated: April 16, 2020
  */
 
 public class UserObject extends RecordObject {
-    /*
-     * String variables for all of the user's information.
-     */
+
+    //================= CLASS VARIABLES ==================
+
     private String userName;
     private String userPassword;
     private String userEmail;

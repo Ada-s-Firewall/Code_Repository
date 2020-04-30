@@ -10,7 +10,6 @@ import API.MusicAPIAdapter;
 import API.MusicAPIInterface;
 import Models.MusicRequest;
 import Objects.*;
-import java.util.ArrayList;
 
 public class APITests {
 

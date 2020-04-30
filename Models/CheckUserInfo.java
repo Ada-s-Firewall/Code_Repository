@@ -56,13 +56,13 @@ public class CheckUserInfo {
         if (!this.isEmailValid(_newUser.getUserEmail())) {
             return this.INVALID_EMAIL_ERROR;
         }
-        // Check if the email is already being used by an existing user
+        // Check if the email is already being used by an existing user.
         String givenEmail = _newUser.getUserEmail();
         UserObject userWithEmail = this.adapter.readUserRecord(_newUser.getUserEmail());
         if (givenEmail.equals(userWithEmail.getUserEmail())) {
             return this.EMAIL_TAKEN_ERROR;
         }
-        // Return true if the information is valid
+        // Return true if the information is valid.
         return this.NO_ERRORS;
     }
 
@@ -74,19 +74,17 @@ public class CheckUserInfo {
      * @return int
      */
     public int isUserCredentialsValid(String _theUsername, String _thePassword) {
-        // Get the User associated with the given username
+        // Get the User associated with the given username.
         UserObject existingUser = this.adapter.readUserRecord(_theUsername);
         String existingUsername = existingUser.getUserName();
         String existingPassword = existingUser.getUserPassword();
-        // Check if the given and existing usernames and passwords match
+        // Check if the given and existing usernames and passwords match.
         if (_theUsername.equals(existingUsername) && _thePassword.equals(existingPassword)) {
             return this.NO_ERRORS;
         }
-        // If the usernames and passwords don't match, return an error code
+        // If the usernames and passwords don't match, return an error code.
         return this.INVALID_LOGIN;
     }
-
-    //===================== PRIVATE METHODS =====================
 
     /**
      * Checks if the given email address is valid. Returns true if it is or returns
@@ -116,7 +114,7 @@ public class CheckUserInfo {
         if (atIndex >= dotIndex || distance <= 1) {
             return false;
         }
-        // Return true if the email is in a valid format
+        // Return true if the email is in a valid format.
         return true;
     }
 }

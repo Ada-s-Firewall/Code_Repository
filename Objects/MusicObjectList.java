@@ -69,7 +69,7 @@ public class MusicObjectList {
      */
     public MusicObjectList getAllArtistObjects() {
         ArrayList<MusicObject> artistList = new ArrayList<>();
-        // Iterate over the list and get all ArtistObjects
+        // Iterate over the list and get all ArtistObjects.
         for (MusicObject obj : this.list) {
             if (obj.getType().equals("artist")) {
                 ArtistObject artist = (ArtistObject)obj;
@@ -88,7 +88,7 @@ public class MusicObjectList {
      */
     public MusicObjectList getAllAlbumObjects() {
         ArrayList<MusicObject> albumList = new ArrayList<>();
-        // Iterate over the list and get all AlbumObjects
+        // Iterate over the list and get all AlbumObjects.
         for (MusicObject obj : this.list) {
             if (obj.getType().equals("album")) {
                 AlbumObject album = (AlbumObject)obj;
@@ -107,7 +107,7 @@ public class MusicObjectList {
      */
     public MusicObjectList getAllTrackObjects() {
         ArrayList<MusicObject> trackList = new ArrayList<>();
-        // Iterate over the list and get all TrackObjects
+        // Iterate over the list and get all TrackObjects.
         for (MusicObject obj : this.list) {
             if (obj.getType().equals("track")) {
                 TrackObject track = (TrackObject)obj;

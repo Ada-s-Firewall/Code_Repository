@@ -1,11 +1,8 @@
 package Prototypes;
 
-import static Database.DatabaseInterface.userInfoFile;
-import static Database.DatabaseInterface.userLoginFile;
 /**
- * This class is specifically for conducting tests on the Database classes. Last
- * Updated: 4/20/2020
- *
+ * This class is specifically for conducting tests on the Database classes.
+ * Last Updated: 4/30/2020
  * @author Fernando Villarreal, Quinn Tjin-A-Soe
  */
 
@@ -14,14 +11,11 @@ import Objects.PlanToListenObject;
 import Objects.RatingObject;
 import Objects.UserObject;
 import Objects.RecordObjectList;
-import Database.*;
-import Objects.RecordObject;
 
 public class DatabaseTests {
 
     /**
-     * Main method for doing tests
-     *
+     * Main method for doing tests.
      * @param args
      * @throws java.lang.Exception
      */
@@ -91,8 +85,8 @@ public class DatabaseTests {
         dbRequest.updateUserEmail(user02, "THISISMYNEWEMAIL@email.com");
         dbRequest.updateUserPassword(user01, "THISISMYNEWPASSWORD");
         dbRequest.updateUserPassword(user02, "THISISMYNEWPASSWORD");
-//        RatingObject rating01 = new RatingObject("FVilla", "9.0", "37394IP6uhnjIpsawpMu4l", "artist");
-//        RatingObject rating02 = new RatingObject("JackMan93", "8.5", "2ye2Wgw4gimLv2eAKyk1NB", "artist");
+        //RatingObject rating01 = new RatingObject("FVilla", "9.0", "37394IP6uhnjIpsawpMu4l", "artist");
+        //RatingObject rating02 = new RatingObject("JackMan93", "8.5", "2ye2Wgw4gimLv2eAKyk1NB", "artist");
         PlanToListenObject planToListen03 = new PlanToListenObject("Eric C", "5tz69p7tJuGPeMGwNTxYuV", "track");
         //dbRequest.deleteRating(rating02);
         dbRequest.deletePlanToListen(planToListen03);

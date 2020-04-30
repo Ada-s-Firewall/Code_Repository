@@ -1,18 +1,19 @@
 package Database;
 
 /**
- * This interface holds all the methods for the database classes. Last Updated:
- * 04.29.2020
- *
+ * This interface holds all the methods for the database classes.
+ * Last Updated: 04.30.2020
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
+
 import Objects.*;
 import java.io.File;
 import java.util.ArrayList;
 
 public interface DatabaseInterface {
 
-//=========================== CLASS VARIABLES ==================================
+    //=========================== CLASS VARIABLES ==================================
+
     public static final File userInfoFile = new File("src/Datastore/UserInfo.txt");
     public static final File userLoginFile = new File("src/Datastore/UserLogin.txt");
     public static final File userRatingFile = new File("src/Datastore/UserRating.txt");
@@ -21,7 +22,8 @@ public interface DatabaseInterface {
     public static final boolean active = true;
     public static final boolean inactive = false;
 
-//============================ METHODS ========================================
+    //============================ METHODS ========================================
+
     /**
      * This method creates a new record.
      *
@@ -154,19 +156,4 @@ public interface DatabaseInterface {
      * @return RecordObjectList
      */
     public RecordObjectList readUsersPlanToListen(String _username);
-
-    /**
-     * This method makes a record active.
-     *
-     * @return
-     */
-    public RecordObject makeActive();
-
-    /**
-     * This method makes a record inactive (deleted).
-     *
-     * @return
-     */
-    public RecordObject makeInactive();
-
 }

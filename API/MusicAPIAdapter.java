@@ -1,7 +1,7 @@
 package API;
 
 /**
- * This API Adapter class uses a given API Translator to make requests to a particular API.
+ * This Music API Adapter class uses a given API Translator to make requests to a particular Music API.
  * Last Updated: 4/3/2020
  * @author Fernando Villarreal
  */

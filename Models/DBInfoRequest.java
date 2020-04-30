@@ -1,16 +1,15 @@
 package Models;
 
 /**
- * This class acts wrapper for an instance of the DatabaseAdapter. Last Updated:
- * 4/28/2020
- *
+ * This class acts wrapper for an instance of the DatabaseAdapter.
+ * Last Updated: 4/30/2020
  * @author Fernando Villarreal
  */
+
 import Database.DatabaseAdapter;
 import Database.DatabaseInterface;
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
-import Objects.RecordObject;
 import Objects.UserMusicList;
 import Objects.RecordObjectList;
 import Objects.UserObject;
@@ -20,9 +19,11 @@ import java.util.ArrayList;
 public class DBInfoRequest implements DatabaseInterface {
 
     //============== CLASS VARIABLES ==============
+
     private final DatabaseAdapter adapter = new DatabaseAdapter();
 
     //============== METHODS ==============
+
     @Override
     public void createRecord(File _file, ArrayList<String> _record) {
         this.adapter.createRecord(_file, _record);
@@ -86,16 +87,6 @@ public class DBInfoRequest implements DatabaseInterface {
     @Override
     public RecordObjectList readUsersPlanToListen(String _username) {
         return this.adapter.readUsersPlanToListen(_username);
-    }
-
-    @Override
-    public RecordObject makeActive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public RecordObject makeInactive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
