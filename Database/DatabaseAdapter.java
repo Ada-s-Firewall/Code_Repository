@@ -7,6 +7,7 @@ package Database;
  */
 import Objects.PlanToListenObject;
 import Objects.RatingObject;
+import Objects.UserMusicList;
 import Objects.RecordObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
@@ -181,9 +182,18 @@ public class DatabaseAdapter implements DatabaseInterface {
     }
 
     @Override
-    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating) {
+    public void updateUsersRating(RatingObject _ratingObject, String _stringNewUsersRating) {
         try {
-            DatabaseUpdate.updateUsersRating(_ratingObject, _newUsersRating);
+            //DatabaseUpdate.updateUsersRating(_ratingObject, _stringNewUsersRating);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updateUsersPlanToListen(UserMusicList _user, String _newUsersPlanToListen) {
+        try {
+            //DatabaseUpdate.updateUsersPlanToListenList(_user, _newUsersPlanToListen);
         } catch (Exception ex) {
             Logger.getLogger(DatabaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
