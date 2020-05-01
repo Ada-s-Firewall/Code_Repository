@@ -3,7 +3,7 @@ package Models;
 /**
  * This class acts wrapper for an instance of the DatabaseAdapter.
  * Last Updated: 4/30/2020
- * @author Fernando Villarreal
+ * @author Fernando Villarreal, Will Higdon
  */
 
 import Database.DatabaseAdapter;
@@ -105,8 +105,8 @@ public class DBInfoRequest implements DatabaseInterface {
     }
 
     @Override
-    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating){
-        this.adapter.updateUsersRating(_ratingObject, _newUsersRating);
+    public void updateUsersRating(RatingObject _user, String _newUsersRating){
+        this.adapter.updateUsersRating(_user, _newUsersRating);
     }
 
     @Override

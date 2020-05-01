@@ -172,9 +172,9 @@ public class DatabaseAdapter implements DatabaseInterface {
     }
 
     @Override
-    public void updateUsersRating(RatingObject _ratingObject, String _newUsersRating) {
+    public void updateUsersRating(RatingObject _user, String _newUsersRating) {
         try {
-            DatabaseUpdate.updateUsersRating(_ratingObject, _newUsersRating);
+            DatabaseUpdate.updateUsersRating(_user, _newUsersRating);
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }

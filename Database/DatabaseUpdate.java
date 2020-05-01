@@ -110,7 +110,7 @@ public class DatabaseUpdate {
     }
 
     //=========================== PRIVATE METHODS ===============================
-    
+
     /**
      * This method updates a user password.
      *
@@ -199,8 +199,12 @@ public class DatabaseUpdate {
     private static void updateUsersRating(File _file, RatingObject _user, String _newUsersRating) throws FileNotFoundException, IOException {
         //the old rating that will be updated
         String _oldUsersRating = _user.getUsersRating();
-        //updates the user's rating
-        DatabaseUpdate.updateFile(_file, _oldUsersRating, _newUsersRating);
+        //brings in variables
+        String _spotifyID = _user.getSpotifyId();
+        String _userName = _user.getUsername();
+        String _type = _user.getMusicObjectType();
+        //updates the rating in the file
+        DatabaseUpdate.updateFile(_file, _spotifyID, _userName, _oldUsersRating, _newUsersRating, _type);
     }
 
     /**
@@ -249,4 +253,47 @@ public class DatabaseUpdate {
             System.out.println("Could not rename file");
         }
     }
+
+    private static void updateFile(File _file, String _spotifyID, String _userName, String _oldUsersRating, String _newUserRating, String _type) throws FileNotFoundException, IOException {
+        //original file
+        File originalFile = _file;
+        //scanner for the rating
+        Scanner doubleScanner = new Scanner(originalFile);
+        //string to store information
+        String recordsDouble = "";
+
+        //loop to check if the line contains the variable
+        while (doubleScanner.hasNextLine()) {
+            String nextLine = doubleScanner.nextLine();
+            // If the record contains the rating and is active, overwrite the record as inactive.
+            if (nextLine.contains(_spotifyID) && nextLine.contains(_userName) && nextLine.contains(_oldUsersRating) && nextLine.contains("" + DatabaseInterface.active)) {
+                recordsDouble += doubleScanner.next() + "\t";
+                recordsDouble += _userName + "\t";
+                recordsDouble += _newUserRating + "\t";
+                recordsDouble += _spotifyID + "\t";
+                recordsDouble += _type + "\t";
+                recordsDouble += DatabaseInterface.active;
+                // If the record does not contain the rating, append it to recordsDouble without overwriting.
+            } else {
+                recordsDouble += nextLine + "\n";
+            }
+        }
+
+        // Write the recordsDouble to the file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.userRatingFile, false));
+        writer.write(recordsDouble);
+        writer.close();
+
+       /* // Delete the original file
+        if (!originalFile.delete()) {
+            System.out.println("Could not delete file");
+            return;
+        }
+        // Rename the new file to the filename the original file had.
+        if (!DatabaseInterface.temporaryFile.renameTo(originalFile)) {
+            System.out.println("Could not rename file");
+        }
+               */
+    }
 }
+

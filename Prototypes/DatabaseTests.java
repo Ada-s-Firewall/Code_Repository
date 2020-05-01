@@ -2,8 +2,9 @@ package Prototypes;
 
 /**
  * This class is specifically for conducting tests on the Database classes.
+ *
  * Last Updated: 4/30/2020
- * @author Fernando Villarreal, Quinn Tjin-A-Soe
+ * @author Fernando Villarreal, Quinn Tjin-A-Soe, Will Higdon
  */
 
 import Models.DBInfoRequest;
@@ -32,6 +33,8 @@ public class DatabaseTests {
         //DBTest05();
         System.out.println("Database Test 06:\n\n");
         //DBTest06();
+        System.out.println("Database Test 07:\n\n");
+        //DBTest07();
     }
 
     public static void DBTest01() throws Exception {
@@ -143,5 +146,18 @@ public class DatabaseTests {
             System.out.println(item.getMusicObjectType());
             System.out.println(item.getSpotifyId());
         }
+    }
+
+    public static void DBTest07() throws Exception {
+        DBInfoRequest request = new DBInfoRequest();
+        //creates new user
+        UserObject user05 = new UserObject("YaBOIWill", "slimthicc", "yaboi@email.com", "Hill", "Wigdon");
+        //creates rating
+        RatingObject rating06 = new RatingObject("YaBOIWill", "8.0", "37394IP6uhnjIpsawpMu4l", "artist");
+        //writes them to datastore
+        request.createUserRecord(user05);
+        request.createUserRating(rating06);
+        //updates rating 06
+        request.updateUsersRating(rating06, "9.0");
     }
 }
