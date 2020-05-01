@@ -3,7 +3,7 @@ package Database;
 /**
  * This interface holds all the methods for the database classes.
  * Last Updated: 04.30.2020
- * @author Quinn Tjin-A-Soe, Fernando Villarreal
+ * @author Quinn Tjin-A-Soe, Fernando Villarreal, Will Higdon
  */
 
 import Objects.*;
@@ -109,10 +109,10 @@ public interface DatabaseInterface {
 
     /**
      *
-     * @param _ratingObject
+     * @param _user
      * @param _newUsersRating
      */
-    public abstract void updateUsersRating(RatingObject _ratingObject, String _newUsersRating);
+    public abstract void updateUsersRating(RatingObject _user, String _newUsersRating);
 
     /**
      *
