@@ -7,16 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Controllers.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <Pane layoutX="220.0" layoutY="60.0" prefHeight="380.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-background-radius: 5px;">
          <children>
-            <Label layoutX="86.0" layoutY="63.0" prefHeight="39.0" prefWidth="133.0" text="User Login">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
             <HBox layoutX="52.0" layoutY="124.0" prefHeight="27.0" prefWidth="200.0" style="-fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
                <children>
                   <TextField fx:id="username" promptText="username" style="-fx-background-color: transparent;">
@@ -41,6 +35,11 @@
             <Label layoutX="61.0" layoutY="201.0" text="Wrong Username or Password!" textFill="#f80202" wrapText="true">
                <font>
                   <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="65.0" text="My Music List Login">
+               <font>
+                  <Font size="27.0" />
                </font>
             </Label>
          </children>

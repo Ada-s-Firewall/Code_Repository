@@ -67,9 +67,6 @@ public class ResultController implements Initializable {
     //Varible containin the search type that was passed in by the search page
     private String searchType;
 
-    //Variable to hold the item that is being rated
-    private MusicObject item;
-
     //Variabee to hold the list of the table
     private final ObservableList<MusicObject> TABLELIST = FXCollections.observableArrayList();
 
@@ -78,6 +75,9 @@ public class ResultController implements Initializable {
 
     //Variable to hold the database adapter object
     private final DBInfoRequest DBADAPTER = new DBInfoRequest();
+
+    //Variable tohold the api model
+    private final MusicRequest MUSICREQUEST = new MusicRequest();
 
     //Variable containing the address of the fxml files
     private final String ADDRESS = "/Views/";
@@ -246,8 +246,7 @@ public class ResultController implements Initializable {
 
 
                 //Make music request with infomation passed in
-                MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(this.searchContent, this.searchType);
+                MusicObjectList searchResults = MUSICREQUEST.search(this.searchContent, this.searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
@@ -266,8 +265,7 @@ public class ResultController implements Initializable {
 
 
                 //Make music request with infomation passed in
-                MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(this.searchContent, this.searchType);
+                MusicObjectList searchResults = MUSICREQUEST.search(this.searchContent, this.searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){
@@ -283,8 +281,7 @@ public class ResultController implements Initializable {
                 this.artistColumn.setCellValueFactory(new PropertyValueFactory <> ("name"));
 
                 //Make music request with infomation passed in
-                MusicRequest request = new MusicRequest();
-                MusicObjectList searchResults = request.search(this.searchContent, this.searchType);
+                MusicObjectList searchResults = MUSICREQUEST.search(this.searchContent, this.searchType);
 
                 //Add results to the table list to display
                 for(int i = 1; i <= searchResults.getLength(); i++){

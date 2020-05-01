@@ -1,1 +1,4 @@
-
+f4d023fa-a2f4-4a97-9b8b-4f6306f637ea	Eric C	10	2IvkS5MXK0vPGnwyJsrEyV	artist	false
+bbc83304-2fdb-4396-9f85-751bb17c2956	Eric C	10	6PAt558ZEZl0DmdXlnjMgD	artist	false
+52b3cf25-3d23-4ec1-a607-db37d71526c0	Eric C	10	7ibAWtDtmEfaVhc1FJ3Vl9	artist	false
+14301b52-4425-4ddd-adbe-042b647f0a74	Eric C	10	2FLqlgckDKdmpBrvLAT5BM	artist	false

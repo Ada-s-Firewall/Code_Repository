@@ -12,7 +12,7 @@
    <children>
       <Pane layoutX="220.0" layoutY="60.0" prefHeight="380.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-background-radius: 5px;">
          <children>
-            <Label layoutX="86.0" layoutY="63.0" prefHeight="39.0" prefWidth="133.0" text="User Login">
+            <Label layoutX="29.0" layoutY="64.0" prefHeight="44.0" prefWidth="246.0" text="My Music List Login" wrapText="true">
                <font>
                   <Font size="27.0" />
                </font>

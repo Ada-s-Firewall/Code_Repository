@@ -76,7 +76,6 @@ public class ProfileController implements Initializable {
     private final String SETTINGSFXML = this.ADDRESS + "Settings.fxml";
     private final String SEARCHFXML = this.ADDRESS + "Search.fxml";
     private final String PROFILE = this.ADDRESS + "Profile.fxml";
-    private final String PROFILEITEMDELETED = this.ADDRESS + "ProfileItemDeleted.fxml";
 
     /**
      * This method handles the action for when the log out button is clicked.
