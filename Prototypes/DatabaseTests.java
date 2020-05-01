@@ -2,6 +2,7 @@ package Prototypes;
 
 /**
  * This class is specifically for conducting tests on the Database classes.
+ *
  * Last Updated: 4/30/2020
  * @author Fernando Villarreal, Quinn Tjin-A-Soe, Will Higdon
  */
