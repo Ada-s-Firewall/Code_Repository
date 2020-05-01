@@ -147,7 +147,7 @@ public class DatabaseTests {
             System.out.println(item.getSpotifyId());
         }
     }
-  
+
     public static void DBTest07() throws Exception {
         DBInfoRequest request = new DBInfoRequest();
         //creates new user
