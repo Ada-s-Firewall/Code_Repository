@@ -200,11 +200,12 @@ public class DatabaseUpdate {
         //the old rating that will be updated
         String _oldUsersRating = _user.getUsersRating();
         //brings in variables
+        String _uuid = _user.getUuid();
         String _spotifyID = _user.getSpotifyId();
         String _userName = _user.getUsername();
         String _type = _user.getMusicObjectType();
         //updates the rating in the file
-        DatabaseUpdate.updateFile(_file, _spotifyID, _userName, _oldUsersRating, _newUsersRating, _type);
+        DatabaseUpdate.updateFile(_file, _uuid, _spotifyID, _userName, _oldUsersRating, _newUsersRating, _type);
     }
 
     /**
@@ -254,7 +255,7 @@ public class DatabaseUpdate {
         }
     }
 
-    private static void updateFile(File _file, String _spotifyID, String _userName, String _oldUsersRating, String _newUserRating, String _type) throws FileNotFoundException, IOException {
+    private static void updateFile(File _file, String _uuid, String _spotifyID, String _userName, String _oldUsersRating, String _newUserRating, String _type) throws FileNotFoundException, IOException {
         //original file
         File originalFile = _file;
         //scanner for the rating
@@ -267,12 +268,12 @@ public class DatabaseUpdate {
             String nextLine = doubleScanner.nextLine();
             // If the record contains the rating and is active, overwrite the record as inactive.
             if (nextLine.contains(_spotifyID) && nextLine.contains(_userName) && nextLine.contains(_oldUsersRating) && nextLine.contains("" + DatabaseInterface.active)) {
-                recordsDouble += doubleScanner.next() + "\t";
+                recordsDouble += _uuid + "\t";
                 recordsDouble += _userName + "\t";
                 recordsDouble += _newUserRating + "\t";
                 recordsDouble += _spotifyID + "\t";
                 recordsDouble += _type + "\t";
-                recordsDouble += DatabaseInterface.active;
+                recordsDouble += DatabaseInterface.active + "\n";
                 // If the record does not contain the rating, append it to recordsDouble without overwriting.
             } else {
                 recordsDouble += nextLine + "\n";
