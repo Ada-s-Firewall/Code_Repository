@@ -1,0 +1,8 @@
+f0c1881d-f551-4735-ae20-37a820181332	FVilla	5	5BIMPccDwShpXq784RJlJp	track	true
+b601750d-fdd5-4255-a38f-02f626f536fc	FVilla	5	5ZIDCr7j6480uxOyYuydny	album	true
+5eb1ab80-255c-46d5-56c1-66f50dca3a05	FVilla	8	78lgmZwycJ3nzsdgmPPGNx	track	false
+620eac12-13e8-4d8d-a25a-b57b30f47ded	FVilla	5	2nVHqZbOGkKWzlcy1aMbE7	track	true
+57a4cb66-5e55-4cee-85cc-57a6fd2b8b12	JackMan5000	8	4NJhFmfw43RLBLjQvxDuRS	artist	true
+75d3e8ef-b1ec-4e5c-850c-f1ae5f020ac5	JackMan5000	5	2wOqMjp5TyABvtHdOSOTUS	artist	true
+4553c6d5-ff41-4af5-8046-2f66e3507835	JackMan5000	8	0GDGKpJFhVpcjIGF8N6Ewt	artist	false
+d0c6e104-43d4-4453-521c-8efdd0d34848	JackMan5000	8	2UazAtjfzqBF0Nho2awK4z	artist	true
