@@ -1,5 +1,7 @@
-0e9fc3ae-6257-4998-ac8e-29100b9f810e	FVilla	9.0	37394IP6uhnjIpsawpMu4l	artist	true
-1b17594d-49e0-4fe2-86a3-4ba481a404d3	JackMan93	8.5	2ye2Wgw4gimLv2eAKyk1NB	artist	true
-fa02b677-17e2-4469-93ad-e565234b52c7	FVilla	9.5	278ZYwGhdK6QTzE3MFePnP	artist	true
-29b31b3f-0d9b-4e42-aa37-2039f915f5d1	JackMan93	8.8	36QJpDe2go2KgaRleHCDTp	artist	true
-55862e05-cf43-4af6-90d1-d1ba99ca2221	jdoe012	8.3	2wOqMjp9TyABvtHdOSOTUS	artist	true
+f0c1881d-f991-4739-ae20-37a820181332	FVilla	9	5BIMPccDwShpXq784RJlJp	track	true
+b601750d-fdd5-4295-a38f-02f626f536fc	FVilla	9	5ZIDCr7j6480uxOyYuydny	album	true
+9eb1ab80-299c-46d5-96c1-66f50dca3a05	FVilla	8	78lgmZwycJ3nzsdgmPPGNx	track	false
+620eac12-13e8-4d8d-a25a-b57b30f47ded	FVilla	9	2nVHqZbOGkKWzlcy1aMbE7	track	true
+97a4cb66-9e59-4cee-89cc-97a6fd2b8b12	JackMan9000	8	4NJhFmfw43RLBLjQvxDuRS	artist	true
+75d3e8ef-b1ec-4e5c-850c-f1ae9f020ac5	JackMan9000	9	2wOqMjp9TyABvtHdOSOTUS	artist	true
+4553c6d9-ff41-4af5-8046-2f66e3907839	JackMan9000	8	0GDGKpJFhVpcjIGF8N6Ewt	artist	true

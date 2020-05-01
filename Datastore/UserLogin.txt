@@ -1,7 +1,7 @@
 JackMan93	THISISMYNEWPASSWORD	false
 FVilla	THISISMYNEWPASSWORD	true
 jdoe012	password01	true
-jmiller	password02	false
+jmiller	password03	false
 JoJo111	joj111	true
 HonestAbe	liberator	false
 HonestJane	honesty	true
@@ -12,4 +12,8 @@ JeffM	jefftime	false
 JeffM	jefftime	true
 JeffM	jefftime	true
 JeffM	jefftime	true
-Eric C	123	true
+Eric	1	false
+Eric	1	false
+Eric C	1	true
+FVilla	computer	true
+JackMan9000	eightthousand	true

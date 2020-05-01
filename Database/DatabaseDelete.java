@@ -6,10 +6,10 @@ package Database;
  * Last Updated: April 20, 2020
  * @author Will Higdon, Quinn Tjin-A-Soe, Fernando Villarreal
  */
-import Objects.UserObject;
+import Objects.PlanToListenObject;
+import Objects.RatingObject;
 import java.io.BufferedReader;
 import Objects.UserObject;
-import Objects.RecordObject;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,18 +17,51 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseDelete {
-    public static final String active = "true";
-    public static final String inactive = "false";
+
+    private static final String active = "true";
+    private static final String inactive = "false";
 
     //=========================== PUBLIC METHODS ===============================
     /**
-     * This method deletes a specified record from the database. This method
-     * writes the contents of one file onto another text file except for the
-     * specified record, which will be set to inactive onto the temporary text
-     * file. Afterwards, the temporary text file is renamed to the original text
-     * file, and the original text file is deleted.
+     * This method deletes a record in the PlanToListen File.
+     *
+     * @param _planToListen
+     */
+    public static void deletePlanToListen(PlanToListenObject _planToListen) {
+        // Find the username in the file
+        String spotifyId = _planToListen.getSpotifyId();
+
+        // Delete the user's record in userPlanToListen
+        try {
+            deleteRecord(DatabaseInterface.userPlanToListen, spotifyId);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseDelete.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * This method deletes a record in the UserRating File.
+     *
+     * @param _rating
+     */
+    public static void deleteRating(RatingObject _rating) {
+        // Find the username in the file
+        String spotifyId = _rating.getSpotifyId();
+
+        // Delete the user's record in userRatingFile
+        try {
+            deleteRecord(DatabaseInterface.userRatingFile, spotifyId);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseDelete.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * This method deletes a specified record from the database.
      *
      * @param _file
      * @param _user
@@ -36,41 +69,18 @@ public class DatabaseDelete {
      * @throws IOException
      */
     public static void deleteUserRecord(File _file, UserObject _user) throws FileNotFoundException, IOException, Exception {
-        File originalFile = _file;
-        BufferedReader reader = new BufferedReader(new FileReader(originalFile));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.temporaryFile));
-        String lineInFile = null;
-        String userName = _user.getUserName();
-        // While the file is not empty
-        while ((lineInFile = reader.readLine()) != null) {
-            // If the username is found, it will be made to inactive
-            if (lineInFile.contains(userName)) {
-                lineInFile = lineInFile.replace(DatabaseDelete.active, DatabaseDelete.inactive);
-                writer.write(lineInFile);
-                writer.newLine();
-            } else {
-                writer.write(lineInFile);
-                writer.newLine();
-            }
-            writer.flush();
-        }
-        writer.close();
-        reader.close();
+        // Find the username in the file
+        String username = _user.getUserName();
 
-        // Delete the original file
-        if (!originalFile.delete()) {
-            System.out.println("Could not delete file");
-            return;
-        }
-
-        // Rename the new file to the filename the original file had.
-        if (!DatabaseInterface.temporaryFile.renameTo(originalFile)) {
-            System.out.println("Could not rename file");
+        // Delete the user's record in userInfoFile
+        try {
+            deleteRecord(DatabaseInterface.userInfoFile, username);
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseDelete.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Delete the user's information from the UserLogin.txt file
         DatabaseDelete.deleteUserLogin(_user);
-
     }
 
     /**
@@ -98,6 +108,46 @@ public class DatabaseDelete {
     }
 
     //========================== PRIVATE METHODS ==============================
+    /**
+     * This method is the logic behind deleting any record in any file.
+     *
+     * @param _file
+     * @param _record
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    private static void deleteRecord(File _file, String _record) throws FileNotFoundException, IOException {
+        File originalFile = _file;
+        BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(DatabaseInterface.temporaryFile));
+        String lineInFile = null;
+        while ((lineInFile = reader.readLine()) != null) {
+            // If the username is found, it will be made to inactive
+            if (lineInFile.contains(_record)) {
+                lineInFile = lineInFile.replace(DatabaseDelete.active, DatabaseDelete.inactive);
+                writer.write(lineInFile);
+                writer.newLine();
+            } else {
+                writer.write(lineInFile);
+                writer.newLine();
+            }
+            writer.flush();
+        }
+        writer.close();
+        reader.close();
+
+        // Delete the original file
+        if (!originalFile.delete()) {
+            System.out.println("Could not delete file");
+            return;
+        }
+
+        // Rename the new file to the filename the original file had.
+        if (!DatabaseInterface.temporaryFile.renameTo(originalFile)) {
+            System.out.println("Could not rename file");
+        }
+    }
+
     /**
      * Deletes a user's login information from the UserLogin.txt file.
      *

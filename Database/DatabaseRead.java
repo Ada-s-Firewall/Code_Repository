@@ -1,16 +1,18 @@
 package Database;
-/*
- * This Database class returns records.
- * This class uses scanners and reads from a textfile.
- */
 
 /**
- * Last Updated: 04.17.2020
- *
+ * This Database class returns records.
+ * This class uses scanners and reads from a text file.
+ * This class uses scanners and reads from a text file.
+ * Last Updated: 04.23.2020
  * @author Quinn Tjin-A-Soe, Fernando Villarreal
  */
+
+import Objects.TrackObject;
+import Models.MusicRequest;
+import Objects.AlbumObject;
+import Objects.ArtistObject;
 import Objects.RatingObject;
-import Objects.RecordObject;
 import Objects.PlanToListenObject;
 import Objects.RecordObjectList;
 import Objects.UserObject;
@@ -41,6 +43,9 @@ public class DatabaseRead {
     private static final String active = "true";
     private static final String inactive = "false";
 
+    //Model to obtain name of spotify id
+    private static MusicRequest musicRequest = new MusicRequest();
+
     //=============== METHODS ===============
 
     /**
@@ -52,13 +57,13 @@ public class DatabaseRead {
      * @throws IOException
      */
     public static ArrayList<String> readRecord(File _file, String _string) throws IOException {
-        // Call DatabaseRead.readRecords with the given parameters
+        // Call DatabaseRead.readRecords with the given parameters.
         ArrayList<ArrayList<String>> recordsList = DatabaseRead.readRecords(_file, _string);
-        // If the record was not found (recordsList is empty), return an empty ArrayList<String>
+        // If the record was not found (recordsList is empty), return an empty ArrayList<String>.
         if (recordsList.isEmpty()) {
             return new ArrayList<>();
         }
-        // Get the first item in recordsList and return it
+        // Get the first item in recordsList and return it.
         int firstItemIndex = 0;
         return recordsList.get(firstItemIndex);
     }
@@ -71,14 +76,14 @@ public class DatabaseRead {
      * @throws IOException
      */
     public static ArrayList<ArrayList<String>> readRecords(File _file, String _string) throws IOException {
-        // Create an ArrayList of ArrayList<String> to store the records
+        // Create an ArrayList of ArrayList<String> to store the records.
         ArrayList<ArrayList<String>> recordsList = new ArrayList<>();
-        // Scan the specified file for records that contain _string and are active
+        // Scan the specified file for records that contain _string and are active.
         Scanner scanner = new Scanner(_file);
         while (scanner.hasNextLine()) {
             String stringRecord = scanner.nextLine();
             if (stringRecord.contains(_string) && stringRecord.contains(DatabaseRead.active)) {
-                // Create a new record and add it to recordList
+                // Create a new record and add it to recordList.
                 ArrayList<String> record = new ArrayList<>();
                 Scanner scannerRecord = new Scanner(stringRecord);
                 scannerRecord.useDelimiter("\t");
@@ -88,7 +93,7 @@ public class DatabaseRead {
                 recordsList.add(record);
             }
         }
-        // Return the recordList
+        // Return the recordList.
         return recordsList;
     }
 
@@ -99,13 +104,13 @@ public class DatabaseRead {
      * @throws java.lang.Exception
      */
     public static UserObject readUserRecord(String _username) throws Exception {
-        // Get the ArrayList<String> for the record
+        // Get the ArrayList<String> for the record.
         ArrayList<String> recordList = DatabaseRead.readRecord(DatabaseInterface.userInfoFile, _username);
-        // If the record was not found, return an empty UserObject
+        // If the record was not found, return an empty UserObject.
         if (recordList.isEmpty()) {
             return new UserObject(DatabaseRead.noSuchRecord);
         }
-        // Create and return a UserObject using the information in recordList
+        // Create and return a UserObject using the information in recordList.
         String uuid = recordList.get(DatabaseRead.indexUUID);
         String username = recordList.get(DatabaseRead.indexUsername);
         String password = recordList.get(DatabaseRead.indexPassword);
@@ -122,27 +127,40 @@ public class DatabaseRead {
      * @throws Exception
      */
     public static RecordObjectList readUsersRatings(String _username) throws Exception {
-        // Get the ArrayList of ArrayList<String> for the records
+        // Get the ArrayList of ArrayList<String> for the records.
         ArrayList<ArrayList<String>> recordsList = DatabaseRead.readRecords(DatabaseInterface.userRatingFile, _username);
-        // Create a new RecordObjectList to store the RatingObjects
+        // Create a new RecordObjectList to store the RatingObjects.
         String listName = _username + "'s Ratings";
         RecordObjectList ratingsList = new RecordObjectList(listName, "ratings");
-        // If recordsList is empty, return an empty RecordObjectList
+        // If recordsList is empty, return an empty RecordObjectList.
         if (recordsList.isEmpty()) {
             return new RecordObjectList("Empty List", "empty");
         }
-        // Iterate over recordsList
+        // Iterate over recordsList.
         for (ArrayList<String> record : recordsList) {
-            // Create a RatingObject and add it to ratingsList
+            // Create a RatingObject and add it to ratingsList.
             String uuid = record.get(DatabaseRead.indexUUID);
             String username = record.get(DatabaseRead.indexUsername);
-            Double rating = new Double(record.get(DatabaseRead.indexRating));
+            String rating = new String(record.get(DatabaseRead.indexRating));
             String spotifyID = record.get(DatabaseRead.indexSpotifyID);
             String musicObjectType = record.get(DatabaseRead.indexMusicObjectType);
-            RatingObject ratingObj = new RatingObject(uuid, username, rating, spotifyID, musicObjectType);
+            String name = "hello";
+            if("track".equals(musicObjectType)){
+                System.out.println(spotifyID);
+                TrackObject track = musicRequest.loadTrackById(spotifyID);
+                name = track.getName();
+                System.out.println(name);
+            } else if ("album".equals(musicObjectType)){
+                AlbumObject album = musicRequest.loadAlbumById(spotifyID);
+                name = album.getName();
+            } else if ("artist".equals(musicObjectType)){
+                ArtistObject artist = musicRequest.loadArtistById(spotifyID);
+                name = artist.getName();
+            }
+            RatingObject ratingObj = new RatingObject(uuid, name, username, rating, spotifyID, musicObjectType);
             ratingsList.add(ratingObj);
         }
-        // Return the list of ratings
+        // Return the list of ratings.
         return ratingsList;
     }
 
@@ -153,27 +171,27 @@ public class DatabaseRead {
      * @throws Exception
      */
     public static RecordObjectList readUsersPlanToListen(String _username) throws Exception {
-        // Get the ArrayList of ArrayList<String> for the records
+        // Get the ArrayList of ArrayList<String> for the records.
         ArrayList<ArrayList<String>> recordsList = DatabaseRead.readRecords(DatabaseInterface.userPlanToListen, _username);
-        // Create a new RecordObjectList to store the PlanToListenObjects
+        // Create a new RecordObjectList to store the PlanToListenObjects.
         String listName = _username + "'s Plan-To-Listen-To List";
         RecordObjectList planToListenList = new RecordObjectList(listName, "Planning to Listen To Records");
-        // If recordsList is empty, return an empty RecordObjectList
+        // If recordsList is empty, return an empty RecordObjectList.
         if (recordsList.isEmpty()) {
             return new RecordObjectList("Empty List", "empty");
         }
-        // Iterate over recordsList
+        // Iterate over recordsList.
         for (ArrayList<String> record : recordsList) {
-            // Create a PlanToListenObject and add it to ratingsList
+            // Create a PlanToListenObject and add it to ratingsList.
             String uuid = record.get(DatabaseRead.indexUUID);
             String username = record.get(DatabaseRead.indexUsername);
-            // Indexes values below are offset by one in UserPlanToListen lists compared to UsersRatings list
+            // Indexes values below are offset by one in UserPlanToListen lists compared to UsersRatings list.
             String spotifyID = record.get(DatabaseRead.indexSpotifyID - 1);
             String musicObjectType = record.get(DatabaseRead.indexMusicObjectType - 1);
             PlanToListenObject planToListenObj = new PlanToListenObject(uuid, username, spotifyID, musicObjectType);
             planToListenList.add(planToListenObj);
         }
-        // Return the list of plan-to-listen records
+        // Return the list of plan-to-listen records.
         return planToListenList;
     }
 }

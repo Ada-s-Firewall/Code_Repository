@@ -1,7 +1,5 @@
 package Objects;
 
-import java.util.ArrayList;
-
 /**
  * This is an object for the user's rating of a particular album or song.
  *
@@ -9,25 +7,27 @@ import java.util.ArrayList;
  * Last Updated: April 14, 2020
  */
 
+import java.util.ArrayList;
+
 public class RatingObject extends RecordObject {
-    /*
-    * Variables for the user's rating.
-    */
+
+    //=================  CLASS VARIABLES ===================
+
     private String username;
-    private double usersRating;
+    private String usersRating;
     private String spotifyID;
     private String musicObjectType;
 
     //=================  CONSTRUCTORS ===================
 
-    public RatingObject(String _name, int _id, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _name, int _id, String _usersRating, String _spotifyID, String _musicObjectType) {
         super(_name, _id);
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
         this.musicObjectType = _musicObjectType;
     }
 
-    public RatingObject(String _uuid, String _name, int _id, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _uuid, String _name, int _id, String _usersRating, String _spotifyID, String _musicObjectType) {
         super(_uuid, _name, _id);
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
@@ -36,7 +36,7 @@ public class RatingObject extends RecordObject {
 
     // The constructors below do not use the id and name variables.
 
-    public RatingObject(String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _username, String _usersRating, String _spotifyID, String _musicObjectType) {
         super();
         this.username = _username;
         this.usersRating = _usersRating;
@@ -44,8 +44,16 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
-    public RatingObject(String _uuid, String _username, double _usersRating, String _spotifyID, String _musicObjectType) {
+    public RatingObject(String _uuid, String _username, String _usersRating, String _spotifyID, String _musicObjectType) {
         super(_uuid);
+        this.username = _username;
+        this.usersRating = _usersRating;
+        this.spotifyID = _spotifyID;
+        this.musicObjectType = _musicObjectType;
+    }
+
+    public RatingObject(String _uuid, String _name, String _username, String _usersRating, String _spotifyID, String _musicObjectType) {
+        super(_uuid, _name);
         this.username = _username;
         this.usersRating = _usersRating;
         this.spotifyID = _spotifyID;
@@ -61,14 +69,7 @@ public class RatingObject extends RecordObject {
         this.musicObjectType = _musicObjectType;
     }
 
-    public RatingObject(String _uuid, String _username, String _spotifyID, String _musicObjectType) {
-        super(_uuid);
-        this.username = _username;
-        this.spotifyID = _spotifyID;
-        this.musicObjectType = _musicObjectType;
-    }
-
-    // This constrcutors is for Null RatingObjects
+    // This constructor is for Null RatingObjects.
 
     public RatingObject(String _nullValue) {
         super(_nullValue);
@@ -101,7 +102,7 @@ public class RatingObject extends RecordObject {
         return this.username;
     }
 
-    public double getUsersRating() {
+    public String getUsersRating() {
         return this.usersRating;
     }
 
@@ -119,7 +120,7 @@ public class RatingObject extends RecordObject {
         this.username = _username;
     }
 
-    public void setUsersRating(double _usersRating) {
+    public void setUsersRating(String _usersRating) {
         this.usersRating = _usersRating;
     }
 
@@ -131,7 +132,7 @@ public class RatingObject extends RecordObject {
         this.uuid = _uuid;
     }
 
-    public void setMusicObjectTupe(String _musicObjectType) {
+    public void setMusicObjectType(String _musicObjectType) {
         this.musicObjectType = _musicObjectType;
     }
 }

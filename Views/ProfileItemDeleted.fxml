@@ -25,13 +25,14 @@
             <Button layoutX="601.0" layoutY="398.0" mnemonicParsing="false" onAction="#settingsButtonClicked" prefHeight="25.0" prefWidth="62.0" text="Settings" />
             <Button layoutX="591.0" layoutY="4.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="72.0" text="Search!" />
             <Button layoutX="229.0" layoutY="398.0" mnemonicParsing="false" onAction="#deleteItemButtonClicked" prefHeight="25.0" prefWidth="198.0" text="Delete item!" />
-            <Label layoutX="228.0" layoutY="315.0" text="Change Rating:">
+            <Label layoutX="229.0" layoutY="334.0" text="Change Rating:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="rateScore" layoutX="353.0" layoutY="316.0" prefHeight="25.0" prefWidth="72.0" />
-            <Button layoutX="283.0" layoutY="347.0" mnemonicParsing="false" onAction="#changeRatingButtonCLicked" prefHeight="25.0" prefWidth="93.0" text="Change!" />
+            <ChoiceBox fx:id="rateScore" layoutX="351.0" layoutY="335.0" prefHeight="25.0" prefWidth="72.0" />
+            <Button layoutX="282.0" layoutY="366.0" mnemonicParsing="false" onAction="#changeRatingButtonCLicked" prefHeight="25.0" prefWidth="93.0" text="Change!" />
+            <Label layoutX="259.0" layoutY="314.0" text="Item Successfully Deleted!" textFill="RED" />
          </children>
       </Pane>
    </children>

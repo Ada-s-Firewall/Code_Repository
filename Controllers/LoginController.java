@@ -5,7 +5,7 @@ package Controllers;
  *          login process of the application fxml files which holds the code
  *          for the views of the login process of the application.
  * Contributors: Eric Cortes | Modified: Fernando Villarreal
- * Last Updated: 04/22/2020
+ * Last Updated: 04/28/2020
  */
 
 import java.io.IOException;
@@ -23,27 +23,9 @@ import javafx.stage.Stage;
 import Models.DBInfoRequest;
 import Models.CheckUserInfo;
 import Objects.NewUserObject;
+import Objects.UserObject;
 
 public class LoginController implements Initializable {
-
-    //Variable containing the address of the fxml files
-    private static final String ADDRESS = "/Views/";
-
-    //Variable set to false which coresponds to the maximize functionality
-    private static final Boolean RESIZE = false;
-
-    // CheckUserInfo Object
-    private final CheckUserInfo checker = new CheckUserInfo();
-
-    // DBInfoRequest Object (Adapter for database operations)
-    private final DBInfoRequest dbAdapter = new DBInfoRequest();
-
-    // Results Codes for the validity of a NewUserObject
-    private final int NO_ERRORS = 0;
-    private static final int USERNAME_ERROR = 1;
-    private static final int PASSWORD_ERROR = 2;
-    private static final int INVALID_EMAIL_ERROR = 3;
-    private static final int EMAIL_TAKEN_ERROR = 4;
 
     //The password variable that corresponds to the user input
     @FXML
@@ -65,6 +47,39 @@ public class LoginController implements Initializable {
     @FXML
     private TextField confirmEmail;
 
+    //Variable to hold the current user
+    private UserObject user;
+
+    // CheckUserInfo Object
+    private final CheckUserInfo USERINFOCHECKER = new CheckUserInfo();
+
+    // DBInfoRequest Object (Adapter for database operations)
+    private final DBInfoRequest DBADAPTER = new DBInfoRequest();
+
+    //Variable containing the address of the fxml files
+    private final String ADDRESS = "/Views/";
+
+    //Variable set to false which coresponds to the maximize functionality
+    private final Boolean RESIZE = false;
+
+    // Results Codes for the validity of a NewUserObject
+    private final int NO_ERRORS = 0;
+    private static final int USERNAME_ERROR = 1;
+    private static final int PASSWORD_ERROR = 2;
+    private static final int INVALID_EMAIL_ERROR = 3;
+    private static final int EMAIL_TAKEN_ERROR = 4;
+
+    //Variables to hold the fxml files
+    private final String PROFILEFXML = this.ADDRESS + "Profile.fxml";
+    private final String LOGINPAGEERROR = this.ADDRESS + "LoginPageError.fxml";
+    private final String SIGNUPPAGE = this.ADDRESS + "SignUpPage.fxml";
+    private final String FORGOTPASSWORD = this.ADDRESS + "ForgotPassword.fxml";
+    private final String SIGNUPUSERNAMEERROR = this.ADDRESS + "SignUpUsernameError.fxml";
+    private final String SIGNUPPASSWORDERROR = this.ADDRESS + "SignUpPasswordError.fxml";
+    private final String SIGNUPSUCCESSFUL = this.ADDRESS + "SignUpSuccessful.fxml";
+    private final String SIGNUPIMPROPEREMAILERROR = this.ADDRESS + "SignUpImproperEmailError.fxml";
+    private final String SIGNUPEMAILERROR = this.ADDRESS + "SignUpEmailError.fxml";
+    private final String LOGINPAGE = this.ADDRESS + "LoginPage.fxml";
 
     /**
      * This method is responsible for the action taken when the login button is
@@ -80,25 +95,24 @@ public class LoginController implements Initializable {
         String theUsername = this.username.getText();
         String thePassword = this.password.getText();
 
-        /*
-        if ("username".equals(theUsername) && "password".equals(thePassword)){
-            displayPage(_event, "Search.fxml");
-        }
-        else{
-            displayPage(_event, "LoginPageError.fxml");
-        }
-        */
-
         // Check the provided login information
-        int userLoginValidityCode = this.checker.isUserCredentialsValid(theUsername, thePassword);
+        int userLoginValidityCode = this.USERINFOCHECKER.isUserCredentialsValid(theUsername, thePassword);
 
-        // If the login is valid, load the Search page.
+        // If the login is valid, load the Profile page.
         if (userLoginValidityCode == this.NO_ERRORS) {
-            displayPage(_event, "Profile.fxml");
-        }
 
-        // If the login is not valid, load the Login Error page.
-        displayPage(_event, "LoginPageError.fxml");
+            //Obtain the current user as a UserObject
+            this.user = this.DBADAPTER.readUserRecord(theUsername);
+
+            //Display the profile page
+            displayPage(_event, this.PROFILEFXML);
+
+        }else{
+
+            // If the login is not valid, load the Login Error page.
+            displayPage(_event, this.LOGINPAGEERROR);
+
+        }
 
     }
 
@@ -112,7 +126,7 @@ public class LoginController implements Initializable {
     protected void signUpButtonClicked(ActionEvent _event) throws IOException {
 
         //Sign up page fxml is displayed
-        displayPage(_event, "SignUpPage.fxml");
+        displayPage(_event, this.SIGNUPPAGE);
 
     }
 
@@ -126,7 +140,7 @@ public class LoginController implements Initializable {
     protected void forgotPasswordButtonClicked(ActionEvent _event) throws IOException {
 
         //Forgot password page fxml is displayed
-        displayPage(_event, "ForgotPassword.fxml");
+        displayPage(_event, this.FORGOTPASSWORD);
     }
 
 
@@ -143,36 +157,37 @@ public class LoginController implements Initializable {
         String thePassword = this.password.getText();
         String theConfirmPassword = this.confirmPassword.getText();
         String theEmail = this.email.getText();
+
         // First and last names fields needed in 'SingUpPage.fxml'
         String firstName = "Johnathan"; // placeholder
         String lastName = "Doe"; // placeholder
 
         // Create a NewUserObject and check if its information is valid
         NewUserObject newUser = new NewUserObject(theUsername, thePassword, theConfirmPassword, theEmail, firstName, lastName);
-        int userValidityCode = this.checker.isNewUserValid(newUser);
+        int userValidityCode = this.USERINFOCHECKER.isNewUserValid(newUser);
 
         // Load the appropriate page based on the error code: userValidityCode
         switch (userValidityCode) {
             // Load and display the username error page
             case LoginController.USERNAME_ERROR:
-                displayPage(_event, "SignUpUsernameError.fxml");
+                displayPage(_event, this.SIGNUPUSERNAMEERROR);
                 break;
             // Load and display the password error page
             case LoginController.PASSWORD_ERROR:
-                displayPage(_event, "SignUpPasswordError.fxml");
+                displayPage(_event, this.SIGNUPPASSWORDERROR);
                 break;
             // Load and display the sign up improper email page
             case LoginController.INVALID_EMAIL_ERROR:
-                displayPage(_event, "SignUpImproperEmailError.fxml");
+                displayPage(_event, this.SIGNUPIMPROPEREMAILERROR);
                 break;
             // Load and display the email already exists page
             case LoginController.EMAIL_TAKEN_ERROR:
-                displayPage(_event, "SignUpEmailError.fxml");
+                displayPage(_event, this.SIGNUPEMAILERROR);
                 break;
             // Create the new user then load and display the login page
             default:
-                this.dbAdapter.createUserRecord(newUser);
-                displayPage(_event, "SignUpSuccessful.fxml");
+                this.DBADAPTER.createUserRecord(newUser);
+                displayPage(_event, this.SIGNUPSUCCESSFUL);
                 break;
         }
     }
@@ -187,41 +202,10 @@ public class LoginController implements Initializable {
     protected void returnToLoginPageClicked(ActionEvent _event) throws IOException {
 
         //Load and display the login page
-        displayPage(_event, "LoginPage.fxml");
+        displayPage(_event, this.LOGINPAGE);
 
     }
 
-    /**
-     * This method is responsible for the actions taken when the send me a new
-     * password button is clicked
-     * @param _event
-     * @throws java.io.IOException
-     */
-    @FXML
-    protected void sendMeNewPasswordButtonClicked(ActionEvent _event) throws IOException {
-
-        //String variables of information entered by user
-        String theEmail = email.getText();
-        String theConfirmEmail = confirmEmail.getText();
-
-        //Display apporpriate message depending on input
-        if(!(theEmail.equals(theConfirmEmail))){
-
-            //Load and display the emails dont match page
-            displayPage(_event, "ForgotPasswordEmailError.fxml");
-
-        }else if (!("yahoo@gmail.com".equals(theEmail))){
-
-            //Load and display the email does not exist page
-            displayPage(_event, "ForgotPasswordEmailDoesNotExistError.fxml");
-
-        }else{
-
-            //Load and display new password sent
-            displayPage(_event, "ForgotPasswordSuccessful.fxml");
-
-        }
-    }
 
     /**
      * This method displays the page that was passed in as a string
@@ -229,16 +213,34 @@ public class LoginController implements Initializable {
      * @param _fxmlFile
      * @throws IOException
      */
-    protected void displayPage(ActionEvent _event, String _fxmlFile) throws IOException{
+    private void displayPage(ActionEvent _event, String _fxmlFile) throws IOException{
 
-        //Load and display the login page
-        Parent root = FXMLLoader.load(getClass().getResource(ADDRESS + _fxmlFile));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.resizableProperty().setValue(RESIZE);
-        stage.show();
+        if(_fxmlFile == this.PROFILEFXML){
 
+            //Obtain location of fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(_fxmlFile));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            //Pass variables to controller
+            ProfileController controller = loader.getController();
+            controller.initializeUser(this.user);
+
+            //Display stage
+            Stage stage = (Stage)((Node)_event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.resizableProperty().setValue(this.RESIZE);
+            stage.show();
+
+        }else{
+
+            Parent root = FXMLLoader.load(getClass().getResource(_fxmlFile));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.resizableProperty().setValue(this.RESIZE);
+            stage.show();
+        }
     }
 
     /**

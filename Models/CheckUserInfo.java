@@ -40,29 +40,29 @@ public class CheckUserInfo {
      * @return int
      */
     public int isNewUserValid(NewUserObject _newUser) {
-        // Check if the new user's username is already taken. If it is, return false.
+        // Check if the new user's username is already taken. If it is, return the appropriate error code.
         String newUsername = _newUser.getUserName();
         UserObject existingUser = this.adapter.readUserRecord(newUsername);
         if (newUsername.equals(existingUser.getUserName())) {
             return this.USERNAME_ERROR;
         }
-        // Check if the password and confirmPassword are the same. If not, return false.
+        // Check if the password and confirmPassword are the same. If not, return the appropriate error code.
         String password = _newUser.getUserPassword();
         String confirmPassword = _newUser.getConfirmPassword();
         if (!password.equals(confirmPassword)) {
             return this.PASSWORD_ERROR;
         }
-        // Check if the email is valid. If not, return false.
+        // Check if the email is valid. If not, return the appropriate error code.
         if (!this.isEmailValid(_newUser.getUserEmail())) {
             return this.INVALID_EMAIL_ERROR;
         }
-        // Check if the email is already being used by an existing user
+        // Check if the email is already being used by an existing user. If it is, return the appropriate error code.
         String givenEmail = _newUser.getUserEmail();
         UserObject userWithEmail = this.adapter.readUserRecord(_newUser.getUserEmail());
         if (givenEmail.equals(userWithEmail.getUserEmail())) {
             return this.EMAIL_TAKEN_ERROR;
         }
-        // Return true if the information is valid
+        // Return the NO_ERRORS code if the information is valid.
         return this.NO_ERRORS;
     }
 
@@ -74,19 +74,17 @@ public class CheckUserInfo {
      * @return int
      */
     public int isUserCredentialsValid(String _theUsername, String _thePassword) {
-        // Get the User associated with the given username
+        // Get the User associated with the given username.
         UserObject existingUser = this.adapter.readUserRecord(_theUsername);
         String existingUsername = existingUser.getUserName();
         String existingPassword = existingUser.getUserPassword();
-        // Check if the given and existing usernames and passwords match
+        // Check if the given and existing usernames and passwords match.
         if (_theUsername.equals(existingUsername) && _thePassword.equals(existingPassword)) {
             return this.NO_ERRORS;
         }
-        // If the usernames and passwords don't match, return an error code
+        // If the usernames and passwords don't match, return an error code.
         return this.INVALID_LOGIN;
     }
-
-    //===================== PRIVATE METHODS =====================
 
     /**
      * Checks if the given email address is valid. Returns true if it is or returns
@@ -94,7 +92,7 @@ public class CheckUserInfo {
      * @param _email
      * @return
      */
-    private boolean isEmailValid(String _email) {
+    public boolean isEmailValid(String _email) {
         String at = "@";
         String dot = ".";
         // If the email does not contain '@ ' or '.' characters, return false.
@@ -116,7 +114,7 @@ public class CheckUserInfo {
         if (atIndex >= dotIndex || distance <= 1) {
             return false;
         }
-        // Return true if the email is in a valid format
+        // Return true if the email is in a valid format.
         return true;
     }
 }
