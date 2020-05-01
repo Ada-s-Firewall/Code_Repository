@@ -199,7 +199,7 @@ public class DatabaseUpdate {
     private static void updateUsersRating(File _file, RatingObject _user, String _newUsersRating) throws FileNotFoundException, IOException {
         //the old rating that will be updated
         String _oldUsersRating = _user.getUsersRating();
-        //brings in variables 
+        //brings in variables
         String _spotifyID = _user.getSpotifyId();
         String _userName = _user.getUsername();
         String _type = _user.getMusicObjectType();
